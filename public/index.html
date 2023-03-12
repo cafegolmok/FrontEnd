@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>카페골목</title>
+    <link rel="stylesheet" href="../src/style.css" />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div id="app">
+      <!-- header  -->
+      <header>
+        <div class="header-top">
+          <h1 class="screen-out">카페골목 홈화면입니다.</h1>
+          <img
+            src="../src/assets/images/logo-cutout.png"
+            alt="카페골목 로고"
+            class="img-logo"
+          />
+          <label for="search-bar" class="search-container">
+            <input
+              type="text"
+              placeholder="카페를 검색해 보세요"
+              class="search-cafe"
+              id="search-bar"
+              maxlength="20"
+            />
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="26"
+              height="26"
+              viewBox="0 0 24 24"
+              class="btn-search"
+            >
+              <path
+                d="M10 18a7.952 7.952 0 0 0 4.897-1.688l4.396 4.396 1.414-1.414-4.396-4.396A7.952 7.952 0 0 0 18 10c0-4.411-3.589-8-8-8s-8 3.589-8 8 3.589 8 8 8zm0-14c3.309 0 6 2.691 6 6s-2.691 6-6 6-6-2.691-6-6 2.691-6 6-6z"
+              ></path>
+            </svg>
+          </label>
+
+          <div class="profile-container">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="35"
+              height="35"
+              viewBox="0 0 24 24"
+              class="img-profile-bar"
+            >
+              <path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"></path>
+            </svg>
+
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="40"
+              height="40"
+              viewBox="0 0 24 24"
+              class="img-profile"
+            >
+              <path
+                d="M12 2C6.579 2 2 6.579 2 12s4.579 10 10 10 10-4.579 10-10S17.421 2 12 2zm0 5c1.727 0 3 1.272 3 3s-1.273 3-3 3c-1.726 0-3-1.272-3-3s1.274-3 3-3zm-5.106 9.772c.897-1.32 2.393-2.2 4.106-2.2h2c1.714 0 3.209.88 4.106 2.2C15.828 18.14 14.015 19 12 19s-3.828-.86-5.106-2.228z"
+              ></path>
+            </svg>
+          </div>
+        </div>
+
+        <ul class="category-list">
+          <li class="category-item category-coffee">
+            <img
+              src="../src/assets/images/coffee.png"
+              alt="커피 카테고리 버튼"
+            />
+            <strong>커피가 맛있어요</strong>
+          </li>
+          <li class="category-item category-beverage">
+            <img
+              src="../src/assets/images/beverage.png"
+              alt="음료 카테고리 버튼"
+            />
+            <strong>음료가 맛있어요</strong>
+          </li>
+          <li class="category-item category-dessert">
+            <img
+              src="../src/assets/images/short-cake.png"
+              alt="디저트 카테고리 버튼"
+            />
+            <strong>디저트가 맛있어요</strong>
+          </li>
+          <li class="category-item category-speak">
+            <img
+              src="../src/assets/images/speak.png"
+              alt="대화 카테고리 버튼"
+            />
+            <strong>대화하기 좋아요</strong>
+          </li>
+          <li class="category-item category-seat">
+            <img
+              src="../src/assets/images/chair.png"
+              alt="좌석 카테고리 버튼"
+            />
+            <strong>좌석이 편해요</strong>
+          </li>
+          <li class="category-item category-socket">
+            <img
+              src="../src/assets/images/plug.png"
+              alt="콘센트 카테고리 버튼"
+            />
+            <strong>콘센트가 많아요</strong>
+          </li>
+          <li class="category-item category-study">
+            <img
+              src="../src/assets/images/laptop.png"
+              alt="공부 카테고리 버튼"
+            />
+            <strong>집중하기 좋아요</strong>
+          </li>
+          <li class="category-item category-money">
+            <img
+              src="../src/assets/images/money.png"
+              alt="가성비 카테고리 버튼"
+            />
+            <strong>가성비가 좋아요</strong>
+          </li>
+          <li class="category-item category-view">
+            <img
+              src="../src/assets/images/island.png"
+              alt="전망 카테고리 버튼"
+            />
+            <strong>전망이 좋아요</strong>
+          </li>
+          <li class="category-item category-mood">
+            <img
+              src="../src/assets/images/sparkles.png"
+              alt="분위기 카테고리 버튼"
+            />
+            <strong>분위기가 좋아요</strong>
+          </li>
+          <li class="category-item category-meeting">
+            <img
+              src="../src/assets/images/people.png"
+              alt="모임 카테고리 버튼"
+            />
+            <strong>모임하기 좋아요</strong>
+          </li>
+        </ul>
+      </header>
+
+      <!-- main  -->
+      <main>
+        <div class="posts-container">
+          <h2 class="screen-out">가고 싶은 카페를 클릭해 보세요</h2>
+          <ul class="posts">
+            <li class="category-item post">
+              <article>
+                <img
+                  src="../src/assets/images/osee.jpeg"
+                  alt="섬네일 이미지"
+                  class="img-thumbnail"
+                />
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="26"
+                  height="26"
+                  viewBox="0 0 24 24"
+                  class="btn-bookmark"
+                >
+                  <path
+                    d="M20.205 4.791a5.938 5.938 0 0 0-4.209-1.754A5.906 5.906 0 0 0 12 4.595a5.904 5.904 0 0 0-3.996-1.558 5.942 5.942 0 0 0-4.213 1.758c-2.353 2.363-2.352 6.059.002 8.412L12 21.414l8.207-8.207c2.354-2.353 2.355-6.049-.002-8.416z"
+                  ></path>
+                </svg>
+                <dl class="tags">
+                  <dt class="screen-out">카테고리</dt>
+                  <dd class="tag-item">브런치</dd>
+                  <dd class="tag-item">공간대여</dd>
+                </dl>
+
+                <div class="cafe-container">
+                  <h3 class="cafe-name">오쎄</h3>
+                  <dl>
+                    <dt>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="15"
+                        height="15"
+                        viewBox="0 0 24 24"
+                        class="star"
+                      >
+                        <path
+                          d="M21.947 9.179a1.001 1.001 0 0 0-.868-.676l-5.701-.453-2.467-5.461a.998.998 0 0 0-1.822-.001L8.622 8.05l-5.701.453a1 1 0 0 0-.619 1.713l4.213 4.107-1.49 6.452a1 1 0 0 0 1.53 1.057L12 18.202l5.445 3.63a1.001 1.001 0 0 0 1.517-1.106l-1.829-6.4 4.536-4.082c.297-.268.406-.686.278-1.065z"
+                        ></path>
+                      </svg>
+                    </dt>
+                    <dd class="star-number">4.43</dd>
+                  </dl>
+                </div>
+                <strong class="cafe-location">사당역 도보 10분</strong>
+              </article>
+            </li>
+
+            <li class="category-item post">
+              <article>
+                <img
+                  src="../src/assets/images/osee.jpeg"
+                  alt="섬네일 이미지"
+                  class="img-thumbnail"
+                />
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="26"
+                  height="26"
+                  viewBox="0 0 24 24"
+                  class="btn-bookmark"
+                >
+                  <path
+                    d="M20.205 4.791a5.938 5.938 0 0 0-4.209-1.754A5.906 5.906 0 0 0 12 4.595a5.904 5.904 0 0 0-3.996-1.558 5.942 5.942 0 0 0-4.213 1.758c-2.353 2.363-2.352 6.059.002 8.412L12 21.414l8.207-8.207c2.354-2.353 2.355-6.049-.002-8.416z"
+                  ></path>
+                </svg>
+                <dl class="tags">
+                  <dt class="screen-out">카테고리</dt>
+                  <dd class="tag-item">브런치</dd>
+                  <dd class="tag-item">공간대여</dd>
+                </dl>
+
+                <div class="cafe-container">
+                  <h3 class="cafe-name">오쎄</h3>
+                  <dl>
+                    <dt>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="15"
+                        height="15"
+                        viewBox="0 0 24 24"
+                        class="star"
+                      >
+                        <path
+                          d="M21.947 9.179a1.001 1.001 0 0 0-.868-.676l-5.701-.453-2.467-5.461a.998.998 0 0 0-1.822-.001L8.622 8.05l-5.701.453a1 1 0 0 0-.619 1.713l4.213 4.107-1.49 6.452a1 1 0 0 0 1.53 1.057L12 18.202l5.445 3.63a1.001 1.001 0 0 0 1.517-1.106l-1.829-6.4 4.536-4.082c.297-.268.406-.686.278-1.065z"
+                        ></path>
+                      </svg>
+                    </dt>
+                    <dd class="star-number">4.43</dd>
+                  </dl>
+                </div>
+                <strong class="cafe-location">사당역 도보 10분</strong>
+              </article>
+            </li>
+
+            <li class="category-item post">
+              <article>
+                <img
+                  src="../src/assets/images/osee.jpeg"
+                  alt="섬네일 이미지"
+                  class="img-thumbnail"
+                />
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="26"
+                  height="26"
+                  viewBox="0 0 24 24"
+                  class="btn-bookmark"
+                >
+                  <path
+                    d="M20.205 4.791a5.938 5.938 0 0 0-4.209-1.754A5.906 5.906 0 0 0 12 4.595a5.904 5.904 0 0 0-3.996-1.558 5.942 5.942 0 0 0-4.213 1.758c-2.353 2.363-2.352 6.059.002 8.412L12 21.414l8.207-8.207c2.354-2.353 2.355-6.049-.002-8.416z"
+                  ></path>
+                </svg>
+                <dl class="tags">
+                  <dt class="screen-out">카테고리</dt>
+                  <dd class="tag-item">브런치</dd>
+                  <dd class="tag-item">공간대여</dd>
+                </dl>
+
+                <div class="cafe-container">
+                  <h3 class="cafe-name">오쎄</h3>
+                  <dl>
+                    <dt>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="15"
+                        height="15"
+                        viewBox="0 0 24 24"
+                        class="star"
+                      >
+                        <path
+                          d="M21.947 9.179a1.001 1.001 0 0 0-.868-.676l-5.701-.453-2.467-5.461a.998.998 0 0 0-1.822-.001L8.622 8.05l-5.701.453a1 1 0 0 0-.619 1.713l4.213 4.107-1.49 6.452a1 1 0 0 0 1.53 1.057L12 18.202l5.445 3.63a1.001 1.001 0 0 0 1.517-1.106l-1.829-6.4 4.536-4.082c.297-.268.406-.686.278-1.065z"
+                        ></path>
+                      </svg>
+                    </dt>
+                    <dd class="star-number">4.43</dd>
+                  </dl>
+                </div>
+                <strong class="cafe-location">사당역 도보 10분</strong>
+              </article>
+            </li>
+
+            <li class="category-item post">
+              <article>
+                <img
+                  src="../src/assets/images/osee.jpeg"
+                  alt="섬네일 이미지"
+                  class="img-thumbnail"
+                />
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="26"
+                  height="26"
+                  viewBox="0 0 24 24"
+                  class="btn-bookmark"
+                >
+                  <path
+                    d="M20.205 4.791a5.938 5.938 0 0 0-4.209-1.754A5.906 5.906 0 0 0 12 4.595a5.904 5.904 0 0 0-3.996-1.558 5.942 5.942 0 0 0-4.213 1.758c-2.353 2.363-2.352 6.059.002 8.412L12 21.414l8.207-8.207c2.354-2.353 2.355-6.049-.002-8.416z"
+                  ></path>
+                </svg>
+                <dl class="tags">
+                  <dt class="screen-out">카테고리</dt>
+                  <dd class="tag-item">브런치</dd>
+                  <dd class="tag-item">공간대여</dd>
+                </dl>
+
+                <div class="cafe-container">
+                  <h3 class="cafe-name">오쎄</h3>
+                  <dl>
+                    <dt>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="15"
+                        height="15"
+                        viewBox="0 0 24 24"
+                        class="star"
+                      >
+                        <path
+                          d="M21.947 9.179a1.001 1.001 0 0 0-.868-.676l-5.701-.453-2.467-5.461a.998.998 0 0 0-1.822-.001L8.622 8.05l-5.701.453a1 1 0 0 0-.619 1.713l4.213 4.107-1.49 6.452a1 1 0 0 0 1.53 1.057L12 18.202l5.445 3.63a1.001 1.001 0 0 0 1.517-1.106l-1.829-6.4 4.536-4.082c.297-.268.406-.686.278-1.065z"
+                        ></path>
+                      </svg>
+                    </dt>
+                    <dd class="star-number">4.43</dd>
+                  </dl>
+                </div>
+                <strong class="cafe-location">사당역 도보 10분</strong>
+              </article>
+            </li>
+
+            <li class="category-item post">
+              <article>
+                <img
+                  src="../src/assets/images/osee.jpeg"
+                  alt="섬네일 이미지"
+                  class="img-thumbnail"
+                />
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="26"
+                  height="26"
+                  viewBox="0 0 24 24"
+                  class="btn-bookmark"
+                >
+                  <path
+                    d="M20.205 4.791a5.938 5.938 0 0 0-4.209-1.754A5.906 5.906 0 0 0 12 4.595a5.904 5.904 0 0 0-3.996-1.558 5.942 5.942 0 0 0-4.213 1.758c-2.353 2.363-2.352 6.059.002 8.412L12 21.414l8.207-8.207c2.354-2.353 2.355-6.049-.002-8.416z"
+                  ></path>
+                </svg>
+                <dl class="tags">
+                  <dt class="screen-out">카테고리</dt>
+                  <dd class="tag-item">브런치</dd>
+                  <dd class="tag-item">공간대여</dd>
+                </dl>
+
+                <div class="cafe-container">
+                  <h3 class="cafe-name">오쎄</h3>
+                  <dl>
+                    <dt>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="15"
+                        height="15"
+                        viewBox="0 0 24 24"
+                        class="star"
+                      >
+                        <path
+                          d="M21.947 9.179a1.001 1.001 0 0 0-.868-.676l-5.701-.453-2.467-5.461a.998.998 0 0 0-1.822-.001L8.622 8.05l-5.701.453a1 1 0 0 0-.619 1.713l4.213 4.107-1.49 6.452a1 1 0 0 0 1.53 1.057L12 18.202l5.445 3.63a1.001 1.001 0 0 0 1.517-1.106l-1.829-6.4 4.536-4.082c.297-.268.406-.686.278-1.065z"
+                        ></path>
+                      </svg>
+                    </dt>
+                    <dd class="star-number">4.43</dd>
+                  </dl>
+                </div>
+                <strong class="cafe-location">사당역 도보 10분</strong>
+              </article>
+            </li>
+          </ul>
+        </div>
+      </main>
+
+      <!-- footer -->
+      <footer class="company-container">
+        <section class="company">
+          <h2 class="screen-out">기업정보</h2>
+          <strong class="title-company">카페골목</strong>
+          <ul class="link-sns">
+            <li>
+              <a href="#" class="link-github">
+                <img src="../src/assets/images/icon/github.png" alt="" />
+              </a>
+            </li>
+
+            <li>
+              <a href="#" class="link-instagram">
+                <img src="../src/assets/images/icon/instagram.png" alt="" />
+              </a>
+            </li>
+          </ul>
+        </section>
+      </footer>
+      <!-- <button type="button" class="button-switch">지도로 보기</button> -->
+    </div>
+  </body>
+</html>
