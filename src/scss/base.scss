@@ -88,17 +88,6 @@ button {
   }
 }
 
-select,
-input,
-textarea,
-button {
-  -webkit-appearance: none;
-}
-
-input[type='number'] {
-  -moz-appearance: textfield;
-}
-
 input:disabled {
   background-color: rgba(255, 255, 255, 0);
   cursor: not-allowed;
