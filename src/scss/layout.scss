@@ -1,6 +1,8 @@
 // layout.scss
 
-@import '../pages/home.scss';
+@import '../components/Home/Home.scss';
+@import '../components/Header/Header.scss';
+@import '../components/Footer/Footer.scss';
 @import './variables.scss';
 
 #app {
@@ -10,65 +12,37 @@
   font-family: 'Archivo', sans-serif;
 }
 
-// header
-#app header {
-  position: fixed;
-  z-index: 20;
-  width: 100%;
-  background-color: $white-color;
-}
-
-#app .header-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 0.5px solid $light-gray-color;
-  padding: 10px 43px;
-  height: 75px;
-  box-sizing: border-box;
-}
-
 // main
 
 #app main {
   max-width: 1300px;
   margin: 0 auto;
   padding: 0 40px;
-  padding-top: 165px;
-}
-
-// footer
-
-#app footer {
-  position: fixed;
-  width: 100vw;
-  bottom: 0;
-  background: $light-gray-color;
-  z-index: 10;
+  padding-top: 160px;
 }
 
 // grid
-main .posts {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 28px;
-}
+// main .posts {
+//   display: grid;
+//   grid-template-columns: repeat(4, 1fr);
+//   gap: 28px;
+// }
 
-@media screen and (max-width: 1127px) {
-  main .posts {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
+// @media screen and (max-width: 1127px) {
+//   main .posts {
+//     grid-template-columns: repeat(3, 1fr);
+//   }
+// }
 
-@media screen and (max-width: 949px) {
-  main .posts {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
+// @media screen and (max-width: 949px) {
+//   main .posts {
+//     grid-template-columns: repeat(2, 1fr);
+//   }
+// }
 
-@media screen and (max-width: 549px) {
-  main .posts {
-    display: grid;
-    grid-template-columns: repeat(1, 1fr);
-  }
-}
+// @media screen and (max-width: 549px) {
+//   main .posts {
+//     display: grid;
+//     grid-template-columns: repeat(1, 1fr);
+//   }
+// }
