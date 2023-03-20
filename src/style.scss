@@ -5,5 +5,8 @@
 @import './scss/variables.scss';
 @import './scss/font.scss';
 
-@import './pages/home.scss';
-@import './pages/login.scss';
+@import './components/Footer/Footer.scss';
+@import './components/Header/Header.scss';
+@import './components/Home/Home.scss';
+
+@import './components/Login/Login.scss';
