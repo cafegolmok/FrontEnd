@@ -1,7 +1,3 @@
-* {
-  box-sizing: border-box;
-}
-
 .text-login-modal {
   font-weight: 500;
   font-size: 20px;
@@ -18,6 +14,8 @@
   border: 1px solid #c4c4c4;
   border-radius: 10px;
   background-color: #ffffff;
+  z-index: 100;
+  overflow: hidden;
 }
 
 .container-login-modal h1 {
@@ -27,7 +25,6 @@
 }
 
 .container-login-modal .top-login-modal {
-  margin-bottom: 26px;
   padding: 20px 22px 18px;
   border-bottom: 1px solid #c4c4c4;
   text-align: center;
@@ -37,7 +34,9 @@
   margin-bottom: 24px;
 }
 .container-login-modal .content-login-modal {
-  padding: 0px 24px 24px;
+  padding: 20px;
+  height: 400px;
+  overflow-y: scroll;
 }
 
 /* email & password  */
