@@ -1,46 +1,37 @@
 // src/router.js
 
-import App from './components/app.js';
 import Home from './components/Home/Home';
-import Header from './components/Header/Header';
-import Footer from './components/Footer/Footer';
 import Login from './components/Login/Login';
 import Error404 from './components/Error404/Error404';
-
-const routes = {
-  '/': Home,
-  '/Login': Login,
-  '/Error404': Error404
-};
+import routes from './routes';
 
 const Router = () => {
-  const $content = document.getElementById('app');
+  const content = document.getElementById('app');
 
-  // route matching
   const init = () => {
     const component = getComponent();
-    $content.innerHTML = `
-    ${Header()}
-    ${component}
-    ${Footer()}
-  `;
+    content.innerHTML = `
+      ${component()}
+    `;
   };
 
   const getComponent = () => {
-    const path = window.location.pathname;
-
-    // route matching
+    const path = window.location.pathname.toLowerCase();
     let component;
+
     if (path in routes) {
       component = routes[path];
     } else {
-      component = routes['/Error404'];
+      component = routes['/error404'];
     }
-    return new component();
+    console.log(component);
+
+    return component;
   };
 
-  window.addEventListener('load', init);
-  window.addEventListener('hashchange', init);
+  init();
+
+  window.addEventListener('popstate', init);
 
   return {
     getComponent,
