@@ -3,10 +3,8 @@
 import Router from './router.js';
 import App from './components/app.js';
 
-const app = new App();
-const router = Router();
+// 라우터 초기화
 
-router.init();
-app.render();
+Router();
 
 export default App;
