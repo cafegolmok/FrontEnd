@@ -9,7 +9,7 @@ const Login = () => {
     <h1>로그인 또는 회원가입</h1>
   </div>
   <div class="content-login-modal">
-    <h2 class="ir">
+    <h2 class="screen-out">
       이메일 로그인과 소셜로그인 또는 회원가입 할 수 있습니다.
     </h2>
     <p class="text-login-modal">☕️ 카페골목에 오신 것을 환영합니다.</p>

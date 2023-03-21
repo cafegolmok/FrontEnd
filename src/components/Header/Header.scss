@@ -12,10 +12,9 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 0.5px solid $light-gray-color;
+  border-bottom: 1px solid $light-gray-color;
   padding: 10px 43px;
   height: 75px;
-  box-sizing: border-box;
 }
 
 header .img-logo {
@@ -59,7 +58,7 @@ header .profile-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 5px 8px;
+  padding: 3px 5px;
   border: 1px solid $gray-color;
   border-radius: 30px;
   cursor: pointer;
@@ -74,6 +73,7 @@ header .img-profile-bar {
 }
 
 /* category */
+
 #app .category-list {
   display: flex;
   height: 66px;

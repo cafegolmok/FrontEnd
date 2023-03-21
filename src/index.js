@@ -24,7 +24,9 @@ import '../public/assets/images/instagram.png';
 import App from './app.js';
 import Router from './router';
 
-// 애플리케이션 시작
+const router = new Router();
 
+// 애플리케이션 시작
 const app = new App();
 app.render();
+

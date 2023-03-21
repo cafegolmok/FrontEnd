@@ -59,6 +59,7 @@ module.exports = {
   ],
   devServer: {
     static: path.resolve(__dirname, 'build'), // 서버 정적 파일 경로 설정
+    historyApiFallback: true, // 모든 요청을 index.html로 리다이렉트
     port: 9000, // 개발 서버 포트
     hot: true // HMR 활성화
   }
