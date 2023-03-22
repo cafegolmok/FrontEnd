@@ -24,8 +24,7 @@ const Router = () => {
     } else {
       component = routes['/error404'];
     }
-    console.log(component);
-
+    // console.log(component);
     return component;
   };
 
