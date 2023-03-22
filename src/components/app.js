@@ -3,12 +3,12 @@
 import Router from '../router';
 import Header from './Header/Header';
 import Footer from './Footer/Footer';
-import routes from '../routes'; 
+import routes from '../routes';
 
 const App = () => {
   const router = new Router();
 
-  const render = () => {
+  const renderApp = () => {
     const appElement = document.getElementById('app');
 
     appElement.innerHTML = `
@@ -18,19 +18,16 @@ const App = () => {
     `;
   };
 
-  window.addEventListener('load', render);
-  window.addEventListener('popstate', render);
-  // router.init();
-
-  const app = {
-    render
+  const onPopState = () => {
+    render();
   };
+
+  window.addEventListener('load', renderApp);
+  window.addEventListener('popstate', onPopState);
+
+  const app = { renderApp };
 
   return app;
 };
 
 export default App;
-
-// 라우터 초기화
-// const router = new Router();
-// router.init();
