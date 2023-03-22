@@ -1,8 +1,8 @@
-// src/components/Home/Home.js
+// src/components/CafeList/CafeList.js
 
-import './Home.scss';
+import './CafeList.scss';
 
-const Home = () => {
+const CafeList = () => {
   const markup = `
   <main>
     <div class="posts-container">
@@ -62,4 +62,4 @@ const Home = () => {
   return markup;
 };
 
-export default Home;
+export default CafeList;

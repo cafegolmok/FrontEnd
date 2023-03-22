@@ -1,11 +1,11 @@
 // src/routes.js
 
-import Home from './components/Home/Home';
+import CafeList from './components/CafeList/CafeList';
 import Login from './components/Login/Login';
 import Error404 from './components/Error404/Error404';
 
 const routes = {
-  '/': Home,
+  '/': CafeList,
   '/login': Login,
   '/error404': Error404
 };
