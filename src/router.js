@@ -1,18 +1,17 @@
 // src/router.js
 
-import Home from './components/Home/Home';
+import CafeList from './components/CafeList/CafeList';
 import Login from './components/Login/Login';
 import Error404 from './components/Error404/Error404';
 import routes from './routes';
 
 const Router = () => {
-  const content = document.getElementById('app');
+  const app = document.getElementById('app');
 
   const init = () => {
-    const component = getComponent();
-    content.innerHTML = `
-      ${component()}
-    `;
+    const component = getComponent()();
+    app.innerHTML = '';
+    app.appendChild(component);
   };
 
   const getComponent = () => {

@@ -1,14 +1,17 @@
+// CafeList.scss
+
+@import '../../scss/variables.scss';
+
 /* posts */
+
 main .post {
   min-width: 250px;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
   cursor: pointer;
   position: relative;
-}
-
-main .post:last-child {
-  margin-bottom: 120px;
+  &:last-child {
+    margin-bottom: 120px;
+  }
 }
 
 main .post .img-thumbnail {
@@ -16,6 +19,7 @@ main .post .img-thumbnail {
   width: 100%;
   border-radius: 15px;
   margin-bottom: 10px;
+  aspect-ratio: 1/1;
 }
 
 .post .btn-bookmark {
@@ -23,14 +27,12 @@ main .post .img-thumbnail {
   top: 10px;
   right: 10px;
   z-index: 10;
-  stroke: #ffffff;
+  stroke: $white-color;
   stroke-width: 1.5;
   fill: rgba(0, 0, 0, 0.6);
 }
 
 .post .tags {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   gap: 8px;
   margin-bottom: 10px;
@@ -40,19 +42,15 @@ main .post .img-thumbnail {
   padding: 5px 8px;
   font-size: 14px;
   font-weight: 600;
-  color: #59362f;
-  background-color: #f5f5f5;
+  color: $main-color;
+  background-color: $light-gray-color;
   border-radius: 15px;
 }
 
 .post .cafe-container {
   margin-bottom: 10px;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  justify-content: space-between;
 }
 
 .cafe-container h3 {
@@ -63,12 +61,8 @@ main .post .img-thumbnail {
 }
 
 .cafe-container dl {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
   line-height: 17px;
 }
 
@@ -79,9 +73,8 @@ main .post .img-thumbnail {
 .post .cafe-location {
   display: block;
   margin-bottom: 10px;
-  color: #828282;
+  color: $dark-gray-color;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
 }
-/*# sourceMappingURL=Home.css.map */

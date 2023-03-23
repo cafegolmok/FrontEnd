@@ -6,20 +6,23 @@ import Footer from './Footer/Footer';
 import routes from '../routes';
 
 const App = () => {
-  const router = new Router();
+  const router = Router();
 
   const renderApp = () => {
     const appElement = document.getElementById('app');
+    appElement.innerHTML = '';
 
-    appElement.innerHTML = `
-      ${Header()}
-      ${router.getComponent()()} 
-      ${Footer()}
-    `;
+    const header = Header();
+    const footer = Footer();
+    const currentComponent = router.getComponent()();
+
+    appElement.appendChild(header);
+    appElement.appendChild(currentComponent);
+    appElement.appendChild(footer);
   };
 
   const onPopState = () => {
-    render();
+    renderApp();
   };
 
   window.addEventListener('load', renderApp);

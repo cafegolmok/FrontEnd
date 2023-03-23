@@ -1,59 +1,102 @@
-// src/components/Login/Login.js
-
 import './Login.scss';
 
 const Login = () => {
-  const markup = `
-  <div class="container-login-modal">
-  <div class="top-login-modal">
-    <h1>로그인 또는 회원가입</h1>
-  </div>
-  <div class="content-login-modal">
-    <h2 class="screen-out">
-      이메일 로그인과 소셜로그인 또는 회원가입 할 수 있습니다.
-    </h2>
-    <p class="text-login-modal">☕️ 카페골목에 오신 것을 환영합니다.</p>
-    <label for="user-email" class="email">이메일</label>
-    <input
-      type="text"
-      id="user-email"
-      name="user-email"
-      placeholder="이메일을 입력해주세요."
-      class="input-email"
-    />
-    <strong class="warning-message email-empty"
-      >이메일을 입력해 주세요.</strong
-    >
-    <strong class="warning-message wrong-email-type"
-      >이메일 형식에 맞게 입력해 주세요.</strong
-    >
+  const loginWrapper = document.createElement('div');
+  loginWrapper.className = 'container-login-modal';
 
-    <label for="user-pw" class="password">비밀번호</label>
-    <input
-      type="password"
-      id="user-pw"
-      name="user-pw"
-      placeholder="비밀번호를 입력해주세요."
-      class="input-password"
-    />
-    <strong class="warning-message password-empty"
-      >비밀번호를 입력해 주세요.</strong
-    >
-    <strong class="warning-message wrong-login-value"
-      >로그인 정보가 올바르지 않습니다. 다시 시도해 주세요.</strong
-    >
-    <a href="#" class="button-login button-original">로그인</a>
-    <span class="or-txt">또는</span>
-    <a href="#" class="button-login button-kakao"
-      >카카오톡 계정으로 로그인</a
-    >
-    <a href="#" class="button-login button-signup"
-      >카페골목 회원가입 하기</a
-    >
-  </div>
-</div>
-  `;
-  return markup;
+  const loginTop = document.createElement('div');
+  loginTop.className = 'top-login-modal';
+
+  const loginTitle = document.createElement('h1');
+  loginTitle.innerText = '로그인 또는 회원가입';
+
+  const loginContent = document.createElement('div');
+  loginContent.className = 'content-login-modal';
+
+  const loginText = document.createElement('p');
+  loginText.className = 'text-login-modal';
+  loginText.innerText = '☕️ 카페골목에 오신 것을 환영합니다.';
+
+  const emailLabel = document.createElement('label');
+  emailLabel.className = 'email';
+  emailLabel.setAttribute('for', 'user-email');
+  emailLabel.innerText = '이메일';
+
+  const emailInput = document.createElement('input');
+  emailInput.type = 'text';
+  emailInput.id = 'user-email';
+  emailInput.name = 'user-email';
+  emailInput.placeholder = '이메일을 입력해주세요.';
+  emailInput.className = 'input-email';
+
+  const emailEmptyWarning = document.createElement('strong');
+  emailEmptyWarning.className = 'warning-message email-empty';
+  emailEmptyWarning.innerText = '이메일을 입력해 주세요.';
+
+  const wrongEmailTypeWarning = document.createElement('strong');
+  wrongEmailTypeWarning.className = 'warning-message wrong-email-type';
+  wrongEmailTypeWarning.innerText = '이메일 형식에 맞게 입력해 주세요.';
+
+  const passwordLabel = document.createElement('label');
+  passwordLabel.className = 'password';
+  passwordLabel.setAttribute('for', 'user-pw');
+  passwordLabel.innerText = '비밀번호';
+
+  const passwordInput = document.createElement('input');
+  passwordInput.type = 'password';
+  passwordInput.id = 'user-pw';
+  passwordInput.name = 'user-pw';
+  passwordInput.placeholder = '비밀번호를 입력해주세요.';
+  passwordInput.className = 'input-password';
+
+  const passwordEmptyWarning = document.createElement('strong');
+  passwordEmptyWarning.className = 'warning-message password-empty';
+  passwordEmptyWarning.innerText = '비밀번호를 입력해 주세요.';
+
+  const wrongLoginValueWarning = document.createElement('strong');
+  wrongLoginValueWarning.className = 'warning-message wrong-login-value';
+  wrongLoginValueWarning.innerText =
+    '로그인 정보가 올바르지 않습니다. 다시 시도해 주세요.';
+
+  const loginButton = document.createElement('a');
+  loginButton.href = '#';
+  loginButton.className = 'button-login button-original';
+  loginButton.innerText = '로그인';
+
+  const orText = document.createElement('span');
+  orText.className = 'or-txt';
+  orText.innerText = '또는';
+
+  const kakaoLoginButton = document.createElement('a');
+  kakaoLoginButton.href = '#';
+  kakaoLoginButton.className = 'button-login button-kakao';
+  kakaoLoginButton.innerText = '카카오톡 계정으로 로그인';
+
+  const signUpButton = document.createElement('a');
+  signUpButton.href = '#';
+  signUpButton.className = 'button-login button-signup';
+  signUpButton.innerText = '카페골목 회원가입 하기';
+
+  // 로그인 모달 컴포넌트에 자식 요소들을 추가합니다.
+  loginTop.appendChild(loginTitle);
+  loginWrapper.appendChild(loginTop);
+
+  loginContent.appendChild(loginText);
+  loginContent.appendChild(emailLabel);
+  loginContent.appendChild(emailInput);
+  loginContent.appendChild(emailEmptyWarning);
+  loginContent.appendChild(wrongEmailTypeWarning);
+  loginContent.appendChild(passwordLabel);
+  loginContent.appendChild(passwordInput);
+  loginContent.appendChild(passwordEmptyWarning);
+  loginContent.appendChild(wrongLoginValueWarning);
+  loginContent.appendChild(loginButton);
+  loginContent.appendChild(orText);
+  loginContent.appendChild(kakaoLoginButton);
+  loginContent.appendChild(signUpButton);
+  loginWrapper.appendChild(loginContent);
+
+  return loginWrapper;
 };
 
 export default Login;
