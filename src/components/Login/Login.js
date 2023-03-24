@@ -2,7 +2,7 @@ import './Login.scss';
 
 const Login = () => {
   const loginWrapper = document.createElement('div');
-  loginWrapper.className = 'container-login-modal';
+  loginWrapper.className = 'container-login-modal hidden';
 
   const loginTop = document.createElement('div');
   loginTop.className = 'top-login-modal';
@@ -30,11 +30,11 @@ const Login = () => {
   emailInput.className = 'input-email';
 
   const emailEmptyWarning = document.createElement('strong');
-  emailEmptyWarning.className = 'warning-message email-empty';
+  emailEmptyWarning.className = 'warning-message email-empty hidden';
   emailEmptyWarning.innerText = '이메일을 입력해 주세요.';
 
   const wrongEmailTypeWarning = document.createElement('strong');
-  wrongEmailTypeWarning.className = 'warning-message wrong-email-type';
+  wrongEmailTypeWarning.className = 'warning-message wrong-email-type hidden';
   wrongEmailTypeWarning.innerText = '이메일 형식에 맞게 입력해 주세요.';
 
   const passwordLabel = document.createElement('label');
@@ -50,11 +50,11 @@ const Login = () => {
   passwordInput.className = 'input-password';
 
   const passwordEmptyWarning = document.createElement('strong');
-  passwordEmptyWarning.className = 'warning-message password-empty';
+  passwordEmptyWarning.className = 'warning-message password-empty hidden';
   passwordEmptyWarning.innerText = '비밀번호를 입력해 주세요.';
 
   const wrongLoginValueWarning = document.createElement('strong');
-  wrongLoginValueWarning.className = 'warning-message wrong-login-value';
+  wrongLoginValueWarning.className = 'warning-message wrong-login-value hidden';
   wrongLoginValueWarning.innerText =
     '로그인 정보가 올바르지 않습니다. 다시 시도해 주세요.';
 
