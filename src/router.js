@@ -1,30 +1,29 @@
 // src/router.js
 
-import CafeList from './components/CafeList/CafeList';
-import Login from './components/Login/Login';
-import Error404 from './components/Error404/Error404';
 import routes from './routes';
+import Home from './pages/Home';
+import CafeDetail from './pages/CafeDetail';
 
 const Router = () => {
   const app = document.getElementById('app');
 
   const init = () => {
-    const component = getComponent()();
+    const page = getPage()();
     app.innerHTML = '';
-    app.appendChild(component);
+    app.appendChild(page);
   };
 
-  const getComponent = () => {
+  const getPage = () => {
     const path = window.location.pathname.toLowerCase();
-    let component;
+    let page;
 
     if (path in routes) {
-      component = routes[path];
+      page = routes[path];
     } else {
-      component = routes['/error404'];
+      page = routes['/error404'];
     }
-    // console.log(component);
-    return component;
+    console.log(page);
+    return page;
   };
 
   init();
@@ -32,7 +31,7 @@ const Router = () => {
   window.addEventListener('popstate', init);
 
   return {
-    getComponent,
+    getPage,
     init
   };
 };

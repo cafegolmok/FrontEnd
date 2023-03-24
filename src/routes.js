@@ -1,12 +1,12 @@
 // src/routes.js
 
-import CafeList from './components/CafeList/CafeList';
-import Login from './components/Login/Login';
-import Error404 from './components/Error404/Error404';
+import CafeDetail from './pages/CafeDetail';
+import Error404 from './pages/Error404';
+import Home from './pages/Home';
 
 const routes = {
-  '/': CafeList,
-  '/login': Login,
+  '/': Home,
+  '/cafeDetail': CafeDetail,
   '/error404': Error404
 };
 
