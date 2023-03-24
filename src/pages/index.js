@@ -1,11 +1,11 @@
-// src/pages/index.js
+// // src/pages/index.js
 
-// 라우팅할 페이지들을 import
-import CafeList from './pages/CafeList.js';
-import Router from '../router.js';
+// // 라우팅할 페이지들을 import
+// import Router from '../router.js';
+// import Home from './Home.js';
 
-// 라우팅할 페이지들을 Router 객체에 등록
-const router = new Router([{ path: '/', component: CafeList }]);
+// // 라우팅할 페이지들을 Router 객체에 등록
+// const router = new Router([{ path: '/', component: Home }]);
 
-// 페이지가 로드되면 라우터를 시작
-window.addEventListener('load', router.init);
+// // 페이지가 로드되면 라우터를 시작
+// window.addEventListener('load', router.init);

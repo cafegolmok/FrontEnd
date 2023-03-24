@@ -14,10 +14,10 @@ const App = () => {
 
     const header = Header();
     const footer = Footer();
-    const currentComponent = router.getComponent()();
+    const currentPage = router.getPage()();
 
     appElement.appendChild(header);
-    appElement.appendChild(currentComponent);
+    appElement.appendChild(currentPage);
     appElement.appendChild(footer);
   };
 
