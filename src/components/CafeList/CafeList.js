@@ -15,6 +15,7 @@ const CafeList = () => {
   const ul = document.createElement('ul');
   ul.classList.add('posts');
 
+  // 카페 반복 생성
   cafeDataList.forEach(cafe => {
     const li = document.createElement('li');
     li.classList.add('post');
@@ -47,11 +48,12 @@ const CafeList = () => {
     dt.classList.add('screen-out');
     dt.textContent = '카테고리';
 
+    // 카페 태그 반복 생성
     cafe.tags.forEach(tag => {
-      const dd1 = document.createElement('dd');
-      dd1.classList.add('tag-item');
-      dd1.textContent = tag;
-      dl.appendChild(dd1);
+      const dd = document.createElement('dd');
+      dd.classList.add('tag-item');
+      dd.textContent = tag;
+      dl.appendChild(dd);
     });
 
     dl.appendChild(dt);
