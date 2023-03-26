@@ -1,4 +1,4 @@
-import './Login.scss';
+import './LoginModal.scss';
 
 const Login = () => {
   const loginWrapper = document.createElement('div');

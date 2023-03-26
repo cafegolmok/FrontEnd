@@ -1,11 +1,11 @@
 // src/pages/Home.js
 
 import CafeList from '../components/CafeList/CafeList';
-import Login from '../components/Login/Login';
+import LoginModal from '../components/LoginModal/LoginModal';
 
 const Home = () => {
   const cafeListComponent = CafeList();
-  const loginComponent = Login();
+  const loginComponent = LoginModal();
 
   const fragment = document.createDocumentFragment();
   fragment.appendChild(cafeListComponent);
