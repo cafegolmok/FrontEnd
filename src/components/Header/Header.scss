@@ -34,7 +34,7 @@ header .search-container {
   height: 47px;
   padding: 0 15px;
   background-color: $white-color;
-  border: 1px solid $gray-color;
+  border: 1px solid $gray-color-1;
   border-radius: 40px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.16);
   box-sizing: border-box;
@@ -50,7 +50,7 @@ header .search-cafe {
 }
 
 header .btn-search {
-  fill: $dark-gray-color;
+  fill: $dark-gray-color-1;
   cursor: pointer;
 }
 
@@ -59,17 +59,17 @@ header .profile-container {
   justify-content: space-between;
   align-items: center;
   padding: 3px 5px;
-  border: 1px solid $gray-color;
+  border: 1px solid $gray-color-1;
   border-radius: 30px;
   cursor: pointer;
 }
 
 header .img-profile {
-  fill: $gray-color;
+  fill: $gray-color-1;
 }
 
 header .img-profile-bar {
-  fill: $gray-color;
+  fill: $gray-color-1;
 }
 
 /* category */
@@ -92,12 +92,12 @@ header .img-profile-bar {
   font-weight: 600;
   white-space: nowrap;
   cursor: pointer;
-  color: $dark-gray-color;
+  color: $dark-gray-color-1;
   opacity: 0.8;
   &:hover {
     opacity: 1;
     color: $black-color;
-    border-bottom: 2px solid $gray-color;
+    border-bottom: 2px solid $gray-color-1;
   }
 }
 

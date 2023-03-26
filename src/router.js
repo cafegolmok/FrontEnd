@@ -22,7 +22,7 @@ const Router = () => {
     } else {
       page = routes['/error404'];
     }
-    console.log(page);
+    // console.log(page);
     return page;
   };
 

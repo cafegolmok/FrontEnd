@@ -1,8 +1,10 @@
+@import '../../scss/variables.scss';
+
 .text-login-modal {
   font-weight: 500;
   font-size: 20px;
   line-height: 24px;
-  color: #000000;
+  color: $black-color;
 }
 
 .container-login-modal {
@@ -11,9 +13,9 @@
   top: 50%;
   transform: translate(-50%, -50%);
   width: 520px;
-  border: 1px solid #c4c4c4;
+  border: 1px solid $gray-color-2;
   border-radius: 10px;
-  background-color: #ffffff;
+  background-color: $white-color;
   z-index: 100;
   overflow: hidden;
 }
@@ -21,12 +23,12 @@
 .container-login-modal h1 {
   font-weight: 500;
   font-size: 18px;
-  color: #000000;
+  color: $black-color;
 }
 
 .container-login-modal .top-login-modal {
   padding: 20px 22px 18px;
-  border-bottom: 1px solid #c4c4c4;
+  border-bottom: 1px solid $gray-color-2;
   text-align: center;
 }
 
@@ -53,11 +55,11 @@
 .content-login-modal input {
   width: 100%;
   padding: 16px;
-  border: 1px solid #c4c4c4;
+  border: 1px solid $gray-color-2;
   border-radius: 5px;
   &:focus {
     outline: none;
-    border: 1px solid #59362f;
+    border: 1px solid $main-color;
   }
 }
 
@@ -84,23 +86,23 @@
 
 .content-login-modal .button-original {
   margin-bottom: 15px;
-  background-color: #59362f;
-  color: #ffffff;
+  background-color: $main-color;
+  color: $white-color;
   opacity: 0.8;
 }
 
 .content-login-modal .button-signup {
-  background-color: #bdbdbd;
+  background-color: $gray-color-1;
   font-weight: 500;
   font-size: 16px;
-  color: #000000;
+  color: $black-color;
 }
 
 .content-login-modal .button-kakao {
-  background-color: #f2c94c;
+  background-color: $yellow-color;
   font-weight: 500;
   font-size: 16px;
-  color: #000000;
+  color: $black-color;
 }
 
 /* or-txt */
@@ -110,14 +112,14 @@
   display: block;
   margin-bottom: 20px;
   font-size: 14px;
-  color: #767676;
+  color: $dark-gray-color-2;
   text-align: center;
   &::before {
     content: '';
     position: absolute;
     top: 8px;
     left: 0;
-    background-color: #c4c4c4;
+    background-color: $gray-color-2;
     width: 44%;
     height: 1px;
   }
@@ -126,7 +128,7 @@
     position: absolute;
     top: 8px;
     right: 0;
-    background-color: #c4c4c4;
+    background-color: $gray-color-2;
     width: 44%;
     height: 1px;
   }
@@ -139,5 +141,5 @@
   margin-left: 5px;
   margin-bottom: 10px;
   font-size: 13px;
-  color: #f4492e;
+  color: $red-color;
 }
