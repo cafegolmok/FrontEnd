@@ -297,6 +297,105 @@ const cafeDataList = [
     phoneNumber: '02-597-0405',
     information: ['포장', '무선 인터넷', '반려동물 동반'],
     homepageUrl: 'https://www.instagram.com/yulmok_coffee'
+  },
+
+  {
+    id: 22,
+    cafeName: '참새방앗간',
+    starRating: 4.8,
+    location: '사당역 11번 출구에서422m',
+    tags: ['커피', '디저트'],
+    imgToUrl:
+      'https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMTA4MTVfNzcg%2FMDAxNjI4OTU0ODM4NjA4.iwzxXVcT7c0VpZ8-kypCelvNtfQyqS6t0Y2WN1KbtHgg.ieHzuqEXwWY20gzCDOCbgVenAQekMoNZvAq_RInvZkQg.JPEG.kimg0603%2Fout1.jpg',
+    phoneNumber: '02-6951-3776',
+    information: ['포장', '배달', '예약', '무선 인터넷', '남/녀 화장실 구분'],
+    homepageUrl: 'https://www.instagram.com/cafechamsae'
+  },
+
+  {
+    id: 23,
+    cafeName: '자판기가게',
+    starRating: 4.32,
+    location: '사당역 11번 출구에서539m',
+    tags: ['24시간', '무인카페'],
+    imgToUrl:
+      'https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjExMjJfMjc0%2FMDAxNjY5MTIyMzEyNzE4.oVSi-nJ_k3QEgNpTdYWnPE1JR8HwQi82ZCvK-tUeLigg.dj_4Pk1EdT1Fqv0PnP4sfD9sTh_9uoLPsdKegu3nAo4g.JPEG.goiefr%2FIMG_3828.jpg',
+    phoneNumber: '0507-1378-3484',
+    information: ['포장', '무선 인터넷'],
+    homepageUrl: 'http://instagram.com/japangigage'
+  },
+
+  {
+    id: 24,
+    cafeName: '언니가 숨겨놓은 과자상자',
+    starRating: 4.64,
+    location: '사당역 11번 출구에서486m',
+    tags: ['커피', '디저트'],
+    imgToUrl:
+      'https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20190724_177%2F1563980036108SfHVO_JPEG%2Fkk8qTePLylgFG8cFYhtwneQX.jpg',
+    phoneNumber: '02-6959-7666',
+    information: ['포장', '배달', '예약', '무선 인터넷', '반려동물 동반'],
+    homepageUrl: 'http://instagram.com/unni_cookie'
+  },
+
+  {
+    id: 25,
+    cafeName: '창신 561',
+    starRating: 4.23,
+    location: '동대문역 1번 출구에서76m',
+    tags: ['커피', '디저트'],
+    imgToUrl:
+      'https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20220522_277%2F1653215551017CvkIL_JPEG%2F1653214882027.jpg',
+    phoneNumber: '010-9124-2442',
+    information: ['포장', '무선 인터넷', '남/녀 화장실 구분'],
+    homepageUrl: 'https://www.instagram.com/changsin561'
+  },
+
+  {
+    id: 26,
+    cafeName: 'HAUKE',
+    starRating: 4.64,
+    location: '동대문역 1번 출구에서872m',
+    tags: ['커피', '디저트'],
+    imgToUrl:
+      'https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjA4MTZfMjAg%2FMDAxNjYwNjA4NDc2NTM0.XCMyCBAdq07D6GrZ8cvhJ9UYhMnJQP0s8c_BOfjVGJog.LaJYxYNHVZYFxwGmnxhmdL-WFMmBR2EFWcig1PKlb5Ug.JPEG.1020_jooh%2FR0004678.JPG',
+    phoneNumber: '0507-1325-5250',
+    information: [],
+    homepageUrl: 'https://www.instagram.com/hauke_seoul'
+  },
+
+  {
+    id: 27,
+    cafeName: '딥다이브',
+    starRating: 4.35,
+    location: '총신대입구(이수)역 6번 출구에서496m',
+    tags: ['커피', '디저트'],
+    imgToUrl:
+      'https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMTA0MTNfMjUw%2FMDAxNjE4MzA5NDA5ODE2.awy9GxYXA7B5QlHNsafJiYzkdruxaWWoa8KlDncIgJ0g.oyt5uHRLUhpuVEmz95YprHnQZE346OfOkxXWoo38u94g.JPEG.dmsalstj%2F1618301983826.jpg',
+    phoneNumber: '0507-1424-2104',
+    information: [
+      '단체석',
+      '주차',
+      '포장',
+      '배달',
+      '예약',
+      '무선 인터넷',
+      '반려동물 동반'
+    ],
+    homepageUrl: 'http://www.instagram.com/deepdive_cafe'
+  },
+
+  {
+    id: 28,
+    cafeName: '솔라스',
+    starRating: 4.37,
+    location: '총신대입구(이수)역 6번 출구에서443m',
+    tags: ['커피', '베이커리'],
+    imgToUrl:
+      'https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMDAyMjRfMjcx%2FMDAxNTgyNDcxMTAzNzIy.iiRt23TPFykuMrPfxNF1GQAe02ObIYzcM7ITRiY8IaAg.J2zzMf-hY51J0O7IRgiQWNehS6txqGFcvmcjQuUQruAg.JPEG.5rangdesign%2FKakaoTalk_20200224_000903628.jpg',
+    phoneNumber: '070-8809-7711',
+    information: ['단체석', '주차', '무선 인터넷'],
+    homepageUrl: ''
   }
 ];
 

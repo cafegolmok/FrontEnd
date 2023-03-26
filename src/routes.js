@@ -6,7 +6,7 @@ import Home from './pages/Home';
 
 const routes = {
   '/': Home,
-  '/cafeDetail': CafeDetail,
+  '/cafedetail': CafeDetail,
   '/error404': Error404
 };
 
