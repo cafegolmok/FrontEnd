@@ -1,30 +1,25 @@
 import './LoginModal.scss';
+import Overlay from '../Overlay/Overlay';
 
-const Login = () => {
-  const app = document.getElementById('app');
-
-  const overLay = document.createElement('div');
-  overLay.className = 'overlay';
-  app.appendChild(overLay);
-
+const LoginModal = () => {
   const loginWrapper = document.createElement('div');
-  loginWrapper.className = 'container-login-modal';
+  loginWrapper.classList.add('container-login-modal', 'hidden');
 
   const loginTop = document.createElement('div');
-  loginTop.className = 'top-login-modal';
+  loginTop.classList.add('top-login-modal');
 
   const loginTitle = document.createElement('h1');
   loginTitle.innerText = '로그인 또는 회원가입';
 
   const loginContent = document.createElement('div');
-  loginContent.className = 'content-login-modal';
+  loginContent.classList.add('content-login-modal');
 
   const loginText = document.createElement('p');
-  loginText.className = 'text-login-modal';
+  loginText.classList.add('text-login-modal');
   loginText.innerText = '☕️ 카페골목에 오신 것을 환영합니다.';
 
   const emailLabel = document.createElement('label');
-  emailLabel.className = 'email';
+  emailLabel.classList.add('email');
   emailLabel.setAttribute('for', 'user-email');
   emailLabel.innerText = '이메일';
 
@@ -33,18 +28,22 @@ const Login = () => {
   emailInput.id = 'user-email';
   emailInput.name = 'user-email';
   emailInput.placeholder = '이메일을 입력해주세요.';
-  emailInput.className = 'input-email';
+  emailInput.classList.add('input-email');
 
   const emailEmptyWarning = document.createElement('strong');
-  emailEmptyWarning.className = 'warning-message email-empty hidden';
+  emailEmptyWarning.classList.add('warning-message', 'email-empty', 'hidden');
   emailEmptyWarning.innerText = '이메일을 입력해 주세요.';
 
   const wrongEmailTypeWarning = document.createElement('strong');
-  wrongEmailTypeWarning.className = 'warning-message wrong-email-type hidden';
+  wrongEmailTypeWarning.classList.add(
+    'warning-message',
+    'wrong-email-type',
+    'hidden'
+  );
   wrongEmailTypeWarning.innerText = '이메일 형식에 맞게 입력해 주세요.';
 
   const passwordLabel = document.createElement('label');
-  passwordLabel.className = 'password';
+  passwordLabel.classList.add('password');
   passwordLabel.setAttribute('for', 'user-pw');
   passwordLabel.innerText = '비밀번호';
 
@@ -53,31 +52,39 @@ const Login = () => {
   passwordInput.id = 'user-pw';
   passwordInput.name = 'user-pw';
   passwordInput.placeholder = '비밀번호를 입력해주세요.';
-  passwordInput.className = 'input-password';
+  passwordInput.classList.add('input-password');
 
   const passwordEmptyWarning = document.createElement('strong');
-  passwordEmptyWarning.className = 'warning-message password-empty hidden';
+  passwordEmptyWarning.classList.add(
+    'warning-message',
+    'password-empty',
+    'hidden'
+  );
   passwordEmptyWarning.innerText = '비밀번호를 입력해 주세요.';
 
   const wrongLoginValueWarning = document.createElement('strong');
-  wrongLoginValueWarning.className = 'warning-message wrong-login-value hidden';
+  wrongLoginValueWarning.classList.add(
+    'warning-message',
+    'wrong-login-value',
+    'hidden'
+  );
   wrongLoginValueWarning.innerText =
     '로그인 정보가 올바르지 않습니다. 다시 시도해 주세요.';
 
   const loginButton = document.createElement('button');
-  loginButton.className = 'button-login button-original';
+  loginButton.classList.add('button-login', 'button-original');
   loginButton.innerText = '로그인';
 
   const orText = document.createElement('span');
-  orText.className = 'or-txt';
+  orText.classList.add('or-txt');
   orText.innerText = '또는';
 
   const kakaoLoginButton = document.createElement('button');
-  kakaoLoginButton.className = 'button-login button-kakao';
+  kakaoLoginButton.classList.add('button-login', 'button-kakao');
   kakaoLoginButton.innerText = '카카오톡 계정으로 로그인';
 
   const signUpButton = document.createElement('button');
-  signUpButton.className = 'button-login button-signup';
+  signUpButton.classList.add('button-login', 'button-signup');
   signUpButton.innerText = '카페골목 회원가입 하기';
 
   // 로그인 모달 컴포넌트에 자식 요소들을 추가합니다.
@@ -99,7 +106,19 @@ const Login = () => {
   loginContent.appendChild(signUpButton);
   loginWrapper.appendChild(loginContent);
 
+  const overlay = Overlay();
+  window.addEventListener('click', event => {
+    if (
+      event.target === overlay ||
+      event.target.closest('.container-login-modal') === null
+    ) {
+      document.body.classList.remove('no-scroll');
+      overlay.classList.add('hidden');
+      loginWrapper.classList.add('hidden');
+    }
+  });
+
   return loginWrapper;
 };
 
-export default Login;
+export default LoginModal;

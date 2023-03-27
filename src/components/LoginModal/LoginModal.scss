@@ -1,15 +1,6 @@
 @import '../../scss/variables.scss';
 
-.overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: 50;
-  // display: none;
-}
+
 
 .container-login-modal {
   position: absolute;
@@ -99,7 +90,7 @@
   margin-bottom: 15px;
   background-color: $main-color;
   color: $white-color;
-  opacity: 0.8;
+  opacity: 0.6;
 }
 
 .content-login-modal .button-signup {
