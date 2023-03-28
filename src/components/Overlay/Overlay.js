@@ -1,4 +1,8 @@
+// src/components/Overlay/Overlay.js
+
 import './Overlay.scss';
+import { state } from '../../../store';
+
 const Overlay = () => {
   const app = document.getElementById('app');
 
@@ -6,9 +10,10 @@ const Overlay = () => {
   overlay.classList.add('overlay', 'hidden');
   app.appendChild(overlay);
 
-  if (!overlay.classList.contains('hidden')) {
-    document.body.classList.add('no-scroll');
-  }
+  overlay.addEventListener('click', () => {
+    state.modalVisible = false;
+    state.overlayVisible = false;
+  });
 
   return overlay;
 };

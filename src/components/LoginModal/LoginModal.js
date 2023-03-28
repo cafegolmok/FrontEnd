@@ -1,9 +1,10 @@
 import './LoginModal.scss';
-import Overlay from '../Overlay/Overlay';
+// import Overlay from '../Overlay/Overlay';
+import { state, addObserver } from '../../../store';
 
 const LoginModal = () => {
-  const loginWrapper = document.createElement('div');
-  loginWrapper.classList.add('container-login-modal', 'hidden');
+  const loginModal = document.createElement('div');
+  loginModal.classList.add('container-login-modal', 'hidden');
 
   const loginTop = document.createElement('div');
   loginTop.classList.add('top-login-modal');
@@ -89,7 +90,7 @@ const LoginModal = () => {
 
   // 로그인 모달 컴포넌트에 자식 요소들을 추가합니다.
   loginTop.appendChild(loginTitle);
-  loginWrapper.appendChild(loginTop);
+  loginModal.appendChild(loginTop);
 
   loginContent.appendChild(loginText);
   loginContent.appendChild(emailLabel);
@@ -104,21 +105,19 @@ const LoginModal = () => {
   loginContent.appendChild(orText);
   loginContent.appendChild(kakaoLoginButton);
   loginContent.appendChild(signUpButton);
-  loginWrapper.appendChild(loginContent);
+  loginModal.appendChild(loginContent);
 
-  const overlay = Overlay();
   window.addEventListener('click', event => {
     if (
       event.target === overlay ||
       event.target.closest('.container-login-modal') === null
     ) {
-      document.body.classList.remove('no-scroll');
-      overlay.classList.add('hidden');
-      loginWrapper.classList.add('hidden');
+      state.modalVisible = false;
+      state.overlayVisible = false;
     }
   });
 
-  return loginWrapper;
+  return loginModal;
 };
 
 export default LoginModal;
