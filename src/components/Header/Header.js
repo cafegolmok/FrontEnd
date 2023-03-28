@@ -2,7 +2,7 @@ import './Header.scss';
 
 import LoginModal from '../LoginModal/LoginModal';
 import Overlay from '../Overlay/Overlay';
-import { state, addObserver } from '../../../store';
+import { state } from '../../../store';
 
 const Header = () => {
   // 요소 생성
@@ -207,12 +207,10 @@ const Header = () => {
     state.overlayVisible = true;
   });
 
-
   signupTab.addEventListener('click', () => {
     state.modalVisible = true;
     state.overlayVisible = true;
   });
-  
 
   return header;
 };

@@ -8,7 +8,7 @@ import routes from '../routes';
 import Overlay from './Overlay/Overlay';
 import LoginModal from './LoginModal/LoginModal';
 
-import { state, addObserver } from '../../store';
+import { addObserver } from '../../store';
 
 const App = () => {
   const router = Router();

@@ -1,6 +1,5 @@
 import './LoginModal.scss';
-// import Overlay from '../Overlay/Overlay';
-import { state, addObserver } from '../../../store';
+import { state } from '../../../store';
 
 const LoginModal = () => {
   const loginModal = document.createElement('div');
@@ -88,7 +87,7 @@ const LoginModal = () => {
   signUpButton.classList.add('button-login', 'button-signup');
   signUpButton.innerText = '카페골목 회원가입 하기';
 
-  // 로그인 모달 컴포넌트에 자식 요소들을 추가합니다.
+  // 로그인 모달 컴포넌트에 자식 요소들을 추가
   loginTop.appendChild(loginTitle);
   loginModal.appendChild(loginTop);
 
