@@ -1,5 +1,9 @@
 import './Header.scss';
 
+import LoginModal from '../LoginModal/LoginModal';
+import Overlay from '../Overlay/Overlay';
+import { state } from '../../../store';
+
 const Header = () => {
   // 요소 생성
   const header = document.createElement('header');
@@ -24,6 +28,18 @@ const Header = () => {
     'http://www.w3.org/2000/svg',
     'path'
   );
+
+  const moreInfo = document.createElement('ul');
+  moreInfo.classList.add('more-info', 'hidden');
+
+  const loginTab = document.createElement('li');
+  loginTab.classList.add('login-tab');
+  loginTab.textContent = '로그인';
+
+  const signupTab = document.createElement('li');
+  signupTab.classList.add('signup-tab');
+  signupTab.textContent = '회원가입';
+
   const categoryList = document.createElement('ul');
 
   // 상단 영역
@@ -85,6 +101,10 @@ const Header = () => {
   headerTop.appendChild(img);
   headerTop.appendChild(label);
   headerTop.appendChild(profileContainer);
+
+  profileContainer.appendChild(moreInfo);
+  moreInfo.appendChild(loginTab);
+  moreInfo.appendChild(signupTab);
 
   // 카테고리 목록
   categoryList.classList.add('category-list');
@@ -177,6 +197,20 @@ const Header = () => {
 
   header.appendChild(headerTop);
   header.appendChild(categoryList);
+
+  profileContainer.addEventListener('click', () => {
+    moreInfo.classList.toggle('hidden');
+  });
+
+  loginTab.addEventListener('click', () => {
+    state.modalVisible = true;
+    state.overlayVisible = true;
+  });
+
+  signupTab.addEventListener('click', () => {
+    state.modalVisible = true;
+    state.overlayVisible = true;
+  });
 
   return header;
 };
