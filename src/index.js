@@ -1,6 +1,6 @@
-// src/index.js
+import React from 'react';
+import ReactDOM from 'react-dom';
 
-import './style.scss';
 import '../public/assets/images/beverage.png';
 import '../public/assets/images/chair.png';
 import '../public/assets/images/coffee.png';
@@ -19,11 +19,5 @@ import '../public/assets/images/github.png';
 import '../public/assets/images/instagram.png';
 
 import App from './app.js';
-import Router from './router';
 
-const router = new Router();
-
-// 애플리케이션 시작
-const app = new App();
-app.renderApp();
-
+ReactDOM.render(<App />, document.getElementById('app'));
