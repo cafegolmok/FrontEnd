@@ -1,8 +1,7 @@
-const CafeDetail = () => {
-  const main = document.createElement('main');
-  main.textContent = '카페 상세페이지';
+import React from 'react';
 
-  return main;
+const CafeDetail = () => {
+  return <main>카페 상세페이지</main>;
 };
 
 export default CafeDetail;

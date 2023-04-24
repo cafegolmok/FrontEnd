@@ -1,10 +1,7 @@
-// import './Error404.scss';
+import React from 'react';
 
 const Error404 = () => {
-  const main = document.createElement('main');
-  main.textContent = 'Error 404';
-
-  return main;
+  return <main>Error 404</main>;
 };
 
 export default Error404;

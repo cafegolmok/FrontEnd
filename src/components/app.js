@@ -1,62 +1,62 @@
-// src/components/app.js
+// // src/components/app.js
 
-import Router from '../router';
-import Header from './Header/Header';
-import Footer from './Footer/Footer';
-import routes from '../routes';
+// import Router from '../router';
+// import Header from './Header/Header';
+// import Footer from './Footer/Footer';
+// import routes from '../routes';
 
-import Overlay from './Overlay/Overlay';
-import LoginModal from './LoginModal/LoginModal';
+// import Overlay from './Overlay/Overlay';
+// import LoginModal from './LoginModal/LoginModal';
 
-import { addObserver } from '../../store';
+// import { addObserver } from '../../store';
 
-const App = () => {
-  const router = Router();
+// const App = () => {
+//   const router = Router();
 
-  const renderApp = () => {
-    const appElement = document.getElementById('app');
-    appElement.innerHTML = '';
+//   const renderApp = () => {
+//     const appElement = document.getElementById('app');
+//     appElement.innerHTML = '';
 
-    const header = Header();
-    const footer = Footer();
-    const currentPage = router.getPage()();
+//     const header = Header();
+//     const footer = Footer();
+//     const currentPage = router.getPage()();
 
-    const overlay = Overlay();
-    const loginModal = LoginModal();
+//     const overlay = Overlay();
+//     const loginModal = LoginModal();
 
-    appElement.appendChild(header);
-    appElement.appendChild(currentPage);
-    appElement.appendChild(footer);
+//     appElement.appendChild(header);
+//     appElement.appendChild(currentPage);
+//     appElement.appendChild(footer);
 
-    appElement.appendChild(overlay);
-    appElement.appendChild(loginModal);
+//     appElement.appendChild(overlay);
+//     appElement.appendChild(loginModal);
 
-    const observer = value => {
-      if (value) {
-        loginModal.classList.remove('hidden');
-        overlay.classList.remove('hidden');
-        document.body.classList.add('no-scroll');
-      } else {
-        loginModal.classList.add('hidden');
-        overlay.classList.add('hidden');
-        document.body.classList.remove('no-scroll');
-      }
-    };
+//   //   const observer = value => {
+//   //     if (value) {
+//   //       loginModal.classList.remove('hidden');
+//   //       overlay.classList.remove('hidden');
+//   //       document.body.classList.add('no-scroll');
+//   //     } else {
+//   //       loginModal.classList.add('hidden');
+//   //       overlay.classList.add('hidden');
+//   //       document.body.classList.remove('no-scroll');
+//   //     }
+//   //   };
 
-    addObserver('modalVisible', observer);
-    addObserver('overlayVisible', observer);
-  };
+//   //   addObserver('modalVisible', observer);
+//   //   addObserver('overlayVisible', observer);
+//   // };
 
-  const onPopState = () => {
-    renderApp();
-  };
+//   const onPopState = () => {
+//     renderApp();
+//   };
 
-  window.addEventListener('load', renderApp);
-  window.addEventListener('popstate', onPopState);
+//   // window.addEventListener('load', renderApp);
+//   // window.addEventListener('popstate', onPopState);
 
-  const app = { renderApp };
+//   const app = { renderApp };
 
-  return app;
-};
+//   return app;
+// };
 
-export default App;
+// export default App;
