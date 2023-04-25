@@ -1,30 +1,26 @@
 // src/app.js
 
 import React from 'react';
-// import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import Header from './components/Header/Header';
-import Footer from './components/Footer/Footer';
-import Overlay from './components/Overlay/Overlay';
-import LoginModal from './components/LoginModal/LoginModal';
-import Home from './pages/Home';
-import CafeDetail from './pages/CafeDetail';
-import Error404 from './pages/Error404';
+
+import Header from './components/Header/Header.jsx';
+import Footer from './components/Footer/Footer.jsx';
+import Overlay from './components/Overlay/Overlay.jsx';
+import LoginModal from './components/LoginModal/LoginModal.jsx';
+import Home from './pages/Home.jsx';
+// import CafeDetail from './pages/CafeDetail';
+// import Error404 from './pages/Error404';
+
+import GlobalStyles from './styles/globalStyle.js';
 
 function App() {
   return (
     <>
-      {/* <Router> */}
+      <GlobalStyles />
       <Header />
-      {/* <Switch> */}
-      {/* <Route path="/" exact component={Home} /> */}
-      {/* <Route path="/cafedetail" component={CafeDetail} /> */}
       <Home />
-      {/* <Route path="/error404" component={Error404} /> */}
-      {/* </Switch> */}
       <Footer />
-      {/* <Overlay /> */}
-      {/* <LoginModal /> */}
-      {/* </Router> */}
+      <LoginModal />
+      <Overlay />
     </>
   );
 }
