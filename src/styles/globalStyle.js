@@ -1,4 +1,8 @@
-// base.scss
+// src/styles/globalStyle.js
+
+import { createGlobalStyle } from 'styled-components';
+
+const GlobalStyles = createGlobalStyle`
 * {
   box-sizing: border-box;
 }
@@ -35,8 +39,14 @@ body {
   line-height: normal;
   font-size: 14px;
   scroll-behavior: smooth;
+
+  width: 100%;
+  height: 100vh;
+  margin: 0 auto;
+  font-family: 'Archivo', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
 }
 
 body,
@@ -56,11 +66,6 @@ code {
   margin: 0;
   padding: 0;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-}
-
-.hidden,
-[hidden] {
-  display: none !important;
 }
 
 ul,
@@ -149,18 +154,10 @@ button {
   cursor: pointer;
 }
 
-// preset
 
-.screen-out {
-  position: absolute;
-  width: 0;
-  height: 0;
-  line-height: 0;
-  overflow: hidden;
-  text-indent: -9999px;
-}
 
-.hidden,
-[hidden] {
-  display: none !important;
-}
+
+
+`;
+
+export default GlobalStyles;
