@@ -73,6 +73,7 @@ export const ProfileImg = styled.svg`
   fill: ${palette.grayColor1};
 `;
 
+
 export const CategoryList = styled.ul`
   display: flex;
   height: 66px;

@@ -1,7 +1,9 @@
 import React from 'react';
 
+import { MainContainer } from '../styles/commonStyle';
+
 const CafeDetail = () => {
-  return <main>카페 상세페이지</main>;
+  return <MainContainer>카페 상세페이지</MainContainer>;
 };
 
 export default CafeDetail;

@@ -1,7 +1,9 @@
 import React from 'react';
 
+import { MainContainer } from '../styles/commonStyle';
+
 const Error404 = () => {
-  return <main>Error 404</main>;
+  return <MainContainer>Error 404</MainContainer>;
 };
 
 export default Error404;
