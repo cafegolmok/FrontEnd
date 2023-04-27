@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 
-
 export const ModalOverlay = styled.div`
   position: fixed;
   top: 0;
@@ -9,5 +8,5 @@ export const ModalOverlay = styled.div`
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 50;
-  display: none;
+  /* display: none; */
 `;

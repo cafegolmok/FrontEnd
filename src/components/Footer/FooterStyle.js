@@ -10,7 +10,7 @@ export const FooterContainer = styled.footer`
 `;
 
 export const Company = styled.section`
-  padding: 30px;
+  padding: 20px 30px;
   display: flex;
   justify-content: space-between;
   line-height: 25px;
@@ -18,7 +18,7 @@ export const Company = styled.section`
 `;
 
 export const CompanyTitle = styled.strong`
-  font-size: 22px;
+  font-size: 18px;
 `;
 
 export const SnsList = styled.ul`

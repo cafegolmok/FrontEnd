@@ -12,12 +12,14 @@ export const LoginModalContainer = styled.div`
   background-color: ${palette.whiteColor};
   z-index: 100;
   overflow: hidden;
-  display: none;
+  /* display: none; */
 
-  h1 {
+  h2 {
     font-weight: 500;
     font-size: 18px;
     color: ${palette.blackColor};
+    margin-left: auto;
+    margin-right: auto;
   }
 
   p {
@@ -26,9 +28,21 @@ export const LoginModalContainer = styled.div`
 `;
 
 export const LoginModalTop = styled.div`
+  display: flex;
+  align-items: center;
   padding: 20px 22px 18px;
   border-bottom: 1px solid ${palette.grayColor2};
   text-align: center;
+`;
+
+export const CloseBtn = styled.svg`
+  fill: ${palette.blackColor};
+  cursor: pointer;
+
+  &:hover {
+    background-color: ${palette.lightGrayColor};
+    border-radius: 50%;
+  }
 `;
 
 export const LoginModalContent = styled.div`
