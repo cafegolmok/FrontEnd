@@ -6,17 +6,16 @@ export const LoginModalContainer = styled.div`
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  width: 520px;
+  width: 500px;
   border: 1px solid ${palette.grayColor2};
   border-radius: 10px;
   background-color: ${palette.whiteColor};
   z-index: 100;
   overflow: hidden;
-  display: none;
 
-  h1 {
+  h2 {
+    position: relative;
     font-weight: 500;
-    font-size: 18px;
     color: ${palette.blackColor};
   }
 
@@ -26,9 +25,24 @@ export const LoginModalContainer = styled.div`
 `;
 
 export const LoginModalTop = styled.div`
-  padding: 20px 22px 18px;
+  padding: 16px 20px;
   border-bottom: 1px solid ${palette.grayColor2};
   text-align: center;
+`;
+
+export const CloseBtn = styled.svg`
+  position: absolute;
+  top: 14px;
+  left: 16px;
+  box-sizing: content-box;
+  padding: 2px;
+  fill: ${palette.blackColor};
+  cursor: pointer;
+
+  &:hover {
+    background-color: ${palette.lightGrayColor};
+    border-radius: 50%;
+  }
 `;
 
 export const LoginModalContent = styled.div`
@@ -45,7 +59,6 @@ export const LoginModalText = styled.p`
 `;
 
 /* email & password  */
-
 export const SharedLabel = styled.label`
   display: block;
   font-size: 14px;
@@ -74,6 +87,7 @@ export const LoginBtn = styled.button`
   line-height: 28px;
   text-align: center;
   text-decoration: none;
+  opacity: 0.8;
   cursor: pointer;
   &:last-child {
     margin-bottom: 0;
@@ -84,7 +98,6 @@ export const OriginalBtn = styled(LoginBtn)`
   margin-bottom: 15px;
   background-color: ${palette.mainColor};
   color: ${palette.whiteColor};
-  opacity: 0.6;
 `;
 
 export const SignupBtn = styled(LoginBtn)`
@@ -102,7 +115,6 @@ export const KakaoBtn = styled(LoginBtn)`
 `;
 
 /* or-text */
-
 export const OrText = styled.span`
   position: relative;
   display: block;
@@ -138,4 +150,5 @@ export const WarningMsg = styled.strong`
   margin-bottom: 10px;
   font-size: 13px;
   color: ${palette.redColor};
+  display: none;
 `;
