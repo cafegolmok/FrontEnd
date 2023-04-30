@@ -6,13 +6,16 @@ import {
   SignupModalContainer,
   SignupModalTop,
   SignupModalContent,
-  SharedLabel,
   EmailInput,
   PasswordInput,
   SignupBtn,
   WarningMsg,
   CloseBtn,
   ConfirmPasswordInput,
+  EmailLabel,
+  PasswordLabel,
+  ConfirmPasswordLabel,
+  NicknameLabel,
 } from './SignupModalStyle';
 
 const SignupModal = () => {
@@ -30,7 +33,7 @@ const SignupModal = () => {
         <h2>회원가입 완료하기</h2>
       </SignupModalTop>
       <SignupModalContent>
-        <SharedLabel htmlFor='user-email'>이메일</SharedLabel>
+        <EmailLabel htmlFor='user-email'>이메일</EmailLabel>
         <EmailInput
           type='text'
           id='user-email'
@@ -41,7 +44,7 @@ const SignupModal = () => {
         <WarningMsg>이메일을 50자 이내로 입력해 주세요.</WarningMsg>
         <WarningMsg>이메일 형식에 맞게 입력해 주세요.</WarningMsg>
         <WarningMsg>이미 가입된 이메일입니다.</WarningMsg>
-        <SharedLabel htmlFor='user-pw'>비밀번호</SharedLabel>
+        <PasswordLabel htmlFor='user-pw'>비밀번호</PasswordLabel>
         <PasswordInput
           type='password'
           id='user-pw'
@@ -50,7 +53,9 @@ const SignupModal = () => {
         />
         <WarningMsg>비밀번호를 10 ~20자 이내로 입력해 주세요.</WarningMsg>
         <WarningMsg>특수문자를 포함해 주세요.</WarningMsg>
-        <SharedLabel htmlFor='user-pw-check'>비밀번호 재확인</SharedLabel>
+        <ConfirmPasswordLabel htmlFor='user-pw-check'>
+          비밀번호 재확인
+        </ConfirmPasswordLabel>
         <ConfirmPasswordInput
           type='password'
           id='user-pw-check'
@@ -61,7 +66,7 @@ const SignupModal = () => {
           비밀번호가 일치하지 않습니다. 다시 입력해 주세요.
         </WarningMsg>
 
-        <SharedLabel htmlFor='user-nickname'>닉네임</SharedLabel>
+        <NicknameLabel htmlFor='user-nickname'>닉네임</NicknameLabel>
         <ConfirmPasswordInput
           type='text'
           id='user-nickname'

@@ -67,6 +67,10 @@ export const SharedLabel = styled.label`
   margin-top: 10px;
 `;
 
+export const EmailLabel = styled(SharedLabel)``
+
+export const PasswordLabel = styled(SharedLabel)``
+
 export const SharedInput = styled.input`
   width: 100%;
   padding: 16px;

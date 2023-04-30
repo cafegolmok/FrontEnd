@@ -10,7 +10,6 @@ import {
   LoginModalTop,
   LoginModalContent,
   LoginModalText,
-  SharedLabel,
   EmailInput,
   PasswordInput,
   OriginalBtn,
@@ -19,6 +18,8 @@ import {
   OrText,
   WarningMsg,
   CloseBtn,
+  EmailLabel,
+  PasswordLabel,
 } from './LoginModalStyle';
 
 const LoginModal = () => {
@@ -71,7 +72,7 @@ const LoginModal = () => {
       </LoginModalTop>
       <LoginModalContent>
         <LoginModalText>☕️ 카페골목에 오신 것을 환영합니다.</LoginModalText>
-        <SharedLabel htmlFor='user-email'>이메일</SharedLabel>
+        <EmailLabel htmlFor='user-email'>이메일</EmailLabel>
         <EmailInput
           type='text'
           id='user-email'
@@ -80,7 +81,7 @@ const LoginModal = () => {
         />
         <WarningMsg>이메일을 입력해 주세요.</WarningMsg>
         <WarningMsg>이메일 형식에 맞게 입력해 주세요.</WarningMsg>
-        <SharedLabel htmlFor='user-pw'>비밀번호</SharedLabel>
+        <PasswordLabel htmlFor='user-pw'>비밀번호</PasswordLabel>
         <PasswordInput
           type='password'
           id='user-pw'

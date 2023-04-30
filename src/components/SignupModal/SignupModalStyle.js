@@ -51,7 +51,6 @@ export const SignupModalContent = styled.div`
   overflow-y: scroll;
 `;
 
-/* email & password  */
 export const SharedLabel = styled.label`
   display: block;
   font-size: 14px;
@@ -59,6 +58,14 @@ export const SharedLabel = styled.label`
   margin-left: 5px;
   margin-top: 10px;
 `;
+
+export const EmailLabel = styled(SharedLabel)``;
+
+export const PasswordLabel = styled(SharedLabel)``;
+
+export const ConfirmPasswordLabel = styled(SharedLabel)``;
+
+export const NicknameLabel = styled(SharedLabel)``;
 
 export const SharedInput = styled.input`
   width: 100%;
