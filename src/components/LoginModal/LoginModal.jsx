@@ -11,7 +11,9 @@ import {
   LoginModalContent,
   LoginModalText,
   SharedLabel,
-  SharedInput,
+  // SharedInput,
+  EmailInput,
+  PasswordInput,
   OriginalBtn,
   SignupBtn,
   KakaoBtn,
@@ -71,7 +73,7 @@ const LoginModal = () => {
       <LoginModalContent>
         <LoginModalText>☕️ 카페골목에 오신 것을 환영합니다.</LoginModalText>
         <SharedLabel htmlFor='user-email'>이메일</SharedLabel>
-        <SharedInput
+        <EmailInput
           type='text'
           id='user-email'
           name='user-email'
@@ -80,7 +82,7 @@ const LoginModal = () => {
         <WarningMsg>이메일을 입력해 주세요.</WarningMsg>
         <WarningMsg>이메일 형식에 맞게 입력해 주세요.</WarningMsg>
         <SharedLabel htmlFor='user-pw'>비밀번호</SharedLabel>
-        <SharedInput
+        <PasswordInput
           type='password'
           id='user-pw'
           name='user-pw'

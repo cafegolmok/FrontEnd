@@ -79,6 +79,10 @@ export const SharedInput = styled.input`
   }
 `;
 
+export const EmailInput = styled(SharedInput)``;
+
+export const PasswordInput = styled(SharedInput)``;
+
 export const LoginBtn = styled.button`
   margin-bottom: 16px;
   display: block;
