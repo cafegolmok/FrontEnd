@@ -1,4 +1,4 @@
-// src/components/LoginModal/LoginModal.jsx
+// src/components/SignupModal/SignupModalStyle.js
 
 import React, { useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
@@ -11,7 +11,6 @@ import {
   LoginModalContent,
   LoginModalText,
   SharedLabel,
-  // SharedInput,
   EmailInput,
   PasswordInput,
   OriginalBtn,

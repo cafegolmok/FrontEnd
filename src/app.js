@@ -12,6 +12,7 @@ import CafeDetail from './pages/CafeDetail.jsx';
 import Error404 from './pages/Error404.jsx';
 
 import GlobalStyles from './styles/globalStyle.js';
+import SignupModal from './components/SignupModal/SignupModal.jsx';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
       </Routes>
       <Footer />
       <LoginModal />
+      <SignupModal/>
       <Overlay />
     </Router>
   );
