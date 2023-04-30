@@ -3,7 +3,7 @@
 import React, { useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { hideModal } from '../../store/actions';
+import { hideLoginModal } from '../../store/actions';
 
 import {
   LoginModalContainer,
@@ -23,12 +23,12 @@ import {
 } from './LoginModalStyle';
 
 const LoginModal = () => {
-  const isModalVisible = useSelector(state => state.isModalVisible);
+  const isLoginModalVisible = useSelector(state => state.isLoginModalVisible);
   const dispatch = useDispatch();
   const loginModalRef = useRef(null);
 
-  const handleHideModal = () => {
-    dispatch(hideModal());
+  const handlehideLoginModal = () => {
+    dispatch(hideLoginModal());
   };
 
   const handleModalOutsideClick = event => {
@@ -36,12 +36,12 @@ const LoginModal = () => {
       loginModalRef.current &&
       !loginModalRef.current.contains(event.target)
     ) {
-      handleHideModal();
+      handlehideLoginModal();
     }
   };
 
   useEffect(() => {
-    if (isModalVisible) {
+    if (isLoginModalVisible) {
       document.addEventListener('mousedown', handleModalOutsideClick);
     } else {
       document.removeEventListener('mousedown', handleModalOutsideClick);
@@ -50,9 +50,9 @@ const LoginModal = () => {
     return () => {
       document.removeEventListener('mousedown', handleModalOutsideClick);
     };
-  }, [isModalVisible]);
+  }, [isLoginModalVisible]);
 
-  if (!isModalVisible) {
+  if (!isLoginModalVisible) {
     return null;
   }
 
@@ -60,7 +60,7 @@ const LoginModal = () => {
     <LoginModalContainer ref={loginModalRef}>
       <LoginModalTop>
         <CloseBtn
-          onClick={handleHideModal}
+          onClick={handlehideLoginModal}
           xmlns='http://www.w3.org/2000/svg'
           width='24'
           height='24'

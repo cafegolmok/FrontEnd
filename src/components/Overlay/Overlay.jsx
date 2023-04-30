@@ -5,9 +5,11 @@ import { useSelector } from 'react-redux';
 import { ModalOverlay } from './OverlayStyle';
 
 const Overlay = () => {
-  const isModalVisible = useSelector(state => state.isModalVisible);
+  const isLoginModalVisible = useSelector(state => state.isLoginModalVisible);
 
-  if (!isModalVisible) {
+  const isSignupModalVisible = useSelector(state => state.isSignupModalVisible)
+
+  if (!isLoginModalVisible && !isSignupModalVisible) {
     return null;
   }
   return <ModalOverlay></ModalOverlay>;

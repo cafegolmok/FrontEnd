@@ -18,13 +18,13 @@ import {
 import { ScreenOut } from '../../styles/commonStyle';
 
 import Category from '../Category/Category.jsx';
-import { showModal } from '../../store/actions';
+import { showLoginModal } from '../../store/actions';
 
 const Header = () => {
   const dispatch = useDispatch();
 
-  const handleShowModal = () => {
-    dispatch(showModal());
+  const handleshowLoginModal = () => {
+    dispatch(showLoginModal());
     setShowProfileMoreInfo(false);
   };
 
@@ -98,8 +98,8 @@ const Header = () => {
           </ProfileImg>
           {showProfileMoreInfo && (
             <ProfileMoreInfo onClick={e => e.stopPropagation()}>
-              <SharedTab onClick={handleShowModal}>로그인</SharedTab>
-              <SharedTab onClick={handleShowModal}>회원가입</SharedTab>
+              <SharedTab onClick={handleshowLoginModal}>로그인</SharedTab>
+              <SharedTab onClick={handleshowLoginModal}>회원가입</SharedTab>
             </ProfileMoreInfo>
           )}
         </ProfileContainer>

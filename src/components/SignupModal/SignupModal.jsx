@@ -1,6 +1,8 @@
 // src/components/SignupModal/SignupModal.jsx
 
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { hideSignupModal } from '../../store/actions';
 
 import {
   SignupModalContainer,
@@ -19,10 +21,43 @@ import {
 } from './SignupModalStyle';
 
 const SignupModal = () => {
+  const isSignupModalVisible = useSelector(state => state.isSignupModalVisible);
+  const dispatch = useDispatch();
+  const signupModalRef = useRef(null);
+
+  const handlehideSignupModal = () => {
+    dispatch(hideSignupModal());
+  };
+
+  const handleModalOutsideClick = event => {
+    if (
+      signupModalRef.current &&
+      !signupModalRef.current.contains(event.target)
+    ) {
+      handlehideSignupModal();
+    }
+  };
+
+  useEffect(() => {
+    if (isSignupModalVisible) {
+      document.addEventListener('mousedown', handleModalOutsideClick);
+    } else {
+      document.removeEventListener('mousedown', handleModalOutsideClick);
+    }
+    return () => {
+      document.removeEventListener('mousedown', handleModalOutsideClick);
+    };
+  }, [isSignupModalVisible]);
+
+  if (!isSignupModalVisible) {
+    return null;
+  }
+
   return (
-    <SignupModalContainer>
+    <SignupModalContainer ref={signupModalRef}>
       <SignupModalTop>
         <CloseBtn
+          onClick={handlehideSignupModal}
           xmlns='http://www.w3.org/2000/svg'
           width='24'
           height='24'
