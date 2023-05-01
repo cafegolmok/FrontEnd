@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 import { palette } from '../../styles/globalColor';
 
-// export const LoginModalContainer = styled.div`
-//   /* position: fixed;
+// export const SignupModalContainer = styled.div`
+//   position: fixed;
 //   left: 50%;
 //   top: 50%;
 //   transform: translate(-50%, -50%);
@@ -11,9 +11,9 @@ import { palette } from '../../styles/globalColor';
 //   border-radius: 10px;
 //   background-color: ${palette.whiteColor};
 //   z-index: 100;
-//   overflow: hidden; */
+//   overflow: hidden;
 
-//   /* h2 {
+//   h2 {
 //     position: relative;
 //     font-weight: 500;
 //     color: ${palette.blackColor};
@@ -21,17 +21,17 @@ import { palette } from '../../styles/globalColor';
 
 //   p {
 //     margin-bottom: 24px;
-//   } */
+//   }
 // `;
 
-// export const LoginModalTop = styled.div`
-//   /* padding: 16px 20px;
+// export const SignupModalTop = styled.div`
+//   padding: 16px 20px;
 //   border-bottom: 1px solid ${palette.grayColor2};
-//   text-align: center; */
+//   text-align: center;
 // `;
 
 // export const CloseBtn = styled.svg`
-//   /* position: absolute;
+//   position: absolute;
 //   top: 14px;
 //   left: 16px;
 //   box-sizing: content-box;
@@ -42,23 +42,15 @@ import { palette } from '../../styles/globalColor';
 //   &:hover {
 //     background-color: ${palette.lightGrayColor};
 //     border-radius: 50%;
-//   } */
+//   }
 // `;
 
-export const LoginModalContent = styled.div`
+export const SignupModalContent = styled.div`
   padding: 20px;
   height: 400px;
   overflow-y: scroll;
 `;
 
-export const LoginModalText = styled.p`
-  font-weight: 500;
-  font-size: 20px;
-  line-height: 24px;
-  color: ${palette.blackColor};
-`;
-
-/* email & password  */
 export const SharedLabel = styled.label`
   display: block;
   font-size: 14px;
@@ -70,6 +62,10 @@ export const SharedLabel = styled.label`
 export const EmailLabel = styled(SharedLabel)``;
 
 export const PasswordLabel = styled(SharedLabel)``;
+
+export const ConfirmPasswordLabel = styled(SharedLabel)``;
+
+export const NicknameLabel = styled(SharedLabel)``;
 
 export const SharedInput = styled.input`
   width: 100%;
@@ -87,6 +83,10 @@ export const EmailInput = styled(SharedInput)``;
 
 export const PasswordInput = styled(SharedInput)``;
 
+export const ConfirmPasswordInput = styled(SharedInput)``;
+
+export const NicknameInput = styled(SharedInput)``;
+
 export const LoginBtn = styled.button`
   margin-bottom: 16px;
   display: block;
@@ -102,52 +102,10 @@ export const LoginBtn = styled.button`
   }
 `;
 
-export const OriginalBtn = styled(LoginBtn)`
+export const SignupBtn = styled(LoginBtn)`
   margin-bottom: 15px;
   background-color: ${palette.mainColor};
   color: ${palette.whiteColor};
-`;
-
-export const SignupBtn = styled(LoginBtn)`
-  background-color: ${palette.grayColor1};
-  font-weight: 500;
-  font-size: 16px;
-  color: ${palette.blackColor};
-`;
-
-export const KakaoBtn = styled(LoginBtn)`
-  background-color: ${palette.yellowColor};
-  font-weight: 500;
-  font-size: 16px;
-  color: ${palette.blackColor};
-`;
-
-/* or-text */
-export const OrText = styled.span`
-  position: relative;
-  display: block;
-  margin-bottom: 20px;
-  font-size: 14px;
-  color: ${palette.darkGrayColor2};
-  text-align: center;
-  &::before {
-    content: '';
-    position: absolute;
-    top: 8px;
-    left: 0;
-    background-color: ${palette.grayColor2};
-    width: 44%;
-    height: 1px;
-  }
-  &::after {
-    content: '';
-    position: absolute;
-    top: 8px;
-    right: 0;
-    background-color: ${palette.grayColor2};
-    width: 44%;
-    height: 1px;
-  }
 `;
 
 /* warning-message */
@@ -158,5 +116,10 @@ export const WarningMsg = styled.strong`
   margin-bottom: 10px;
   font-size: 13px;
   color: ${palette.redColor};
-  display: none;
+  display: none; 
 `;
+
+
+
+
+

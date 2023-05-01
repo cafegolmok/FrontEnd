@@ -18,13 +18,13 @@ import {
 import { ScreenOut } from '../../styles/commonStyle';
 
 import Category from '../Category/Category.jsx';
-import { showModal } from '../../store/actions';
+import { showLoginModal } from '../../store/actions';
 
 const Header = () => {
   const dispatch = useDispatch();
 
-  const handleShowModal = () => {
-    dispatch(showModal());
+  const handleshowLoginModal = () => {
+    dispatch(showLoginModal());
     setShowProfileMoreInfo(false);
   };
 
@@ -69,8 +69,8 @@ const Header = () => {
           />
           <SearchButton
             xmlns='http://www.w3.org/2000/svg'
-            width='26'
-            height='26'
+            width='30'
+            height='30'
             viewBox='0 0 24 24'
           >
             <path d='M10 18a7.952 7.952 0 0 0 4.897-1.688l4.396 4.396 1.414-1.414-4.396-4.396A7.952 7.952 0 0 0 18 10c0-4.411-3.589-8-8-8s-8 3.589-8 8 3.589 8 8 8zm0-14c3.309 0 6 2.691 6 6s-2.691 6-6 6-6-2.691-6-6 2.691-6 6-6z'></path>
@@ -80,7 +80,6 @@ const Header = () => {
           ref={profileContainerRef}
           onClick={() => setShowProfileMoreInfo(!showProfileMoreInfo)}
         >
-          {' '}
           <ProfileBar
             xmlns='http://www.w3.org/2000/svg'
             width='30'
@@ -99,8 +98,8 @@ const Header = () => {
           </ProfileImg>
           {showProfileMoreInfo && (
             <ProfileMoreInfo onClick={e => e.stopPropagation()}>
-              <SharedTab onClick={handleShowModal}>로그인</SharedTab>
-              <SharedTab onClick={handleShowModal}>회원가입</SharedTab>
+              <SharedTab onClick={handleshowLoginModal}>로그인</SharedTab>
+              <SharedTab onClick={handleshowLoginModal}>회원가입</SharedTab>
             </ProfileMoreInfo>
           )}
         </ProfileContainer>
