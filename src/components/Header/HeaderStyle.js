@@ -31,17 +31,18 @@ export const SearchContainer = styled.label`
   align-items: center;
   margin: 0 10px;
   width: 320px;
-  height: 47px;
-  padding: 0 15px;
+  height: 44px;
+  padding: 0 10px;
   background-color: ${palette.whiteColor};
   border: 1px solid ${palette.grayColor1};
   border-radius: 40px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.16);
   box-sizing: border-box;
+  overflow: hidden;
 `;
 
 export const SearchInput = styled.input`
-  width: 100%;
+  width: 88%;
   height: 95%;
   font-size: 15px;
   &:focus {
@@ -50,8 +51,12 @@ export const SearchInput = styled.input`
 `;
 
 export const SearchButton = styled.svg`
-  fill: ${palette.darkGrayColor1};
+  fill: ${palette.whiteColor};
   cursor: pointer;
+  background-color: ${palette.mainColor};
+  border-radius: 50%;
+  padding: 7px;
+  opacity: 0.9;
 `;
 
 export const ProfileContainer = styled.div`
