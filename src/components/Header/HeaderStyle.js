@@ -2,7 +2,8 @@ import styled from 'styled-components';
 import { palette } from '../../styles/globalColor';
 
 export const HeaderContainer = styled.header`
-  position: fixed;
+  position: sticky;
+  top: 0;
   z-index: 20;
   width: 100%;
   background-color: ${palette.whiteColor};
@@ -19,9 +20,8 @@ export const HeaderTop = styled.div`
 
 export const Logo = styled.img`
   display: block;
-  padding-top: 5px;
+  padding: 5px 0;
   width: 170px;
-  height: 55px;
   cursor: pointer;
 `;
 
@@ -30,7 +30,7 @@ export const SearchContainer = styled.label`
   justify-content: space-between;
   align-items: center;
   margin: 0 10px;
-  width: 320px;
+  min-width: 300px;
   height: 44px;
   padding: 0 10px;
   background-color: ${palette.whiteColor};

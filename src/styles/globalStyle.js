@@ -39,7 +39,6 @@ body {
   line-height: normal;
   font-size: 14px;
   scroll-behavior: smooth;
-
   width: 100%;
   height: 100vh;
   margin: 0 auto;

@@ -1,8 +1,9 @@
 // src/components/helpers/BaseModal.jsx
 
 import React, { useRef, useEffect } from 'react';
+import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { palette } from '../../styles/globalColor';
 
 const ModalContainer = styled.div`
@@ -15,6 +16,7 @@ const ModalContainer = styled.div`
   background-color: ${palette.whiteColor};
   z-index: 100;
   overflow: hidden;
+  animation: ${props => (props.isVisible ? slideUpIn : slideUpOut)} 400ms;
 
   h2 {
     position: relative;
@@ -48,6 +50,29 @@ const CloseBtn = styled.svg`
   }
 `;
 
+const slideUpIn = keyframes`
+  0% {
+    opacity: 0;
+    transform: translate(-50%, 100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+`;
+
+const slideUpOut = keyframes`
+  0% {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, 100%);
+  }
+`;
+
+
 const BaseModal = ({ isVisible, onClose, title, children }) => {
   const modalRef = useRef(null);
 
@@ -73,8 +98,8 @@ const BaseModal = ({ isVisible, onClose, title, children }) => {
     return null;
   }
 
-  return (
-    <ModalContainer ref={modalRef}>
+  return ReactDOM.createPortal(
+    <ModalContainer ref={modalRef} isVisible={isVisible}>
       <ModalTop>
         <CloseBtn
           onClick={onClose}
@@ -88,7 +113,8 @@ const BaseModal = ({ isVisible, onClose, title, children }) => {
         <h2>{title}</h2>
       </ModalTop>
       {children}
-    </ModalContainer>
+    </ModalContainer>,
+    document.getElementById('modal-root')
   );
 };
 
