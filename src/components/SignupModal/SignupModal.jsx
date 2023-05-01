@@ -1,18 +1,16 @@
 // src/components/SignupModal/SignupModal.jsx
 
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { hideSignupModal } from '../../store/actions';
+import BaseModal from '../helpers/BaseModal.jsx';
 
 import {
-  SignupModalContainer,
-  SignupModalTop,
   SignupModalContent,
   EmailInput,
   PasswordInput,
   SignupBtn,
   WarningMsg,
-  CloseBtn,
   ConfirmPasswordInput,
   EmailLabel,
   PasswordLabel,
@@ -23,50 +21,17 @@ import {
 const SignupModal = () => {
   const isSignupModalVisible = useSelector(state => state.isSignupModalVisible);
   const dispatch = useDispatch();
-  const signupModalRef = useRef(null);
 
-  const handlehideSignupModal = () => {
+  const handleHideSignupModal = () => {
     dispatch(hideSignupModal());
   };
 
-  const handleModalOutsideClick = event => {
-    if (
-      signupModalRef.current &&
-      !signupModalRef.current.contains(event.target)
-    ) {
-      handlehideSignupModal();
-    }
-  };
-
-  useEffect(() => {
-    if (isSignupModalVisible) {
-      document.addEventListener('mousedown', handleModalOutsideClick);
-    } else {
-      document.removeEventListener('mousedown', handleModalOutsideClick);
-    }
-    return () => {
-      document.removeEventListener('mousedown', handleModalOutsideClick);
-    };
-  }, [isSignupModalVisible]);
-
-  if (!isSignupModalVisible) {
-    return null;
-  }
-
   return (
-    <SignupModalContainer ref={signupModalRef}>
-      <SignupModalTop>
-        <CloseBtn
-          onClick={handlehideSignupModal}
-          xmlns='http://www.w3.org/2000/svg'
-          width='24'
-          height='24'
-          viewBox='0 0 24 24'
-        >
-          <path d='m16.192 6.344-4.243 4.242-4.242-4.242-1.414 1.414L10.535 12l-4.242 4.242 1.414 1.414 4.242-4.242 4.243 4.242 1.414-1.414L13.364 12l4.242-4.242z'></path>
-        </CloseBtn>
-        <h2>회원가입 완료하기</h2>
-      </SignupModalTop>
+    <BaseModal
+      isVisible={isSignupModalVisible}
+      onClose={handleHideSignupModal}
+      title='회원가입 완료하기'
+    >
       <SignupModalContent>
         <EmailLabel htmlFor='user-email'>이메일</EmailLabel>
         <EmailInput
@@ -116,7 +81,7 @@ const SignupModal = () => {
         <WarningMsg>이미 사용중인 닉네임입니다.</WarningMsg>
         <SignupBtn>가입하기</SignupBtn>
       </SignupModalContent>
-    </SignupModalContainer>
+    </BaseModal>
   );
 };
 
