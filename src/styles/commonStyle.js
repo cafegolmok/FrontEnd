@@ -6,7 +6,7 @@ export const MainContainer = styled.main`
   max-width: 1300px;
   margin: 0 auto;
   padding: 0 40px;
-  padding-top: 160px;
+  padding-top: 20px;
 `;
 
 export const ScreenOut = styled.div`

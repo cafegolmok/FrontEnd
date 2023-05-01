@@ -16,7 +16,7 @@ const ModalContainer = styled.div`
   background-color: ${palette.whiteColor};
   z-index: 100;
   overflow: hidden;
-  animation: ${props => (props.isVisible ? slideUpIn : slideUpOut)} 300ms;
+  animation: ${props => (props.isVisible ? slideUpIn : slideUpOut)} 400ms;
 
   h2 {
     position: relative;

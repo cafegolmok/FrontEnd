@@ -2,7 +2,8 @@ import styled from 'styled-components';
 import { palette } from '../../styles/globalColor';
 
 export const HeaderContainer = styled.header`
-  position: fixed;
+  position: sticky;
+  top: 0;
   z-index: 20;
   width: 100%;
   background-color: ${palette.whiteColor};
