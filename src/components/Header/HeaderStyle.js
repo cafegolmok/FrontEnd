@@ -20,9 +20,8 @@ export const HeaderTop = styled.div`
 
 export const Logo = styled.img`
   display: block;
-  padding-top: 5px;
+  padding: 5px 0;
   width: 170px;
-  height: 55px;
   cursor: pointer;
 `;
 
@@ -31,7 +30,7 @@ export const SearchContainer = styled.label`
   justify-content: space-between;
   align-items: center;
   margin: 0 10px;
-  width: 320px;
+  min-width: 300px;
   height: 44px;
   padding: 0 10px;
   background-color: ${palette.whiteColor};
