@@ -1,6 +1,7 @@
 // src/components/helpers/BaseModal.jsx
 
 import React, { useRef, useEffect } from 'react';
+import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { palette } from '../../styles/globalColor';
@@ -73,7 +74,7 @@ const BaseModal = ({ isVisible, onClose, title, children }) => {
     return null;
   }
 
-  return (
+  return ReactDOM.createPortal(
     <ModalContainer ref={modalRef}>
       <ModalTop>
         <CloseBtn
@@ -88,7 +89,8 @@ const BaseModal = ({ isVisible, onClose, title, children }) => {
         <h2>{title}</h2>
       </ModalTop>
       {children}
-    </ModalContainer>
+    </ModalContainer>,
+    document.getElementById('modal-root')
   );
 };
 

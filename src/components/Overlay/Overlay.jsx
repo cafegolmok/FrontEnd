@@ -1,6 +1,7 @@
 // src/components/Overlay/Overlay.jsx
 
 import React, { useEffect } from 'react';
+import ReactDOM from 'react-dom';
 import { useSelector } from 'react-redux';
 import { ModalOverlay } from './OverlayStyle';
 
@@ -24,7 +25,10 @@ const Overlay = () => {
   if (!isLoginModalVisible && !isSignupModalVisible) {
     return null;
   }
-  return <ModalOverlay></ModalOverlay>;
+  return ReactDOM.createPortal(
+    <ModalOverlay></ModalOverlay>,
+    document.getElementById('modal-root')
+  );
 };
 
 export default Overlay;
