@@ -6,7 +6,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Header from './components/Header/Header.jsx';
 import Footer from './components/Footer/Footer.jsx';
 import Overlay from './components/Overlay/Overlay.jsx';
-// import LoginModal from './components/Login/LoginModal/LoginModal.jsx';
+
 import Home from './pages/Home.jsx';
 import CafeDetail from './pages/CafeDetail.jsx';
 import Error404 from './pages/Error404.jsx';
@@ -14,7 +14,7 @@ import Error404 from './pages/Error404.jsx';
 import GlobalStyles from './styles/globalStyle.js';
 import SignupModal from './components/SignupModal/SignupModal.jsx';
 
-import EmailLogin from './components/Login/EmailLogin.jsx';
+import Login from './components/Login/Login.jsx';
 
 function App() {
   return (
@@ -27,8 +27,7 @@ function App() {
         <Route path='*' element={<Error404 />} />
       </Routes>
       <Footer />
-      {/* <LoginModal /> */}
-      <EmailLogin />
+      <Login />
       <SignupModal />
       <Overlay />
     </Router>
