@@ -3,8 +3,8 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { hideLoginModal } from '../../store/actions';
-import BaseModal from '../helpers/BaseModal.jsx';
+import { hideLoginModal } from '../../../store/actions';
+import BaseModal from '../../helpers/BaseModal.jsx';
 
 import {
   LoginModalContent,

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { palette } from '../../styles/globalColor';
+import { palette } from '../../../styles/globalColor';
 
 export const LoginModalContent = styled.div`
   padding: 20px;
