@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { palette } from '../../../styles/globalColor';
 
-export const LoginModalContent = styled.div`
+export const LoginModalContent = styled.form`
   padding: 20px;
   height: 400px;
   overflow-y: scroll;
