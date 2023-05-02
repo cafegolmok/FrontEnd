@@ -1,6 +1,6 @@
 // src/components/Login/LoginModal/LoginModalStyle.jsx
 
-import React from 'react';
+import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -16,10 +16,11 @@ import {
   SignupBtn,
   KakaoBtn,
   OrText,
-  WarningMsg,
   EmailLabel,
   PasswordLabel,
 } from './LoginModalStyle';
+
+import WarningMsg from '../../WarningMsg/WarningMsg.jsx';
 
 const LoginModal = ({
   email,
@@ -29,6 +30,11 @@ const LoginModal = ({
   handleSubmit,
   error,
 }) => {
+  const [isEmailEmpty, setIsEmailEmpty] = useState(false);
+  const [isEmailInvalid, setIsEmailInvalid] = useState(false);
+  const [isPasswordEmpty, setIsPasswordEmpty] = useState(false);
+  const [isLoginError, setIsLoginError] = useState(false);
+
   const isLoginModalVisible = useSelector(state => state.isLoginModalVisible);
   const dispatch = useDispatch();
 
@@ -53,8 +59,11 @@ const LoginModal = ({
           value={email}
           onChange={handleChangeEmail}
         />
-        <WarningMsg>이메일을 입력해 주세요.</WarningMsg>
-        <WarningMsg>이메일 형식에 맞게 입력해 주세요.</WarningMsg>
+        <WarningMsg show={isEmailEmpty} message='이메일을 입력해 주세요.' />{' '}
+        <WarningMsg
+          show={isEmailInvalid}
+          message='이메일 형식에 맞게 입력해 주세요.'
+        />{' '}
         <PasswordLabel htmlFor='user-pw'>비밀번호</PasswordLabel>
         <PasswordInput
           type='password'
@@ -64,10 +73,14 @@ const LoginModal = ({
           value={password}
           onChange={handleChangePassword}
         />
-        <WarningMsg>비밀번호를 입력해 주세요.</WarningMsg>
-        <WarningMsg>
-          로그인 정보가 올바르지 않습니다. 다시 시도해 주세요.
-        </WarningMsg>
+        <WarningMsg
+          show={isPasswordEmpty}
+          message='비밀번호를 입력해 주세요.'
+        />{' '}
+        <WarningMsg
+          show={isLoginError}
+          message='로그인 정보가 올바르지 않습니다. 다시 시도해 주세요.'
+        />
         <OriginalBtn type='submit'>로그인</OriginalBtn>
         <OrText>또는</OrText>
         <KakaoBtn>카카오톡 계정으로 로그인</KakaoBtn>

@@ -106,13 +106,12 @@ export const OrText = styled.span`
   }
 `;
 
-/* warning-message */
 
-export const WarningMsg = styled.strong`
-  display: block;
-  margin-left: 5px;
-  margin-bottom: 10px;
-  font-size: 13px;
-  color: ${palette.redColor};
-  display: none;
-`;
+// export const WarningMsg = styled.strong`
+//   display: block;
+//   margin-left: 5px;
+//   margin-bottom: 10px;
+//   font-size: 13px;
+//   color: ${palette.redColor};
+//   display: none;
+// `;
