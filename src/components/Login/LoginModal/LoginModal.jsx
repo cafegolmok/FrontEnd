@@ -29,12 +29,11 @@ const LoginModal = ({
   handleChangePassword,
   handleSubmit,
   error,
+  isEmailEmpty,
+  isEmailInvalid,
+  isPasswordEmpty,
+  isLoginError,
 }) => {
-  const [isEmailEmpty, setIsEmailEmpty] = useState(false);
-  const [isEmailInvalid, setIsEmailInvalid] = useState(false);
-  const [isPasswordEmpty, setIsPasswordEmpty] = useState(false);
-  const [isLoginError, setIsLoginError] = useState(false);
-
   const isLoginModalVisible = useSelector(state => state.isLoginModalVisible);
   const dispatch = useDispatch();
 

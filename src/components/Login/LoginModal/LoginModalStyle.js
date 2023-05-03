@@ -20,7 +20,7 @@ export const SharedLabel = styled.label`
   font-size: 14px;
   margin-bottom: 7px;
   margin-left: 5px;
-  margin-top: 10px;
+  margin-top: 14px;
 `;
 
 export const EmailLabel = styled(SharedLabel)``;
