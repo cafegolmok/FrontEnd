@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { palette } from '../../../styles/globalColor';
 
 export const LoginModalContent = styled.form`
@@ -18,9 +18,7 @@ export const LoginModalText = styled.p`
 export const SharedLabel = styled.label`
   display: block;
   font-size: 14px;
-  margin-bottom: 7px;
-  margin-left: 5px;
-  margin-top: 14px;
+  margin: 14px 0 7px 5px;
 `;
 
 export const EmailLabel = styled(SharedLabel)``;
@@ -30,7 +28,7 @@ export const PasswordLabel = styled(SharedLabel)``;
 export const SharedInput = styled.input`
   width: 100%;
   padding: 16px;
-  margin-bottom: 16px;
+  margin-bottom: 8px;
   border: 1px solid ${palette.grayColor2};
   border-radius: 5px;
   &:focus {
@@ -39,9 +37,27 @@ export const SharedInput = styled.input`
   }
 `;
 
-export const EmailInput = styled(SharedInput)``;
+export const EmailInput = styled(SharedInput)`
+  ${props =>
+    props.error &&
+    css`
+      border-color: ${palette.redColor};
+      &:focus {
+        border-color ${palette.redColor};
+      }
+    `}
+`;
 
-export const PasswordInput = styled(SharedInput)``;
+export const PasswordInput = styled(SharedInput)`
+  ${props =>
+    props.error &&
+    css`
+      border-color: ${palette.redColor};
+      &:focus {
+        border-color ${palette.redColor};
+      }
+    `}
+`;
 
 export const LoginBtn = styled.button`
   margin-bottom: 16px;
@@ -59,6 +75,7 @@ export const LoginBtn = styled.button`
 `;
 
 export const OriginalBtn = styled(LoginBtn)`
+  margin-top: 10px;
   margin-bottom: 15px;
   background-color: ${palette.mainColor};
   color: ${palette.whiteColor};
@@ -69,6 +86,9 @@ export const SignupBtn = styled(LoginBtn)`
   font-weight: 500;
   font-size: 16px;
   color: ${palette.blackColor};
+  &:hover {
+    opacity: 1;
+  }
 `;
 
 export const KakaoBtn = styled(LoginBtn)`
@@ -76,6 +96,9 @@ export const KakaoBtn = styled(LoginBtn)`
   font-weight: 500;
   font-size: 16px;
   color: ${palette.blackColor};
+  &:hover {
+    opacity: 1;
+  }
 `;
 
 /* or-text */
@@ -105,13 +128,3 @@ export const OrText = styled.span`
     height: 1px;
   }
 `;
-
-
-// export const WarningMsg = styled.strong`
-//   display: block;
-//   margin-left: 5px;
-//   margin-bottom: 10px;
-//   font-size: 13px;
-//   color: ${palette.redColor};
-//   display: none;
-// `;

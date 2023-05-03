@@ -4,7 +4,6 @@ import LoginModal from './LoginModal/LoginModal.jsx';
 const EmailLogin = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
   const [isEmailEmpty, setIsEmailEmpty] = useState(false);
   const [isEmailInvalid, setIsEmailInvalid] = useState(false);
   const [isPasswordEmpty, setIsPasswordEmpty] = useState(false);
@@ -66,11 +65,9 @@ const EmailLogin = () => {
     // 이메일과 패스워드가 존재하지 않을떄 로직 추가
 
     try {
-      // 로그인 성공 시 처리
       console.log(email, password);
     } catch (error) {
-      // 로그인 실패 시 처리
-      setError('로그인에 실패했습니다. 이메일과 비밀번호를 확인하세요.');
+      setIsLoginError(true);
     }
   };
 
@@ -81,7 +78,6 @@ const EmailLogin = () => {
       handleChangeEmail={handleChangeEmail}
       handleChangePassword={handleChangePassword}
       handleSubmit={handleSubmit}
-      error={error}
       isEmailEmpty={isEmailEmpty}
       isEmailInvalid={isEmailInvalid}
       isPasswordEmpty={isPasswordEmpty}

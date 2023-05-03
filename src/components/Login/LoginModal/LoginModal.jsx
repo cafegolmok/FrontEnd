@@ -1,6 +1,6 @@
 // src/components/Login/LoginModal/LoginModalStyle.jsx
 
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -28,7 +28,6 @@ const LoginModal = ({
   handleChangeEmail,
   handleChangePassword,
   handleSubmit,
-  error,
   isEmailEmpty,
   isEmailInvalid,
   isPasswordEmpty,
@@ -57,6 +56,7 @@ const LoginModal = ({
           placeholder='이메일을 입력해주세요.'
           value={email}
           onChange={handleChangeEmail}
+          error={isEmailEmpty || isEmailInvalid}
         />
         <WarningMsg show={isEmailEmpty} message='이메일을 입력해 주세요.' />{' '}
         <WarningMsg
@@ -71,6 +71,7 @@ const LoginModal = ({
           placeholder='비밀번호를 입력해주세요.'
           value={password}
           onChange={handleChangePassword}
+          error={isPasswordEmpty || isLoginError}
         />
         <WarningMsg
           show={isPasswordEmpty}
@@ -82,8 +83,8 @@ const LoginModal = ({
         />
         <OriginalBtn type='submit'>로그인</OriginalBtn>
         <OrText>또는</OrText>
-        <KakaoBtn>카카오톡 계정으로 로그인</KakaoBtn>
-        <SignupBtn>카페골목 회원가입 하기</SignupBtn>
+        <KakaoBtn type='button'>카카오톡 계정으로 로그인</KakaoBtn>
+        <SignupBtn type='button'>카페골목 회원가입 하기</SignupBtn>
       </LoginModalContent>
     </BaseModal>
   );
