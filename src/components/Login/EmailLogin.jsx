@@ -14,8 +14,15 @@ const EmailLogin = () => {
     setEmail(event.target.value);
     console.log(event.target.value);
 
-    // 동적으로 이메일 유효성 검사
-    setIsEmailInvalid(!validateEmail(event.target.value));
+    // 이메일이 비어있지 않고 형식이 잘못된 경우에만 경고 메시지 표시
+    if (event.target.value !== '' && !validateEmail(event.target.value)) {
+      setIsEmailInvalid(true);
+    } else {
+      setIsEmailInvalid(false);
+    }
+
+    // 이메일이 비어있는지 여부 확인
+    setIsEmailEmpty(event.target.value === '');
   };
 
   const validateEmail = email => {
@@ -26,26 +33,37 @@ const EmailLogin = () => {
   const handleChangePassword = event => {
     setPassword(event.target.value);
     console.log(event.target.value);
+
+    // 패스워드가 비어있는지 확인
+    setIsPasswordEmpty(event.target.value === '');
   };
 
   const handleSubmit = async event => {
     event.preventDefault();
     if (email === '') {
       setIsEmailEmpty(true);
-      return;
+    } else {
+      setIsEmailEmpty(false);
     }
 
-    if (!validateEmail(email)) {
+    if (email !== '' && !validateEmail(email)) {
       setIsEmailInvalid(true);
-      return;
+    } else {
+      setIsEmailInvalid(false);
     }
 
     if (password === '') {
       setIsPasswordEmpty(true);
+    } else {
+      setIsPasswordEmpty(false);
+    }
+
+    // 입력이 올바르지 않은 경우에는 로그인 시도를 중단
+    if (isEmailEmpty || isEmailInvalid || isPasswordEmpty) {
       return;
     }
 
-    // 이메일 패스워드가 존재하지 않을떄 로직 추가
+    // 이메일과 패스워드가 존재하지 않을떄 로직 추가
 
     try {
       // 로그인 성공 시 처리
