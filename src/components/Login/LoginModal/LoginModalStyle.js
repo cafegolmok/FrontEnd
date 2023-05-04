@@ -35,12 +35,6 @@ export const SignupBtn = styled(SharedBtn)`
   color: ${palette.blackColor};
 `;
 
-export const KakaoBtn = styled(SharedBtn)`
-  background-color: ${palette.yellowColor};
-  font-weight: 500;
-  font-size: 16px;
-  color: ${palette.blackColor};
-`;
 
 /* or-text */
 export const OrText = styled.span`

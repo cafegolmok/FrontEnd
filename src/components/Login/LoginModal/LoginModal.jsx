@@ -1,20 +1,22 @@
-// src/components/Login/LoginModal/LoginModalStyle.jsx
+// src/components/Login/LoginModal/LoginModal.jsx
 
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 // import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { hideLoginModal } from '../../../store/actions';
 import BaseModal from '../../helpers/BaseModal.jsx';
 import EmailLogin from '../EmailLogin.jsx';
+// import {handleKakaoLogin} from '../KakaoLogin.jsx';
 
 import {
   LoginModalContent,
   LoginModalText,
   SignupBtn,
-  KakaoBtn,
+  // KakaoBtn,
   OrText,
 } from './LoginModalStyle';
+import KakaoLoginBtn from '../KakaoLoginBtn.jsx';
 
 const LoginModal = () => {
   const isLoginModalVisible = useSelector(state => state.isLoginModalVisible);
@@ -113,19 +115,11 @@ const LoginModal = () => {
           isLoginError={isLoginError}
         />
         <OrText>또는</OrText>
-        <KakaoBtn type='button'>카카오톡 계정으로 로그인</KakaoBtn>
+        <KakaoLoginBtn />
         <SignupBtn type='button'>카페골목 회원가입 하기</SignupBtn>
       </LoginModalContent>
     </BaseModal>
   );
 };
-
-// LoginModal.propTypes = {
-//   email: PropTypes.string.isRequired,
-//   password: PropTypes.string.isRequired,
-//   handleChangeEmail: PropTypes.func.isRequired,
-//   handleChangePassword: PropTypes.func.isRequired,
-//   handleSubmit: PropTypes.func.isRequired,
-// };
 
 export default LoginModal;
