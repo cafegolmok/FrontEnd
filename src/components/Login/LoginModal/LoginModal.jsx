@@ -1,43 +1,96 @@
 // src/components/Login/LoginModal/LoginModalStyle.jsx
 
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, {useState} from 'react';
+// import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { hideLoginModal } from '../../../store/actions';
 import BaseModal from '../../helpers/BaseModal.jsx';
+import EmailLogin from '../EmailLogin.jsx';
 
 import {
   LoginModalContent,
   LoginModalText,
-  EmailInput,
-  PasswordInput,
-  OriginalBtn,
   SignupBtn,
   KakaoBtn,
   OrText,
-  EmailLabel,
-  PasswordLabel,
 } from './LoginModalStyle';
 
-import WarningMsg from '../../WarningMsg/WarningMsg.jsx';
-
-const LoginModal = ({
-  email,
-  password,
-  handleChangeEmail,
-  handleChangePassword,
-  handleSubmit,
-  isEmailEmpty,
-  isEmailInvalid,
-  isPasswordEmpty,
-  isLoginError,
-}) => {
+const LoginModal = () => {
   const isLoginModalVisible = useSelector(state => state.isLoginModalVisible);
   const dispatch = useDispatch();
 
   const handleHideLoginModal = () => {
     dispatch(hideLoginModal());
+  };
+
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [isEmailEmpty, setIsEmailEmpty] = useState(false);
+  const [isEmailInvalid, setIsEmailInvalid] = useState(false);
+  const [isPasswordEmpty, setIsPasswordEmpty] = useState(false);
+  const [isLoginError, setIsLoginError] = useState(false);
+
+  const handleChangeEmail = event => {
+    setEmail(event.target.value);
+    console.log(event.target.value);
+
+    // 이메일이 비어있지 않고 형식이 잘못된 경우에만 경고 메시지 표시
+    if (event.target.value !== '' && !validateEmail(event.target.value)) {
+      setIsEmailInvalid(true);
+    } else {
+      setIsEmailInvalid(false);
+    }
+
+    // 이메일이 비어있는지 여부 확인
+    setIsEmailEmpty(event.target.value === '');
+  };
+
+  const validateEmail = email => {
+    const regex = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/;
+    return regex.test(email);
+  };
+
+  const handleChangePassword = event => {
+    setPassword(event.target.value);
+    console.log(event.target.value);
+
+    // 패스워드가 비어있는지 확인
+    setIsPasswordEmpty(event.target.value === '');
+  };
+
+  const handleSubmit = async event => {
+    event.preventDefault();
+    if (email === '') {
+      setIsEmailEmpty(true);
+    } else {
+      setIsEmailEmpty(false);
+    }
+
+    if (email !== '' && !validateEmail(email)) {
+      setIsEmailInvalid(true);
+    } else {
+      setIsEmailInvalid(false);
+    }
+
+    if (password === '') {
+      setIsPasswordEmpty(true);
+    } else {
+      setIsPasswordEmpty(false);
+    }
+
+    // 입력이 올바르지 않은 경우에는 로그인 시도를 중단
+    if (isEmailEmpty || isEmailInvalid || isPasswordEmpty) {
+      return;
+    }
+
+    // 이메일과 패스워드가 존재하지 않을떄 로직 추가
+
+    try {
+      console.log(email, password);
+    } catch (error) {
+      setIsLoginError(true);
+    }
   };
 
   return (
@@ -48,40 +101,17 @@ const LoginModal = ({
     >
       <LoginModalContent onSubmit={handleSubmit}>
         <LoginModalText>☕️ 카페골목에 오신 것을 환영합니다.</LoginModalText>
-        <EmailLabel htmlFor='user-email'>이메일</EmailLabel>
-        <EmailInput
-          type='text'
-          id='user-email'
-          name='user-email'
-          placeholder='이메일을 입력해주세요.'
-          value={email}
-          onChange={handleChangeEmail}
-          error={isEmailEmpty || isEmailInvalid}
+        <EmailLogin
+          email={email}
+          password={password}
+          handleChangeEmail={handleChangeEmail}
+          handleChangePassword={handleChangePassword}
+          handleSubmit={handleSubmit}
+          isEmailEmpty={isEmailEmpty}
+          isEmailInvalid={isEmailInvalid}
+          isPasswordEmpty={isPasswordEmpty}
+          isLoginError={isLoginError}
         />
-        <WarningMsg show={isEmailEmpty} message='이메일을 입력해 주세요.' />{' '}
-        <WarningMsg
-          show={isEmailInvalid}
-          message='이메일 형식에 맞게 입력해 주세요.'
-        />{' '}
-        <PasswordLabel htmlFor='user-pw'>비밀번호</PasswordLabel>
-        <PasswordInput
-          type='password'
-          id='user-pw'
-          name='user-pw'
-          placeholder='비밀번호를 입력해주세요.'
-          value={password}
-          onChange={handleChangePassword}
-          error={isPasswordEmpty || isLoginError}
-        />
-        <WarningMsg
-          show={isPasswordEmpty}
-          message='비밀번호를 입력해 주세요.'
-        />{' '}
-        <WarningMsg
-          show={isLoginError}
-          message='로그인 정보가 올바르지 않습니다. 다시 시도해 주세요.'
-        />
-        <OriginalBtn type='submit'>로그인</OriginalBtn>
         <OrText>또는</OrText>
         <KakaoBtn type='button'>카카오톡 계정으로 로그인</KakaoBtn>
         <SignupBtn type='button'>카페골목 회원가입 하기</SignupBtn>
@@ -90,13 +120,12 @@ const LoginModal = ({
   );
 };
 
-LoginModal.propTypes = {
-  email: PropTypes.string.isRequired,
-  password: PropTypes.string.isRequired,
-  handleChangeEmail: PropTypes.func.isRequired,
-  handleChangePassword: PropTypes.func.isRequired,
-  handleSubmit: PropTypes.func.isRequired,
-  error: PropTypes.string.isRequired,
-};
+// LoginModal.propTypes = {
+//   email: PropTypes.string.isRequired,
+//   password: PropTypes.string.isRequired,
+//   handleChangeEmail: PropTypes.func.isRequired,
+//   handleChangePassword: PropTypes.func.isRequired,
+//   handleSubmit: PropTypes.func.isRequired,
+// };
 
 export default LoginModal;

@@ -13,8 +13,10 @@ import Error404 from './pages/Error404.jsx';
 
 import GlobalStyles from './styles/globalStyle.js';
 import SignupModal from './components/SignupModal/SignupModal.jsx';
+import LoginModal from './components/Login/LoginModal/LoginModal.jsx';
 
-import Login from './components/Login/Login.jsx';
+// import EmailLogin from './components/Login/EmailLogin.jsx';
+// import KakaoLogin from './components/Login/KakaoLogin.jsx';
 
 function App() {
   return (
@@ -27,7 +29,9 @@ function App() {
         <Route path='*' element={<Error404 />} />
       </Routes>
       <Footer />
-      <Login />
+      {/* <EmailLogin /> */}
+      {/* <KakaoLogin /> */}
+      <LoginModal />
       <SignupModal />
       <Overlay />
     </Router>
