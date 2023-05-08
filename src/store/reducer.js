@@ -10,7 +10,7 @@ import {
 // 초기 상태 정의
 const initialState = {
   isLoginModalVisible: false,
-  isSignupModalVisible: false,
+  isSignupModalVisible: true,
 };
 
 // 리듀서 함수: 상태와 액션을 받아 새로운 상태를 반환

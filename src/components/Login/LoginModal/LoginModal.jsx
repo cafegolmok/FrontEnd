@@ -1,19 +1,16 @@
 // src/components/Login/LoginModal/LoginModal.jsx
 
 import React, { useState } from 'react';
-// import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { hideLoginModal } from '../../../store/actions';
 import BaseModal from '../../helpers/BaseModal.jsx';
 import EmailLogin from '../EmailLogin.jsx';
-// import {handleKakaoLogin} from '../KakaoLogin.jsx';
 
 import {
   LoginModalContent,
   LoginModalText,
   SignupBtn,
-  // KakaoBtn,
   OrText,
 } from './LoginModalStyle';
 import KakaoLoginBtn from '../KakaoLoginBtn.jsx';

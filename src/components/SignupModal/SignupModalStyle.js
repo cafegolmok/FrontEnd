@@ -12,7 +12,10 @@ export const SharedLabel = styled.label`
   font-size: 14px;
   margin-bottom: 7px;
   margin-left: 5px;
-  margin-top: 10px;
+  margin-top: 13px;
+  &:first-child {
+    margin-top: 0;
+  }
 `;
 
 export const EmailLabel = styled(SharedLabel)``;
@@ -26,7 +29,7 @@ export const NicknameLabel = styled(SharedLabel)``;
 export const SharedInput = styled.input`
   width: 100%;
   padding: 16px;
-  margin-bottom: 16px;
+  margin-bottom: 10px;
   border: 1px solid ${palette.grayColor2};
   border-radius: 5px;
   &:focus {
@@ -43,7 +46,7 @@ export const ConfirmPasswordInput = styled(SharedInput)``;
 
 export const NicknameInput = styled(SharedInput)``;
 
-export const LoginBtn = styled.button`
+export const SignupBtn = styled.button`
   margin-bottom: 16px;
   display: block;
   padding: 11px;
@@ -51,14 +54,7 @@ export const LoginBtn = styled.button`
   line-height: 28px;
   text-align: center;
   text-decoration: none;
-  opacity: 0.8;
   cursor: pointer;
-  &:last-child {
-    margin-bottom: 0;
-  }
-`;
-
-export const SignupBtn = styled(LoginBtn)`
   margin-bottom: 15px;
   background-color: ${palette.mainColor};
   color: ${palette.whiteColor};
@@ -72,5 +68,4 @@ export const WarningMsg = styled.strong`
   margin-bottom: 10px;
   font-size: 13px;
   color: ${palette.redColor};
-  display: none;
 `;

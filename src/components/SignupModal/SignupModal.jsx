@@ -4,6 +4,7 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { hideSignupModal } from '../../store/actions';
 import BaseModal from '../helpers/BaseModal.jsx';
+// import WarningMsg from '../WarningMsg/WarningMsg.jsx';
 
 import {
   SignupModalContent,
