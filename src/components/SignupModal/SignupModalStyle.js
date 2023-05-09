@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { palette } from '../../styles/globalColor';
 
 export const SignupModalContent = styled.form`
@@ -38,13 +38,49 @@ export const SharedInput = styled.input`
   }
 `;
 
-export const EmailInput = styled(SharedInput)``;
+export const EmailInput = styled(SharedInput)`
+  ${props =>
+    props.error &&
+    css`
+      border-color: ${palette.redColor};
+      &:focus {
+        border-color ${palette.redColor};
+      }
+    `}
+`;
 
-export const PasswordInput = styled(SharedInput)``;
+export const PasswordInput = styled(SharedInput)`
+  ${props =>
+    props.error &&
+    css`
+      border-color: ${palette.redColor};
+      &:focus {
+        border-color ${palette.redColor};
+      }
+    `}
+`;
 
-export const ConfirmPasswordInput = styled(SharedInput)``;
+export const ConfirmPasswordInput = styled(SharedInput)`
+  ${props =>
+    props.error &&
+    css`
+      border-color: ${palette.redColor};
+      &:focus {
+        border-color ${palette.redColor};
+      }
+    `}
+`;
 
-export const NicknameInput = styled(SharedInput)``;
+export const NicknameInput = styled(SharedInput)`
+  ${props =>
+    props.error &&
+    css`
+      border-color: ${palette.redColor};
+      &:focus {
+        border-color ${palette.redColor};
+      }
+    `}
+`;
 
 export const SignupBtn = styled.button`
   margin-bottom: 16px;
@@ -58,14 +94,4 @@ export const SignupBtn = styled.button`
   margin-bottom: 15px;
   background-color: ${palette.mainColor};
   color: ${palette.whiteColor};
-`;
-
-/* warning-message */
-
-export const WarningMsg = styled.strong`
-  display: block;
-  margin-left: 5px;
-  margin-bottom: 10px;
-  font-size: 13px;
-  color: ${palette.redColor};
 `;
