@@ -17,7 +17,6 @@ const EmailLogin = ({
   password,
   handleChangeEmail,
   handleChangePassword,
-  handleSubmit,
   isEmailEmpty,
   isEmailInvalid,
   isPasswordEmpty,
@@ -35,11 +34,11 @@ const EmailLogin = ({
         onChange={handleChangeEmail}
         error={isEmailEmpty || isEmailInvalid}
       />
-      <WarningMsg show={isEmailEmpty} message='이메일을 입력해 주세요.' />{' '}
+      <WarningMsg show={isEmailEmpty} message='이메일을 입력해 주세요.' />
       <WarningMsg
         show={isEmailInvalid}
         message='이메일 형식에 맞게 입력해 주세요.'
-      />{' '}
+      />
       <PasswordLabel htmlFor='user-pw'>비밀번호</PasswordLabel>
       <PasswordInput
         type='password'
@@ -50,7 +49,7 @@ const EmailLogin = ({
         onChange={handleChangePassword}
         error={isPasswordEmpty || isLoginError}
       />
-      <WarningMsg show={isPasswordEmpty} message='비밀번호를 입력해 주세요.' />{' '}
+      <WarningMsg show={isPasswordEmpty} message='비밀번호를 입력해 주세요.' />
       <WarningMsg
         show={isLoginError}
         message='로그인 정보가 올바르지 않습니다. 다시 시도해 주세요.'

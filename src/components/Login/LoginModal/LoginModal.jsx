@@ -1,19 +1,16 @@
 // src/components/Login/LoginModal/LoginModal.jsx
 
 import React, { useState } from 'react';
-// import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { hideLoginModal } from '../../../store/actions';
+import { hideLoginModal, showSignupModal } from '../../../store/actions';
 import BaseModal from '../../helpers/BaseModal.jsx';
 import EmailLogin from '../EmailLogin.jsx';
-// import {handleKakaoLogin} from '../KakaoLogin.jsx';
 
 import {
   LoginModalContent,
   LoginModalText,
   SignupBtn,
-  // KakaoBtn,
   OrText,
 } from './LoginModalStyle';
 import KakaoLoginBtn from '../KakaoLoginBtn.jsx';
@@ -26,6 +23,11 @@ const LoginModal = () => {
     dispatch(hideLoginModal());
   };
 
+  const handleShowSignupModal = () => {
+    dispatch(hideLoginModal());
+    dispatch(showSignupModal());
+  };
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isEmailEmpty, setIsEmailEmpty] = useState(false);
@@ -35,7 +37,6 @@ const LoginModal = () => {
 
   const handleChangeEmail = event => {
     setEmail(event.target.value);
-    console.log(event.target.value);
 
     // 이메일이 비어있지 않고 형식이 잘못된 경우에만 경고 메시지 표시
     if (event.target.value !== '' && !validateEmail(event.target.value)) {
@@ -55,7 +56,6 @@ const LoginModal = () => {
 
   const handleChangePassword = event => {
     setPassword(event.target.value);
-    console.log(event.target.value);
 
     // 패스워드가 비어있는지 확인
     setIsPasswordEmpty(event.target.value === '');
@@ -116,7 +116,9 @@ const LoginModal = () => {
         />
         <OrText>또는</OrText>
         <KakaoLoginBtn />
-        <SignupBtn type='button'>카페골목 회원가입 하기</SignupBtn>
+        <SignupBtn type='button' onClick={handleShowSignupModal}>
+          카페골목 회원가입 하기
+        </SignupBtn>
       </LoginModalContent>
     </BaseModal>
   );
