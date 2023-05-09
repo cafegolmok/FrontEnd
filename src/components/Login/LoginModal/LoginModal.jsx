@@ -32,7 +32,6 @@ const LoginModal = () => {
 
   const handleChangeEmail = event => {
     setEmail(event.target.value);
-    console.log(event.target.value);
 
     // 이메일이 비어있지 않고 형식이 잘못된 경우에만 경고 메시지 표시
     if (event.target.value !== '' && !validateEmail(event.target.value)) {
@@ -52,7 +51,6 @@ const LoginModal = () => {
 
   const handleChangePassword = event => {
     setPassword(event.target.value);
-    console.log(event.target.value);
 
     // 패스워드가 비어있는지 확인
     setIsPasswordEmpty(event.target.value === '');

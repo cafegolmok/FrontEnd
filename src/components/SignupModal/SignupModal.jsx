@@ -26,7 +26,7 @@ const SignupModal = () => {
     dispatch(hideSignupModal());
   };
 
-  // 상태 추가
+  // 각 입력창의 값과 검증에 대한 상태 정의
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [passwordConfirm, setPasswordConfirm] = useState('');
@@ -57,13 +57,14 @@ const SignupModal = () => {
   };
 
   const validateNickname = nickname => {
-    const regex = /^[A-Za-z0-9_-]+$/;
+    const regex = /^[A-Za-z0-9가-힣_-]+$/;
     return regex.test(nickname);
   };
 
   // 이벤트 핸들러 수정
   const handleChangeEmail = event => {
-    console.log(event.target.value);
+    const MAX_EMAIL_LENGTH = 50;
+
     setEmail(event.target.value);
     setIsEmailEmpty(event.target.value === '');
 
@@ -73,7 +74,7 @@ const SignupModal = () => {
       setIsEmailInvalid(false);
     }
 
-    if (event.target.value.length > 50) {
+    if (event.target.value.length > MAX_EMAIL_LENGTH) {
       setIsEmailTooLong(true);
     } else {
       setIsEmailTooLong(false);
@@ -81,6 +82,9 @@ const SignupModal = () => {
   };
 
   const handleChangePassword = event => {
+    const MIN_PASSWORD_LENGTH = 10;
+    const MAX_PASSWORD_LENGTH = 20;
+
     setPassword(event.target.value);
     setIsPasswordEmpty(event.target.value === '');
 
@@ -90,7 +94,10 @@ const SignupModal = () => {
       setIsPasswordInvalid(false);
     }
 
-    if (event.target.value.length < 10 || event.target.value.length > 20) {
+    if (
+      event.target.value.length < MIN_PASSWORD_LENGTH ||
+      event.target.value.length > MAX_PASSWORD_LENGTH
+    ) {
       setIsPasswordLengthInvalid(true);
     } else {
       setIsPasswordLengthInvalid(false);
@@ -103,6 +110,8 @@ const SignupModal = () => {
   };
 
   const handleChangeNickname = event => {
+    const MIN_NICKNAME_LENGTH = 2;
+    const MAX_NICKNAME_LENGTH = 20;
     setNickname(event.target.value);
     setIsNicknameEmpty(event.target.value === '');
 
@@ -112,14 +121,17 @@ const SignupModal = () => {
       setIsNicknameInvalid(false);
     }
 
-    if (event.target.value.length < 2 || event.target.value.length > 20) {
+    if (
+      event.target.value.length < MIN_NICKNAME_LENGTH ||
+      event.target.value.length > MAX_NICKNAME_LENGTH
+    ) {
       setIsNicknameLengthInvalid(true);
     } else {
       setIsNicknameLengthInvalid(false);
     }
   };
 
-  // 회원가입 API 연동 및 결과 처리 로직 구현
+  // 각 입력값이 비어있는지 확인하고 상태를 업데이트
   const handleSubmit = async event => {
     event.preventDefault();
 
@@ -165,15 +177,19 @@ const SignupModal = () => {
       setIsNicknameInvalid(false);
     }
 
+    // 검증 결과가 모두 올바를 경우에만 회원가입 API를 호출하고 결과를 처리
     if (
-      isEmailEmpty ||
-      isEmailInvalid ||
-      isPasswordEmpty ||
-      isPasswordInvalid ||
-      isPasswordConfirmEmpty ||
-      isPasswordMismatch ||
-      isNicknameEmpty ||
-      isNicknameInvalid
+      !email ||
+      !validateEmail(email) ||
+      isEmailTooLong ||
+      !password ||
+      !validatePassword(password) ||
+      isPasswordLengthInvalid ||
+      !passwordConfirm ||
+      password !== passwordConfirm ||
+      !nickname ||
+      !validateNickname(nickname) ||
+      isNicknameLengthInvalid
     ) {
       return;
     }
@@ -233,7 +249,9 @@ const SignupModal = () => {
           placeholder='특수문자 포함 10 ~ 20자 이내로 입력해 주세요.'
           value={password}
           onChange={handleChangePassword}
-          error={isPasswordEmpty || isPasswordInvalid}
+          error={
+            isPasswordEmpty || isPasswordInvalid || isPasswordLengthInvalid
+          }
         />
         <WarningMsg
           show={isPasswordEmpty || isPasswordLengthInvalid}
