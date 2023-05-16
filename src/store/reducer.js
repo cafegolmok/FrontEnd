@@ -6,7 +6,7 @@ import {
   SHOW_SIGNUP_MODAL,
   HIDE_SIGNUP_MODAL,
   SHOW_ADDPROFILEIMG_MODAL,
-  HIED_ADDPROFILEIMG_MODAL,
+  HIDE_ADDPROFILEIMG_MODAL,
 } from './actions';
 
 // 초기 상태 정의
@@ -35,7 +35,7 @@ const reducer = (state = initialState, action) => {
     case SHOW_ADDPROFILEIMG_MODAL:
       return { ...state, isAddProfileImgModalVisible: true };
 
-    case HIED_ADDPROFILEIMG_MODAL:
+    case HIDE_ADDPROFILEIMG_MODAL:
       return { ...state, isAddProfileImgModalVisible: false };
 
     // 알 수 없는 액션은 현재 상태 반환

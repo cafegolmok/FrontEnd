@@ -27,7 +27,7 @@ const AddProfileModalText = styled.p`
 const ProfileImgLabel = styled.label`
   width: 170px;
   display: block;
-  margin: 0 auto 50px;
+  margin: 0 auto 55px;
   border-radius: 50%;
   background-color: ${palette.grayColor1};
   cursor: pointer;
@@ -86,7 +86,9 @@ const AddProfileImg = () => {
     event.preventDefault();
 
     try {
-    } catch (error) {}
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const handleImageChange = event => {
@@ -109,7 +111,9 @@ const AddProfileImg = () => {
       title='프로필 생성하기'
     >
       <AddProfileImgModalContent onSubmit={handleSubmit}>
-        <AddProfileModalText>프로필 이미지를 클릭해서 이미지를 업로드 하세요</AddProfileModalText>
+        <AddProfileModalText>
+          프로필 이미지를 클릭해서 이미지를 업로드 하세요
+        </AddProfileModalText>
         <ProfileImgLabel
           htmlFor='user-img'
           background={preview}
