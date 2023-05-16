@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { palette } from '../../styles/globalColor';
+import { palette } from '../../../styles/globalColor';
 
 export const SignupModalContent = styled.form`
   padding: 20px;
