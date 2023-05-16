@@ -10,12 +10,20 @@ const Overlay = () => {
 
   const isSignupModalVisible = useSelector(state => state.isSignupModalVisible);
 
+  const isAddProfileImgModalVisible = useSelector(
+    state => state.isAddProfileImgModalVisible
+  );
+
   const getScrollbarWidth = () => {
     return window.innerWidth - document.documentElement.clientWidth;
   };
 
   useEffect(() => {
-    if (isLoginModalVisible || isSignupModalVisible) {
+    if (
+      isLoginModalVisible ||
+      isSignupModalVisible ||
+      isAddProfileImgModalVisible
+    ) {
       const scrollbarWidth = getScrollbarWidth();
       document.body.style.overflow = 'hidden';
       document.body.style.paddingRight = `${scrollbarWidth}px`;
@@ -28,9 +36,13 @@ const Overlay = () => {
       document.body.style.overflow = 'auto';
       document.body.style.paddingRight = '0px';
     };
-  }, [isLoginModalVisible, isSignupModalVisible]);
+  }, [isLoginModalVisible, isSignupModalVisible, isAddProfileImgModalVisible]);
 
-  if (!isLoginModalVisible && !isSignupModalVisible) {
+  if (
+    !isLoginModalVisible &&
+    !isSignupModalVisible &&
+    !isAddProfileImgModalVisible
+  ) {
     return null;
   }
   return ReactDOM.createPortal(

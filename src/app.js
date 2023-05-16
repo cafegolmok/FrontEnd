@@ -12,9 +12,10 @@ import CafeDetail from './pages/CafeDetail.jsx';
 import Error404 from './pages/Error404.jsx';
 
 import GlobalStyles from './styles/globalStyle.js';
-import SignupModal from './components/SignupModal/SignupModal.jsx';
+import SignupModal from './components/Signup/SignupModal/SignupModal.jsx';
 import LoginModal from './components/Login/LoginModal/LoginModal.jsx';
-  
+import AddProfileImg from './components/Signup/AddProfileImg/AddProfileImg.jsx';
+
 const App = () => {
   return (
     <Router>
@@ -28,6 +29,7 @@ const App = () => {
       <Footer />
       <LoginModal />
       <SignupModal />
+      <AddProfileImg />
       <Overlay />
     </Router>
   );
