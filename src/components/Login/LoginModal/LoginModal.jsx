@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { hideLoginModal, showSignupModal } from '../../../store/actions';
 import BaseModal from '../../Helpers/BaseModal.jsx';
-import EmailLogin from '../EmailLogin.jsx';
+import EmailLogin from '../EmailLogin/EmailLogin.jsx';
 
 import {
   LoginModalContent,

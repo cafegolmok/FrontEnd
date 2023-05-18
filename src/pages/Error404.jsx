@@ -1,3 +1,5 @@
+// src/pages/error404.jsx
+
 import React from 'react';
 
 import { MainContainer } from '../styles/commonStyle';
