@@ -1,6 +1,6 @@
 // src/components/Overlay/Overlay.jsx
 
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { useSelector } from 'react-redux';
 import { ModalOverlay } from './OverlayStyle';
@@ -13,10 +13,34 @@ const Overlay = () => {
   const isAddProfileImgModalVisible = useSelector(
     state => state.isAddProfileImgModalVisible
   );
+  const [modalRoot, setModalRoot] = useState(null);
+  const [isClient, setIsClient] = useState(false);
 
   const getScrollbarWidth = () => {
     return window.innerWidth - document.documentElement.clientWidth;
   };
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  useEffect(() => {
+    if (isClient) {
+      const el =
+        document.getElementById('modal-root') || document.createElement('div');
+      if (!document.getElementById('modal-root')) {
+        el.id = 'modal-root';
+        document.body.appendChild(el);
+      }
+      setModalRoot(el);
+
+      return () => {
+        if (!document.getElementById('modal-root')) {
+          document.body.removeChild(el);
+        }
+      };
+    }
+  }, [isClient]);
 
   useEffect(() => {
     if (
@@ -39,15 +63,17 @@ const Overlay = () => {
   }, [isLoginModalVisible, isSignupModalVisible, isAddProfileImgModalVisible]);
 
   if (
-    !isLoginModalVisible &&
-    !isSignupModalVisible &&
-    !isAddProfileImgModalVisible
+    !isClient ||
+    (!isLoginModalVisible &&
+      !isSignupModalVisible &&
+      !isAddProfileImgModalVisible) ||
+    !modalRoot
   ) {
     return null;
   }
   return ReactDOM.createPortal(
     <ModalOverlay></ModalOverlay>,
-    document.getElementById('modal-root')
+    modalRoot
   );
 };
 
