@@ -13,7 +13,7 @@ import {
 const initialState = {
   isLoginModalVisible: false,
   isSignupModalVisible: false,
-  isAddProfileImgModalVisible: true,
+  isAddProfileImgModalVisible: false,
 };
 
 // 리듀서 함수: 상태와 액션을 받아 새로운 상태를 반환

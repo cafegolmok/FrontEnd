@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-import WarningMsg from '../WarningMsg/WarningMsg.jsx';
+import WarningMsg from '../../WarningMsg/WarningMsg.jsx';
 import {
   EmailLoginContainer,
   EmailLabel,

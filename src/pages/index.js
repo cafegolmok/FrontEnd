@@ -1,6 +1,7 @@
-// src/pages/Home.jsx
+// src/pages/index.js
 
 import React from 'react';
+
 import CafeList from '../components/CafeList/CafeList.jsx';
 
 const Home = () => {

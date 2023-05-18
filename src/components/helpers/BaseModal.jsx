@@ -1,6 +1,6 @@
 // src/components/helpers/BaseModal.jsx
 
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import styled, { keyframes } from 'styled-components';
@@ -72,15 +72,36 @@ const slideUpOut = keyframes`
   }
 `;
 
-
 const BaseModal = ({ isVisible, onClose, title, children }) => {
   const modalRef = useRef(null);
+  const [modalRoot, setModalRoot] = useState(null);
+  const [isClient, setIsClient] = useState(false);
 
   const handleModalOutsideClick = event => {
     if (modalRef.current && !modalRef.current.contains(event.target)) {
       onClose();
     }
   };
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  useEffect(() => {
+    const el =
+      document.getElementById('modal-root') || document.createElement('div');
+    if (!document.getElementById('modal-root')) {
+      el.id = 'modal-root';
+      document.body.appendChild(el);
+    }
+    setModalRoot(el);
+
+    return () => {
+      if (!document.getElementById('modal-root')) {
+        document.body.removeChild(el);
+      }
+    };
+  }, []);
 
   useEffect(() => {
     if (isVisible) {
@@ -94,7 +115,7 @@ const BaseModal = ({ isVisible, onClose, title, children }) => {
     };
   }, [isVisible]);
 
-  if (!isVisible) {
+  if (!isClient || !isVisible || !modalRoot) {
     return null;
   }
 
@@ -114,7 +135,7 @@ const BaseModal = ({ isVisible, onClose, title, children }) => {
       </ModalTop>
       {children}
     </ModalContainer>,
-    document.getElementById('modal-root')
+    modalRoot
   );
 };
 
