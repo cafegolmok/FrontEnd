@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import { palette } from '../../../styles/globalColor.js';
 
-import BaseModal from '../../Helpers/BaseModal.jsx';
+import BaseModal from '../../common/BaseModal.jsx';
 import {
   hideAddProfileImgModal,
   showAddProfileImgModal,

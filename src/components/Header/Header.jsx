@@ -17,7 +17,7 @@ import {
 } from './HeaderStyle';
 import { ScreenOut } from '../../styles/commonStyle';
 
-import Category from '../Category/Category.jsx';
+import Category from '../category/Category.jsx';
 import { showLoginModal } from '../../store/actions';
 
 const Header = () => {

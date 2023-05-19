@@ -3,8 +3,8 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { hideSignupModal } from '../../../store/actions';
-import BaseModal from '../../Helpers/BaseModal.jsx';
-import WarningMsg from '../../WarningMsg/WarningMsg.jsx';
+import BaseModal from '../../common/BaseModal.jsx';
+import WarningMsg from '../../warningMsg/WarningMsg.jsx';
 
 import {
   SignupModalContent,

@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 import { palette } from '../../../styles/globalColor.js';
 
-import { SharedBtn } from '../LoginModal/LoginModalStyle.js';
+import { SharedBtn } from '../loginModal/LoginModalStyle.js';
 
 export const EmailLoginContainer = styled.form``;
 

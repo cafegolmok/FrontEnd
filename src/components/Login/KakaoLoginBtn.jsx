@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { SharedBtn } from './LoginModal/LoginModalStyle';
+import { SharedBtn } from './loginModal/LoginModalStyle';
 import { palette } from '../../styles/globalColor';
 
 const KakaoBtn = styled(SharedBtn)`

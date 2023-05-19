@@ -6,14 +6,14 @@ import Head from 'next/head';
 import { Provider } from 'react-redux';
 import store from '../store/index.js';
 
-import Header from '../components/Header/Header.jsx';
-import Footer from '../components/Footer/Footer.jsx';
-import Overlay from '../components/Overlay/Overlay.jsx';
+import Header from '../components/header/Header.jsx';
+import Footer from '../components/footer/Footer.jsx';
+import Overlay from '../components/overlay/Overlay.jsx';
 
 import GlobalStyles from '../styles/globalStyle.js';
-import SignupModal from '../components/Signup/SignupModal/SignupModal.jsx';
-import LoginModal from '../components/Login/LoginModal/LoginModal.jsx';
-import AddProfileImg from '../components/Signup/AddProfileImg/AddProfileImg.jsx';
+import SignupModal from '../components/signup/signupModal/SignupModal.jsx';
+import LoginModal from '../components/login/loginModal/LoginModal.jsx';
+import AddProfileImg from '../components/signup/addProfileImg/AddProfileImg.jsx';
 
 const App = ({ Component, pageProps }) => {
   return (
