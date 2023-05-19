@@ -2,6 +2,7 @@ import styled, { css } from 'styled-components';
 import { palette } from '../../../styles/globalColor.js';
 
 import { SharedLoginBtn } from '../../common/Button.jsx';
+import { SharedLoginInput } from '../../common/Input.jsx';
 
 export const EmailLoginContainer = styled.form``;
 
@@ -15,19 +16,7 @@ export const EmailLabel = styled(SharedLabel)``;
 
 export const PasswordLabel = styled(SharedLabel)``;
 
-export const SharedInput = styled.input`
-  width: 100%;
-  padding: 16px;
-  margin-bottom: 8px;
-  border: 1px solid ${palette.grayColor2};
-  border-radius: 5px;
-  &:focus {
-    outline: none;
-    border-color: ${palette.mainColor};
-  }
-`;
-
-export const EmailInput = styled(SharedInput)`
+export const EmailInput = styled(SharedLoginInput)`
   ${props =>
     props.error &&
     css`
@@ -38,7 +27,7 @@ export const EmailInput = styled(SharedInput)`
     `}
 `;
 
-export const PasswordInput = styled(SharedInput)`
+export const PasswordInput = styled(SharedLoginInput)`
   ${props =>
     props.error &&
     css`

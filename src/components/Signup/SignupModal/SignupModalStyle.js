@@ -1,5 +1,7 @@
 import styled, { css } from 'styled-components';
 import { palette } from '../../../styles/globalColor';
+import { SharedLoginBtn } from '../../common/Button.jsx';
+import { SharedLoginInput } from '../../common/Input.jsx';
 
 export const SignupModalContent = styled.form`
   padding: 20px;
@@ -26,19 +28,7 @@ export const ConfirmPasswordLabel = styled(SharedLabel)``;
 
 export const NicknameLabel = styled(SharedLabel)``;
 
-export const SharedInput = styled.input`
-  width: 100%;
-  padding: 16px;
-  margin-bottom: 10px;
-  border: 1px solid ${palette.grayColor2};
-  border-radius: 5px;
-  &:focus {
-    outline: none;
-    border: 1px solid ${palette.mainColor};
-  }
-`;
-
-export const EmailInput = styled(SharedInput)`
+export const EmailInput = styled(SharedLoginInput)`
   ${props =>
     props.error &&
     css`
@@ -49,7 +39,7 @@ export const EmailInput = styled(SharedInput)`
     `}
 `;
 
-export const PasswordInput = styled(SharedInput)`
+export const PasswordInput = styled(SharedLoginInput)`
   ${props =>
     props.error &&
     css`
@@ -60,7 +50,7 @@ export const PasswordInput = styled(SharedInput)`
     `}
 `;
 
-export const ConfirmPasswordInput = styled(SharedInput)`
+export const ConfirmPasswordInput = styled(SharedLoginInput)`
   ${props =>
     props.error &&
     css`
@@ -71,7 +61,7 @@ export const ConfirmPasswordInput = styled(SharedInput)`
     `}
 `;
 
-export const NicknameInput = styled(SharedInput)`
+export const NicknameInput = styled(SharedLoginInput)`
   ${props =>
     props.error &&
     css`
@@ -82,16 +72,8 @@ export const NicknameInput = styled(SharedInput)`
     `}
 `;
 
-export const SignupBtn = styled.button`
-  margin-bottom: 16px;
-  display: block;
-  padding: 11px;
-  border-radius: 5px;
-  line-height: 28px;
-  text-align: center;
-  text-decoration: none;
-  cursor: pointer;
-  margin-bottom: 15px;
+export const SignupBtn = styled(SharedLoginBtn)`
+  margin-top: 15px;
   background-color: ${palette.mainColor};
   color: ${palette.whiteColor};
 `;
