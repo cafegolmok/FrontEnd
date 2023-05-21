@@ -11,43 +11,43 @@ const ModalContainer = styled.div`
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  width: 500px;
+  width: 520px;
   border-radius: 10px;
   background-color: ${palette.whiteColor};
   z-index: 100;
   overflow: hidden;
   animation: ${props => (props.isVisible ? slideUpIn : slideUpOut)} 400ms;
-
-  h2 {
-    position: relative;
-    font-weight: 500;
-    color: ${palette.blackColor};
-  }
-
-  p {
-    margin-bottom: 24px;
-  }
 `;
 
 const ModalTop = styled.div`
-  padding: 16px 20px;
+  position: relative;
+  padding: 20px;
   border-bottom: 1px solid ${palette.grayColor2};
   text-align: center;
 `;
 
-const CloseBtn = styled.svg`
+const ModalTitle = styled.h2`
+  font-weight: 500;
+  color: ${palette.blackColor};
+`;
+
+const ModalBtn = styled.button`
   position: absolute;
-  top: 14px;
-  left: 16px;
-  box-sizing: content-box;
-  padding: 2px;
-  fill: ${palette.blackColor};
-  cursor: pointer;
+  top: 50%;
+  left: 15px;
+  width: 26px;
+  height: 26px;
+  transform: translateY(-50%);
 
   &:hover {
     background-color: ${palette.lightGrayColor};
     border-radius: 50%;
   }
+`;
+
+const CloseImg = styled.svg`
+  box-sizing: content-box;
+  fill: ${palette.blackColor};
 `;
 
 const slideUpIn = keyframes`
@@ -122,16 +122,19 @@ const BaseModal = ({ isVisible, onClose, title, children }) => {
   return ReactDOM.createPortal(
     <ModalContainer ref={modalRef} isVisible={isVisible}>
       <ModalTop>
-        <CloseBtn
-          onClick={onClose}
-          xmlns='http://www.w3.org/2000/svg'
-          width='24'
-          height='24'
-          viewBox='0 0 24 24'
-        >
-          <path d='m16.192 6.344-4.243 4.242-4.242-4.242-1.414 1.414L10.535 12l-4.242 4.242 1.414 1.414 4.242-4.242 4.243 4.242 1.414-1.414L13.364 12l4.242-4.242z'></path>
-        </CloseBtn>
-        <h2>{title}</h2>
+        <ModalBtn>
+          <CloseImg
+            onClick={onClose}
+            xmlns='http://www.w3.org/2000/svg'
+            width='24'
+            height='24'
+            viewBox='0 0 24 24'
+          >
+            <path d='m16.192 6.344-4.243 4.242-4.242-4.242-1.414 1.414L10.535 12l-4.242 4.242 1.414 1.414 4.242-4.242 4.243 4.242 1.414-1.414L13.364 12l4.242-4.242z'></path>
+          </CloseImg>
+        </ModalBtn>
+
+        <ModalTitle>{title}</ModalTitle>
       </ModalTop>
       {children}
     </ModalContainer>,
