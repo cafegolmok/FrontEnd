@@ -35,8 +35,8 @@ const ModalBtn = styled.button`
   position: absolute;
   top: 50%;
   left: 15px;
-  width: 26px;
-  height: 26px;
+  width: 30px;
+  height: 30px;
   transform: translateY(-50%);
 
   &:hover {

@@ -8,7 +8,7 @@ import BaseModal from '../../common/BaseModal.jsx';
 import {
   hideAddProfileImgModal,
   showAddProfileImgModal,
-} from '../../../store/actions.js';
+} from '../../../store/modalState.js';
 
 import userProfile from '../../../../public/assets/icons/user.svg';
 

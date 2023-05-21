@@ -6,12 +6,14 @@ import { useSelector } from 'react-redux';
 import { ModalOverlay } from './OverlayStyle';
 
 const Overlay = () => {
-  const isLoginModalVisible = useSelector(state => state.isLoginModalVisible);
+  const isLoginModalVisible = useSelector(
+    state => state.modal.isLoginModalVisible
+  );
 
-  const isSignupModalVisible = useSelector(state => state.isSignupModalVisible);
+  const isSignupModalVisible = useSelector(state => state.modal.isSignupModalVisible);
 
   const isAddProfileImgModalVisible = useSelector(
-    state => state.isAddProfileImgModalVisible
+    state => state.modal.isAddProfileImgModalVisible
   );
   const [modalRoot, setModalRoot] = useState(null);
   const [isClient, setIsClient] = useState(false);
@@ -71,10 +73,7 @@ const Overlay = () => {
   ) {
     return null;
   }
-  return ReactDOM.createPortal(
-    <ModalOverlay></ModalOverlay>,
-    modalRoot
-  );
+  return ReactDOM.createPortal(<ModalOverlay></ModalOverlay>, modalRoot);
 };
 
 export default Overlay;

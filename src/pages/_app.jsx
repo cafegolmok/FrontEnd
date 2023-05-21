@@ -4,7 +4,7 @@ import React from 'react';
 import Head from 'next/head';
 
 import { Provider } from 'react-redux';
-import store from '../store/index.js';
+import store from '../store/store.js';
 
 import Header from '../components/header/Header.jsx';
 import Footer from '../components/footer/Footer.jsx';

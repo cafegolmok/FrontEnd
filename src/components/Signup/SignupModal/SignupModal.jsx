@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { hideSignupModal } from '../../../store/actions';
+import { hideSignupModal } from '../../../store/modalState.js';
 import BaseModal from '../../common/BaseModal.jsx';
 import WarningMsg from '../../warningMsg/WarningMsg.jsx';
 
@@ -19,7 +19,9 @@ import {
 } from './SignupModalStyle';
 
 const SignupModal = () => {
-  const isSignupModalVisible = useSelector(state => state.isSignupModalVisible);
+  const isSignupModalVisible = useSelector(
+    state => state.modal.isSignupModalVisible
+  );
   const dispatch = useDispatch();
 
   const handleHideSignupModal = () => {

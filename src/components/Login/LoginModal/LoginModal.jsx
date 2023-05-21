@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { hideLoginModal, showSignupModal } from '../../../store/actions';
+import { hideLoginModal, showSignupModal } from '../../../store/modalState';
 import BaseModal from '../../common/BaseModal.jsx';
 import EmailLogin from '../emailLogin/EmailLogin.jsx';
 
@@ -16,7 +16,7 @@ import {
 import KakaoLoginBtn from '../KakaoLoginBtn.jsx';
 
 const LoginModal = () => {
-  const isLoginModalVisible = useSelector(state => state.isLoginModalVisible);
+  const isLoginModalVisible = useSelector(state => state.modal.isLoginModalVisible);
   const dispatch = useDispatch();
 
   const handleHideLoginModal = () => {
