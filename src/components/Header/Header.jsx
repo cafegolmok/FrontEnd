@@ -18,7 +18,7 @@ import {
 import { ScreenOut } from '../../styles/commonStyle';
 
 import Category from '../category/Category.jsx';
-import { showLoginModal } from '../../store/modalState';
+import { showLoginModal } from '../../store/modalSlice';
 
 const Header = () => {
   const dispatch = useDispatch();

@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { hideSignupModal } from '../../../store/modalState.js';
+import { hideSignupModal } from '../../../store/modalSlice.js';
 import BaseModal from '../../common/BaseModal.jsx';
 import WarningMsg from '../../warningMsg/WarningMsg.jsx';
 

@@ -1,17 +1,20 @@
-// /src/store/modalState.js:
+// /src/store/modalSlice.js:
 
 import { createSlice } from '@reduxjs/toolkit';
 
+// 초기 상태를 정의
 const initialState = {
   isLoginModalVisible: false,
   isSignupModalVisible: false,
   isAddProfileImgModalVisible: false,
 };
 
-const modalState = createSlice({
+const modalSlice = createSlice({
+  // createSlice 함수를 사용하여 리덕스의 액션 생성자와 리듀서 한번에 정의
   name: 'modal',
   initialState,
   reducers: {
+    // 액션에 따라 상태를 어떻게 변경할지 정의하는 객체
     showLoginModal: state => {
       state.isLoginModalVisible = true;
     },
@@ -40,6 +43,6 @@ export const {
   hideSignupModal,
   showAddProfileImgModal,
   hideAddProfileImgModal,
-} = modalState.actions;
+} = modalSlice.actions;
 
-export default modalState.reducer;
+export default modalSlice.reducer;
