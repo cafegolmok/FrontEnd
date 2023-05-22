@@ -2,7 +2,10 @@
 
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { hideSignupModal } from '../../../store/modalSlice.js';
+import {
+  hideSignupModal,
+  signupModalToLoginModal,
+} from '../../../store/modalSlice.js';
 import BaseModal from '../../common/BaseModal.jsx';
 import WarningMsg from '../../warningMsg/WarningMsg.jsx';
 
@@ -22,10 +25,15 @@ const SignupModal = () => {
   const isSignupModalVisible = useSelector(
     state => state.modal.isSignupModalVisible
   );
+
   const dispatch = useDispatch();
 
   const handleHideSignupModal = () => {
     dispatch(hideSignupModal());
+  };
+
+  const handleBack = () => {
+    dispatch(signupModalToLoginModal());
   };
 
   // 각 입력창의 값과 검증에 대한 상태 정의
@@ -216,6 +224,7 @@ const SignupModal = () => {
     <BaseModal
       isVisible={isSignupModalVisible}
       onClose={handleHideSignupModal}
+      onBack={handleBack}
       title='회원가입 완료하기'
     >
       <SignupModalContent>

@@ -1,9 +1,10 @@
 // src/pages/_app.jsx
 
 import React from 'react';
+import { useSelector, Provider } from 'react-redux';
+import { createWrapper } from 'next-redux-wrapper';
 import Head from 'next/head';
 
-import { Provider } from 'react-redux';
 import store from '../store/store.js';
 
 import Header from '../components/header/Header.jsx';
@@ -16,6 +17,7 @@ import LoginModal from '../components/login/loginModal/LoginModal.jsx';
 import AddProfileImg from '../components/signup/addProfileImg/AddProfileImg.jsx';
 
 const App = ({ Component, pageProps }) => {
+  const currentModalStep = useSelector(state => state.modal.currentModalStep);
   return (
     <>
       <Provider store={store}>
@@ -27,13 +29,16 @@ const App = ({ Component, pageProps }) => {
         <Header />
         <Component {...pageProps} />
         <Footer />
-        <LoginModal />
-        <SignupModal />
-        <AddProfileImg />
+        {currentModalStep === 'login' && <LoginModal />}
+        {currentModalStep === 'signup' && <SignupModal />}
+        {currentModalStep === 'addProfileImg' && <AddProfileImg />}
         <Overlay />
       </Provider>
     </>
   );
 };
 
-export default App;
+const makeStore = () => store;
+const wrapper = createWrapper(makeStore);
+
+export default wrapper.withRedux(App);
