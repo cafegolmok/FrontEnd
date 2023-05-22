@@ -32,7 +32,7 @@ const SignupModal = () => {
     dispatch(hideSignupModal());
   };
 
-  const handleBack = () => {
+  const handleSignupModalToLoginModal = () => {
     dispatch(signupModalToLoginModal());
   };
 
@@ -224,7 +224,7 @@ const SignupModal = () => {
     <BaseModal
       isVisible={isSignupModalVisible}
       onClose={handleHideSignupModal}
-      onBack={handleBack}
+      onBack={handleSignupModalToLoginModal}
       title='회원가입 완료하기'
     >
       <SignupModalContent>

@@ -38,6 +38,12 @@ const modalSlice = createSlice({
       state.isAddProfileImgModalVisible = false;
     },
 
+    loginModalToSignupModal: state => {
+      state.isLoginModalVisible = false;
+      state.isSignupModalVisible = true;
+      state.currentModalStep = 'signup';
+    },
+
     signupModalToLoginModal: state => {
       state.isSignupModalVisible = false;
       state.isLoginModalVisible = true;
@@ -54,6 +60,7 @@ export const {
   showAddProfileImgModal,
   hideAddProfileImgModal,
   signupModalToLoginModal,
+  loginModalToSignupModal,
 } = modalSlice.actions;
 
 export default modalSlice.reducer;

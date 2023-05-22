@@ -3,7 +3,10 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { hideLoginModal, showSignupModal } from '../../../store/modalSlice';
+import {
+  hideLoginModal,
+  loginModalToSignupModal,
+} from '../../../store/modalSlice';
 import BaseModal from '../../common/BaseModal.jsx';
 import EmailLogin from '../emailLogin/EmailLogin.jsx';
 
@@ -25,9 +28,8 @@ const LoginModal = () => {
     dispatch(hideLoginModal());
   };
 
-  const handleShowSignupModal = () => {
-    dispatch(hideLoginModal());
-    dispatch(showSignupModal());
+  const handleLoginModalToSignupModal = () => {
+    dispatch(loginModalToSignupModal());
   };
 
   const [email, setEmail] = useState('');
@@ -118,7 +120,7 @@ const LoginModal = () => {
         />
         <OrText>또는</OrText>
         <KakaoLoginBtn />
-        <SignupBtn type='button' onClick={handleShowSignupModal}>
+        <SignupBtn type='button' onClick={handleLoginModalToSignupModal}>
           카페골목 회원가입 하기
         </SignupBtn>
       </LoginModalContent>
