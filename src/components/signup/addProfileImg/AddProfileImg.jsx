@@ -110,7 +110,7 @@ const AddProfileImg = () => {
         </AddProfileModalText>
         <ProfileImgLabel
           htmlFor='user-img'
-          background={preview ||userProfile.src}
+          background={preview || userProfile.src}
         ></ProfileImgLabel>
         <ProfileImgInput
           type='file'
