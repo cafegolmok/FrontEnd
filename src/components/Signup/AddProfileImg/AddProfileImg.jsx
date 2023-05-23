@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { palette } from '../../../styles/globalColor.js';
 
 import BaseModal from '../../common/BaseModal.jsx';
-import { addProfileModalToSignupModal} from '../../../store/modalSlice.js';
+import { addProfileModalToSignupModal } from '../../../store/modalSlice.js';
 
 import userProfile from '../../../../public/assets/icons/user.svg';
 
@@ -14,6 +14,7 @@ const AddProfileImgModalContent = styled.form`
 `;
 
 const AddProfileModalText = styled.p`
+  margin-bottom: 20px;
   font-weight: 500;
   font-size: 20px;
   line-height: 24px;
@@ -109,7 +110,7 @@ const AddProfileImg = () => {
         </AddProfileModalText>
         <ProfileImgLabel
           htmlFor='user-img'
-          background={preview}
+          background={preview ||userProfile.src}
         ></ProfileImgLabel>
         <ProfileImgInput
           type='file'

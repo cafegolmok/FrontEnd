@@ -34,7 +34,7 @@ const ModalTitle = styled.h2`
 
 const ModalBtn = styled.button`
   position: absolute;
-  top: 50%;
+  top: 54%;
   left: 15px;
   width: 30px;
   height: 30px;
