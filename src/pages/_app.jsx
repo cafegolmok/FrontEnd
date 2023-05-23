@@ -14,6 +14,7 @@ import Overlay from '../components/overlay/Overlay.jsx';
 import GlobalStyles from '../styles/globalStyle.js';
 import SignupModal from '../components/signup/signupModal/SignupModal.jsx';
 import LoginModal from '../components/login/loginModal/LoginModal.jsx';
+
 import AddProfileImg from '../components/signup/addProfileImg/AddProfileImg.jsx';
 
 const App = ({ Component, pageProps }) => {

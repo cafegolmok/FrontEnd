@@ -5,10 +5,7 @@ import styled from 'styled-components';
 import { palette } from '../../../styles/globalColor.js';
 
 import BaseModal from '../../common/BaseModal.jsx';
-import {
-  hideAddProfileImgModal,
-  showAddProfileImgModal,
-} from '../../../store/modalSlice.js';
+import { addProfileModalToSignupModal} from '../../../store/modalSlice.js';
 
 import userProfile from '../../../../public/assets/icons/user.svg';
 
@@ -69,17 +66,13 @@ const NoUploadProfileImgBtn = styled(SharedBtn)`
 
 const AddProfileImg = () => {
   const isAddProfileImgModalVisible = useSelector(
-    state => state.isAddProfileImgModalVisible
+    state => state.modal.isAddProfileImgModalVisible
   );
   const dispatch = useDispatch();
   const [preview, setPreview] = useState(null);
 
-  const handleShowAddProfileImg = () => {
-    dispatch(showAddProfileImgModal());
-  };
-
-  const handleHideAddProfileImg = () => {
-    dispatch(hideAddProfileImgModal());
+  const handleAddProfileModalToSignupModal = () => {
+    dispatch(addProfileModalToSignupModal());
   };
 
   const handleSubmit = async event => {
@@ -107,7 +100,7 @@ const AddProfileImg = () => {
   return (
     <BaseModal
       isVisible={isAddProfileImgModalVisible}
-      onClose={handleHideAddProfileImg}
+      onBack={handleAddProfileModalToSignupModal}
       title='프로필 생성하기'
     >
       <AddProfileImgModalContent onSubmit={handleSubmit}>

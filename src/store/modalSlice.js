@@ -7,7 +7,7 @@ const initialState = {
   isLoginModalVisible: false,
   isSignupModalVisible: false,
   isAddProfileImgModalVisible: false,
-  currentModalStep: 0, // 단계별 모달을 관리
+  currentModalStep: '', // 단계별 모달을 관리
 };
 
 const modalSlice = createSlice({
@@ -49,6 +49,18 @@ const modalSlice = createSlice({
       state.isLoginModalVisible = true;
       state.currentModalStep = 'login';
     },
+
+    signupModalToAddProfileImgModal: state => {
+      state.isSignupModalVisible = false;
+      state.isAddProfileImgModalVisible = true;
+      state.currentModalStep = 'addProfileImg';
+    },
+
+    addProfileModalToSignupModal: state => {
+      state.isAddProfileImgModalVisible = false;
+      state.isSignupModalVisible = true;
+      state.currentModalStep = 'signup';
+    },
   },
 });
 
@@ -61,6 +73,8 @@ export const {
   hideAddProfileImgModal,
   signupModalToLoginModal,
   loginModalToSignupModal,
+  signupModalToAddProfileImgModal,
+  addProfileModalToSignupModal,
 } = modalSlice.actions;
 
 export default modalSlice.reducer;

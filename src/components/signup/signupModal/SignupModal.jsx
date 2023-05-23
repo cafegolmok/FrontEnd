@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import {
   hideSignupModal,
   signupModalToLoginModal,
+  signupModalToAddProfileImgModal,
 } from '../../../store/modalSlice.js';
 import BaseModal from '../../common/BaseModal.jsx';
 import WarningMsg from '../../warningMsg/WarningMsg.jsx';
@@ -19,6 +20,7 @@ import {
   PasswordLabel,
   ConfirmPasswordLabel,
   NicknameLabel,
+  NicknameInput,
 } from './SignupModalStyle';
 
 const SignupModal = () => {
@@ -34,6 +36,11 @@ const SignupModal = () => {
 
   const handleSignupModalToLoginModal = () => {
     dispatch(signupModalToLoginModal());
+  };
+
+  const handleSignupModalToAddProfileImgModal = () => {
+    console.log('모달전환');
+    dispatch(signupModalToAddProfileImgModal());
   };
 
   // 각 입력창의 값과 검증에 대한 상태 정의
@@ -214,6 +221,10 @@ const SignupModal = () => {
       // 로그인 페이지로 이동 또는 로그인 상태로 변경하는 로직 구현
       // 예: history.push('/login');
       // }
+      console.log('회원가입 성공');
+      // handleSignupModalToAddProfileImgModal();
+      // dispatch(signupModalToAddProfileImgModal());
+      handleSignupModalToAddProfileImgModal();
     } catch (error) {
       // 서버에서 반환된 에러 메시지를 처리합니다.
       // 예: alert(error.response.data.message);
@@ -293,7 +304,7 @@ const SignupModal = () => {
           message='비밀번호가 일치하지 않습니다. 다시 입력해 주세요.'
         ></WarningMsg>
         <NicknameLabel htmlFor='user-nickname'>닉네임</NicknameLabel>
-        <ConfirmPasswordInput
+        <NicknameInput
           type='text'
           id='user-nickname'
           name='user-nickname'
