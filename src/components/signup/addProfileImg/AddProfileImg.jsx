@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import styled from 'styled-components';
@@ -6,6 +6,7 @@ import { palette } from '../../../styles/globalColor.js';
 
 import BaseModal from '../../common/BaseModal.jsx';
 import { addProfileModalToSignupModal } from '../../../store/modalSlice.js';
+import { SharedLoginBtn } from '../../common/Button.jsx';
 
 import userProfile from '../../../../public/assets/icons/user.svg';
 
@@ -17,9 +18,10 @@ const AddProfileModalText = styled.p`
   margin-bottom: 20px;
   font-weight: 500;
   font-size: 20px;
-  line-height: 24px;
+  line-height: 1.5;
   color: ${palette.blackColor};
   text-align: center;
+  white-space: pre-line;
 `;
 
 const ProfileImgLabel = styled.label`
@@ -40,29 +42,30 @@ const ProfileImgInput = styled.input`
   display: none;
 `;
 
-const SharedBtn = styled.button`
-  display: block;
-  padding: 11px;
-  border-radius: 5px;
-  line-height: 28px;
-  text-align: center;
-  text-decoration: none;
-  cursor: pointer;
-`;
-
-const UploadProfileImgBtn = styled(SharedBtn)`
+const UploadProfileImgBtn = styled(SharedLoginBtn)`
   margin-bottom: 20px;
-  background-color: ${palette.mainColor};
+  background-color: ${props =>
+    props.isImageUploaded ? palette.whiteColor : palette.mainColor};
   font-weight: 500;
   font-size: 16px;
-  color: ${palette.whiteColor};
+  color: ${props =>
+    props.isImageUploaded ? palette.blackColor : palette.whiteColor};
+  ${props =>
+    props.isImageUploaded && `border: 1px solid ${palette.grayColor1};`}
 `;
 
-const NoUploadProfileImgBtn = styled(SharedBtn)`
+const NoUploadProfileImgBtn = styled(SharedLoginBtn)`
   font-weight: 500;
   font-size: 16px;
   border: 1px solid ${palette.grayColor1};
   color: ${palette.blackColor};
+`;
+
+const SubmitProfileImgBtn = styled(SharedLoginBtn)`
+  font-weight: 500;
+  font-size: 16px;
+  background-color: ${palette.mainColor};
+  color: ${palette.whiteColor};
 `;
 
 const AddProfileImg = () => {
@@ -71,6 +74,8 @@ const AddProfileImg = () => {
   );
   const dispatch = useDispatch();
   const [preview, setPreview] = useState(null);
+  const [isImageUploaded, setIsImageUploaded] = useState(false);
+  const fileInputRef = useRef(null);
 
   const handleAddProfileModalToSignupModal = () => {
     dispatch(addProfileModalToSignupModal());
@@ -80,6 +85,7 @@ const AddProfileImg = () => {
     event.preventDefault();
 
     try {
+      console.log('프로필 이미지 등록!');
     } catch (error) {
       console.log(error);
     }
@@ -91,11 +97,16 @@ const AddProfileImg = () => {
 
     reader.onloadend = () => {
       setPreview(reader.result);
+      setIsImageUploaded(true);
     };
 
     if (file) {
       reader.readAsDataURL(file);
     }
+  };
+
+  const handleChooseFile = () => {
+    fileInputRef.current.click();
   };
 
   return (
@@ -106,7 +117,9 @@ const AddProfileImg = () => {
     >
       <AddProfileImgModalContent onSubmit={handleSubmit}>
         <AddProfileModalText>
-          프로필 이미지를 클릭해서 이미지를 업로드 하세요
+          {isImageUploaded
+            ? '좋아요!'
+            : `프로필 이미지 또는 업로드 버튼을 클릭해서\n이미지를 업로드 하세요`}
         </AddProfileModalText>
         <ProfileImgLabel
           htmlFor='user-img'
@@ -117,9 +130,34 @@ const AddProfileImg = () => {
           id='user-img'
           name='user-img'
           onChange={handleImageChange}
+          ref={fileInputRef}
         ></ProfileImgInput>
-        <UploadProfileImgBtn>사진 업로드하기</UploadProfileImgBtn>
-        <NoUploadProfileImgBtn>나중에 할게요</NoUploadProfileImgBtn>
+
+        {isImageUploaded ? (
+          <>
+            <SubmitProfileImgBtn onClick={handleSubmit}>
+              완료
+            </SubmitProfileImgBtn>
+            <UploadProfileImgBtn
+              onClick={handleChooseFile}
+              isImageUploaded={isImageUploaded}
+            >
+              사진 변경하기
+            </UploadProfileImgBtn>
+          </>
+        ) : (
+          <>
+            <UploadProfileImgBtn
+              onClick={handleChooseFile}
+              isImageUploaded={isImageUploaded}
+            >
+              사진 업로드하기
+            </UploadProfileImgBtn>
+            <NoUploadProfileImgBtn onClick={handleSubmit}>
+              나중에 할게요
+            </NoUploadProfileImgBtn>
+          </>
+        )}
       </AddProfileImgModalContent>
     </BaseModal>
   );
