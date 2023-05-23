@@ -124,6 +124,7 @@ const SignupModal = () => {
   const handleChangePasswordConfirm = event => {
     setPasswordConfirm(event.target.value);
     setIsPasswordConfirmEmpty(event.target.value === '');
+    setIsPasswordMismatch(password !== event.target.value);
   };
 
   const handleChangeNickname = event => {
