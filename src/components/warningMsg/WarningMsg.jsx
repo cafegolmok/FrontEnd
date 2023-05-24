@@ -2,6 +2,8 @@
 
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
+
 import { palette } from '../../styles/globalColor';
 
 export const WarningMsgContainer = styled.strong`
@@ -16,5 +18,10 @@ export const WarningMsgContainer = styled.strong`
 const WarningMsg = ({ show, message }) => (
   <WarningMsgContainer show={show}>{message}</WarningMsgContainer>
 );
+
+WarningMsg.propTypes = {
+  show: PropTypes.bool.isRequired,
+  message: PropTypes.string.isRequired,
+};
 
 export default WarningMsg;

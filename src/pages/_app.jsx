@@ -4,6 +4,7 @@ import React from 'react';
 import { useSelector, Provider } from 'react-redux';
 import { createWrapper } from 'next-redux-wrapper';
 import Head from 'next/head';
+import PropTypes from 'prop-types';
 
 import store from '../store/store.js';
 
@@ -37,6 +38,11 @@ const App = ({ Component, pageProps }) => {
       </Provider>
     </>
   );
+};
+
+App.propTypes = {
+  Component: PropTypes.elementType.isRequired,
+  pageProps: PropTypes.object.isRequired,
 };
 
 const makeStore = () => store;
