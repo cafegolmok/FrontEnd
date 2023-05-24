@@ -10,10 +10,16 @@ const Overlay = () => {
     state => state.modal.isLoginModalVisible
   );
 
-  const isSignupModalVisible = useSelector(state => state.modal.isSignupModalVisible);
+  const isSignupModalVisible = useSelector(
+    state => state.modal.isSignupModalVisible
+  );
 
   const isAddProfileImgModalVisible = useSelector(
     state => state.modal.isAddProfileImgModalVisible
+  );
+
+  const isSignupSuccessModalVisible = useSelector(
+    state => state.modal.isSignupSuccessModalVisible
   );
   const [modalRoot, setModalRoot] = useState(null);
   const [isClient, setIsClient] = useState(false);
@@ -48,7 +54,8 @@ const Overlay = () => {
     if (
       isLoginModalVisible ||
       isSignupModalVisible ||
-      isAddProfileImgModalVisible
+      isAddProfileImgModalVisible ||
+      isSignupSuccessModalVisible
     ) {
       const scrollbarWidth = getScrollbarWidth();
       document.body.style.overflow = 'hidden';
@@ -68,7 +75,8 @@ const Overlay = () => {
     !isClient ||
     (!isLoginModalVisible &&
       !isSignupModalVisible &&
-      !isAddProfileImgModalVisible) ||
+      !isAddProfileImgModalVisible &&
+      !isSignupSuccessModalVisible ) ||
     !modalRoot
   ) {
     return null;

@@ -5,7 +5,10 @@ import styled from 'styled-components';
 import { palette } from '../../../styles/globalColor.js';
 
 import BaseModal from '../../common/BaseModal.jsx';
-import { addProfileModalToSignupModal } from '../../../store/modalSlice.js';
+import {
+  addProfileImgModalToSignupModal,
+  addProfileImgModalTosignupSuccessModal,
+} from '../../../store/modalSlice.js';
 import { SharedLoginBtn } from '../../common/Button.jsx';
 
 import userProfile from '../../../../public/assets/icons/user.svg';
@@ -77,8 +80,12 @@ const AddProfileImg = () => {
   const [isImageUploaded, setIsImageUploaded] = useState(false);
   const fileInputRef = useRef(null);
 
-  const handleAddProfileModalToSignupModal = () => {
-    dispatch(addProfileModalToSignupModal());
+  const handleAddProfileImgModalToSignupModal = () => {
+    dispatch(addProfileImgModalToSignupModal());
+  };
+
+  const handleAddProfileImgModalTosignupSuccessModal = () => {
+    dispatch(addProfileImgModalTosignupSuccessModal());
   };
 
   const handleSubmit = async event => {
@@ -86,6 +93,7 @@ const AddProfileImg = () => {
 
     try {
       console.log('프로필 이미지 등록!');
+      handleAddProfileImgModalTosignupSuccessModal()
     } catch (error) {
       console.log(error);
     }
@@ -112,7 +120,7 @@ const AddProfileImg = () => {
   return (
     <BaseModal
       isVisible={isAddProfileImgModalVisible}
-      onBack={handleAddProfileModalToSignupModal}
+      onBack={handleAddProfileImgModalToSignupModal}
       title='프로필 생성하기'
     >
       <AddProfileImgModalContent onSubmit={handleSubmit}>

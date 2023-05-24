@@ -78,7 +78,7 @@ const slideUpOut = keyframes`
   }
 `;
 
-const BaseModal = ({ isVisible, onClose, onBack, title, children,  }) => {
+const BaseModal = ({ isVisible, onClose, onBack, title, children }) => {
   const modalRef = useRef(null);
   const [modalRoot, setModalRoot] = useState(null);
   const [isClient, setIsClient] = useState(false);
@@ -86,7 +86,14 @@ const BaseModal = ({ isVisible, onClose, onBack, title, children,  }) => {
 
   const handleModalOutsideClick = event => {
     if (modalRef.current && !modalRef.current.contains(event.target)) {
-      onClose();
+      if (
+        currentModalStep === 'login' ||
+        currentModalStep === 'signupSuccess'
+      ) {
+        onClose();
+      } else {
+        onBack();
+      }
     }
   };
 
@@ -130,7 +137,8 @@ const BaseModal = ({ isVisible, onClose, onBack, title, children,  }) => {
     <ModalContainer ref={modalRef} isVisible={isVisible}>
       <ModalTop>
         <ModalBtn>
-          {currentModalStep === 'login' ? (
+          {currentModalStep === 'login' ||
+          currentModalStep === 'signupSuccess' ? (
             <CloseBtnImg
               onClick={onClose}
               xmlns='http://www.w3.org/2000/svg'
@@ -162,8 +170,8 @@ const BaseModal = ({ isVisible, onClose, onBack, title, children,  }) => {
 
 BaseModal.propTypes = {
   isVisible: PropTypes.bool.isRequired,
-  onClose: PropTypes.func.isRequired,
-  onBack: PropTypes.func.isRequired,
+  onClose: PropTypes.func,
+  onBack: PropTypes.func,
   title: PropTypes.string.isRequired,
   children: PropTypes.node,
 };

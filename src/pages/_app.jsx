@@ -17,6 +17,7 @@ import SignupModal from '../components/signup/signupModal/SignupModal.jsx';
 import LoginModal from '../components/login/loginModal/LoginModal.jsx';
 
 import AddProfileImg from '../components/signup/addProfileImg/AddProfileImg.jsx';
+import SignupSuccess from '../components/signup/signupSuccess/SignupSuccess.jsx';
 
 const App = ({ Component, pageProps }) => {
   const currentModalStep = useSelector(state => state.modal.currentModalStep);
@@ -34,6 +35,7 @@ const App = ({ Component, pageProps }) => {
         {currentModalStep === 'login' && <LoginModal />}
         {currentModalStep === 'signup' && <SignupModal />}
         {currentModalStep === 'addProfileImg' && <AddProfileImg />}
+        {currentModalStep === 'signupSuccess' && <SignupSuccess />}
         <Overlay />
       </Provider>
     </>
