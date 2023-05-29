@@ -4,7 +4,7 @@ import React, { useRef, useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import styled, { keyframes } from 'styled-components';
-import { palette } from '../../styles/theme';
+import { palette, spacing, typography } from '../../styles/theme';
 import { useSelector } from 'react-redux';
 
 const ModalContainer = styled.div`
@@ -22,13 +22,13 @@ const ModalContainer = styled.div`
 
 const ModalTop = styled.div`
   position: relative;
-  padding: 20px;
+  padding: ${spacing.medium};
   border-bottom: 1px solid ${palette.grayColor2};
   text-align: center;
 `;
 
 const ModalTitle = styled.h2`
-  font-weight: 500;
+  font-weight: ${typography.fontWeight.medium};
   color: ${palette.blackColor};
 `;
 

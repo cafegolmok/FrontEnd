@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { palette } from '../../styles/theme';
+import { palette, spacing } from '../../styles/theme';
 
 export const FooterContainer = styled.footer`
   position: fixed;
@@ -23,7 +23,7 @@ export const CompanyTitle = styled.strong`
 
 export const SnsList = styled.ul`
   display: flex;
-  gap: 20px;
+  gap: ${spacing.medium};
 `;
 
 export const SnsImg = styled.img`

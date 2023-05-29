@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import styled from 'styled-components';
-import { palette } from '../../../styles/theme.js';
+import { palette, spacing, typography } from '../../../styles/theme.js';
 
 import BaseModal from '../../common/BaseModal.jsx';
 import {
@@ -14,13 +14,13 @@ import { SharedLoginBtn } from '../../common/Button.jsx';
 import userProfile from '../../../../public/assets/icons/user.svg';
 
 const AddProfileImgModalContent = styled.form`
-  padding: 20px;
+  padding: ${spacing.medium};
 `;
 
 const AddProfileModalText = styled.p`
-  margin-bottom: 20px;
-  font-weight: 500;
-  font-size: 20px;
+  margin-bottom: ${spacing.medium};
+  font-weight: ${typography.fontWeight.medium};
+  font-size: ${typography.fontSize.large};
   line-height: 1.5;
   color: ${palette.blackColor};
   text-align: center;
@@ -46,11 +46,10 @@ const ProfileImgInput = styled.input`
 `;
 
 const UploadProfileImgBtn = styled(SharedLoginBtn)`
-  margin-bottom: 20px;
+  margin-bottom: ${spacing.medium};
   background-color: ${props =>
     props.isImageUploaded ? palette.whiteColor : palette.mainColor};
-  font-weight: 500;
-  font-size: 16px;
+  font-weight: ${typography.fontWeight.medium};
   color: ${props =>
     props.isImageUploaded ? palette.blackColor : palette.whiteColor};
   ${props =>
@@ -58,15 +57,13 @@ const UploadProfileImgBtn = styled(SharedLoginBtn)`
 `;
 
 const NoUploadProfileImgBtn = styled(SharedLoginBtn)`
-  font-weight: 500;
-  font-size: 16px;
+  font-weight: ${typography.fontWeight.medium};
   border: 1px solid ${palette.grayColor1};
   color: ${palette.blackColor};
 `;
 
 const SubmitProfileImgBtn = styled(SharedLoginBtn)`
-  font-weight: 500;
-  font-size: 16px;
+  font-weight: ${typography.fontWeight.medium};;
   background-color: ${palette.mainColor};
   color: ${palette.whiteColor};
 `;

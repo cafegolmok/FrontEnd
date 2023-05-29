@@ -1,19 +1,19 @@
 import styled, { css } from 'styled-components';
-import { palette } from '../../../styles/theme';
+import { palette, spacing, typography } from '../../../styles/theme';
 import { SharedLoginBtn } from '../../common/Button.jsx';
 import { SharedLoginInput } from '../../common/Input.jsx';
 
 export const SignupModalContent = styled.form`
-  padding: 20px;
+  padding: ${spacing.medium};
   height: 400px;
   overflow-y: scroll;
 `;
 
 export const SharedLabel = styled.label`
   display: block;
-  font-size: 14px;
+  font-size: ${typography.fontSize.small};
   margin-bottom: 7px;
-  margin-left: 5px;
+  margin-left: ${spacing.xsmall};
   margin-top: 13px;
   &:first-child {
     margin-top: 0;

@@ -4,28 +4,27 @@ import styled from 'styled-components';
 
 import BaseModal from '../../common/BaseModal.jsx';
 import { hideSignupSuccessModal } from '../../../store/modalSlice.js';
-import { palette } from '../../../styles/theme.js';
+import { palette, spacing, typography } from '../../../styles/theme.js';
 
 const SuccessSignupModalContent = styled.div`
-  padding: 20px;
+  padding: ${spacing.medium};
 `;
 
 const LogoImg = styled.img`
   display: block;
   margin: 0 auto;
-  margin-bottom: 20px;
+  margin-bottom: ${spacing.medium};
 `;
 
 const SuccessSignupModalText = styled.p`
   margin-bottom: 12px;
-  font-weight: 500;
-  font-size: 22px;
+  font-weight: ${typography.fontWeight.medium};
+  font-size: ${typography.fontSize.xlarge};
   color: ${palette.blackColor};
   text-align: center;
 `;
 
 const SuccessSignupModalSubText = styled.p`
-  font-size: 16px;
   color: ${palette.blackColor};
   text-align: center;
 `;

@@ -1,24 +1,23 @@
 import styled from 'styled-components';
-import { palette } from '../../../styles/theme';
+import { palette, spacing, typography } from '../../../styles/theme';
 import { SharedLoginBtn } from '../../common/Button.jsx';
 
 export const LoginModalContent = styled.div`
-  padding: 20px;
+  padding: ${spacing.medium};
   height: 400px;
   overflow-y: scroll;
 `;
 
 export const LoginModalText = styled.p`
-  font-weight: 500;
-  font-size: 20px;
+  font-weight: ${typography.fontWeight.medium};
+  font-size: ${typography.fontSize.large};
   line-height: 24px;
   color: ${palette.blackColor};
 `;
 
 export const SignupBtn = styled(SharedLoginBtn)`
   background-color: ${palette.grayColor1};
-  font-weight: 500;
-  font-size: 16px;
+  font-weight: ${typography.fontWeight.medium};
   color: ${palette.blackColor};
 `;
 

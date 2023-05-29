@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { palette } from '../../styles/theme';
+import { palette, typography } from '../../styles/theme';
 
 export const HeaderContainer = styled.header`
   position: sticky;
@@ -42,7 +42,7 @@ export const SearchContainer = styled.label`
 export const SearchInput = styled.input`
   width: 88%;
   height: 95%;
-  font-size: 15px;
+  font-size: ${typography.fontSize.small};
   &:focus {
     outline: none;
   }
@@ -95,7 +95,7 @@ export const ProfileMoreInfo = styled.ul`
   border-radius: 10px;
   z-index: 50;
   font-size: 13px;
-  font-weight: 500;
+  font-weight: ${typography.fontWeight.medium};
   color: ${palette.blackColor};
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 `;

@@ -1,7 +1,7 @@
 // src/components/Category/CategoryStyle.js
 
 import styled from 'styled-components';
-import { palette } from '../../styles/theme';
+import { palette, typography, spacing } from '../../styles/theme';
 
 export const CategoryList = styled.ul`
   display: flex;
@@ -17,7 +17,7 @@ export const CategoryItem = styled.li`
   padding-top: 6px;
   height: 66px;
   font-size: 13px;
-  font-weight: 600;
+  font-weight: ${typography.fontWeight.semibold};
   white-space: nowrap;
   cursor: pointer;
   color: ${palette.darkGrayColor1};
@@ -32,7 +32,7 @@ export const CategoryItem = styled.li`
 export const CategoryImg = styled.img`
   display: block;
   margin: 0 auto;
-  margin-bottom: 10px;
+  margin-bottom: ${spacing.small};
   width: 40px;
   height: 28px;
 `;

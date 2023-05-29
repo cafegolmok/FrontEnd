@@ -17,7 +17,7 @@ export const typography = {
   fontFamily: 'Archivo, sans-serif',
   fontSize: {
     xsmall: '10px',
-    small: '13px',
+    small: '14px',
     medium: '16px',
     large: '20px',
     xlarge: '22px',

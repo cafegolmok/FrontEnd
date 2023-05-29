@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { palette } from '../../../styles/theme.js';
+import { palette, typography } from '../../../styles/theme.js';
 
 import { SharedLoginBtn } from '../../common/Button.jsx';
 import { SharedLoginInput } from '../../common/Input.jsx';
@@ -41,7 +41,6 @@ export const PasswordInput = styled(SharedLoginInput)`
 export const LoginBtn = styled(SharedLoginBtn)`
   margin-top: 15px;
   background-color: ${palette.mainColor};
-  font-weight: 500;
-  font-size: 16px;
+  font-weight: ${typography.fontWeight.medium};
   color: ${palette.whiteColor};
 `;

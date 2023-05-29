@@ -1,10 +1,10 @@
 import styled from 'styled-components';
-import { palette } from '../../styles/theme';
+import { palette, spacing, typography } from '../../styles/theme';
 
 export const Posts = styled.ul`
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  gap: 32px;
+  gap: ${spacing.xlarge};
 
   @media screen and (max-width: 1459px) {
     grid-template-columns: repeat(4, 1fr);
@@ -38,7 +38,7 @@ export const ThumbnailImg = styled.img`
   position: relative;
   width: 100%;
   border-radius: 15px;
-  margin-bottom: 10px;
+  margin-bottom: ${spacing.small};
   aspect-ratio: 1/1;
 `;
 
@@ -55,26 +55,26 @@ export const BookmarkBtn = styled.svg`
 export const Tags = styled.dl`
   display: flex;
   gap: 8px;
-  margin-bottom: 10px;
+  margin-bottom: ${spacing.small};
 `;
 
 export const Tag = styled.dd`
   padding: 5px 8px;
-  font-size: 14px;
-  font-weight: 600;
+  font-size: ${typography.fontSize.small};
+  font-weight: ${typography.fontWeight.semibold};
   color: ${palette.mainColor};
   background-color: ${palette.lightGrayColor};
   border-radius: 15px;
 `;
 
 export const CafeContainer = styled.div`
-  margin-bottom: 10px;
+  margin-bottom: ${spacing.small};
   display: flex;
   justify-content: space-between;
 `;
 
 export const CafeName = styled.h3`
-  font-size: 22px;
+  font-size: ${typography.fontSize.xlarge};
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -87,12 +87,12 @@ export const CafeStarContainer = styled.dl`
 `;
 
 export const CafeStar = styled.dt`
-  margin-right: 5px;
+  margin-right: ${spacing.xsmall};
 `;
 
 export const CafeLocation = styled.strong`
   display: block;
-  margin-bottom: 10px;
+  margin-bottom: ${spacing.small};
   color: ${palette.darkGrayColor1};
   overflow: hidden;
   white-space: nowrap;
