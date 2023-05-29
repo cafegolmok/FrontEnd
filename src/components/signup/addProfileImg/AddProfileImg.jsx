@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import styled from 'styled-components';
-import { palette } from '../../../styles/globalColor.js';
+import { palette } from '../../../styles/theme.js';
 
 import BaseModal from '../../common/BaseModal.jsx';
 import {
@@ -93,7 +93,7 @@ const AddProfileImg = () => {
 
     try {
       console.log('프로필 이미지 등록!');
-      handleAddProfileImgModalTosignupSuccessModal()
+      handleAddProfileImgModalTosignupSuccessModal();
     } catch (error) {
       console.log(error);
     }

@@ -1,13 +1,12 @@
 // src/components/Category/CategoryStyle.js
 
 import styled from 'styled-components';
-import { palette } from '../../styles/globalColor';
+import { palette } from '../../styles/theme';
 
 export const CategoryList = styled.ul`
   display: flex;
   height: 66px;
   justify-content: space-between;
-  align-items: center;
   gap: 12px;
   padding: 0 40px;
   border-bottom: 0.5px solid ${palette.lightGrayColor};
@@ -16,7 +15,7 @@ export const CategoryList = styled.ul`
 
 export const CategoryItem = styled.li`
   padding-top: 6px;
-  height: 100%;
+  height: 66px;
   font-size: 13px;
   font-weight: 600;
   white-space: nowrap;

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { SharedLoginBtn } from '../common/Button.jsx';
-import { palette } from '../../styles/globalColor';
+import { palette } from '../../styles/theme.js';
 
 const KakaoBtn = styled(SharedLoginBtn)`
   background-color: ${palette.yellowColor};

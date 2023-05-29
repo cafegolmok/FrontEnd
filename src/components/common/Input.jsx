@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { palette } from '../../styles/globalColor';
+import { palette } from '../../styles/theme';
 
 export const SharedLoginInput = styled.input`
   width: 100%;

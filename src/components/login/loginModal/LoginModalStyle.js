@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { palette } from '../../../styles/globalColor';
+import { palette } from '../../../styles/theme';
 import { SharedLoginBtn } from '../../common/Button.jsx';
 
 export const LoginModalContent = styled.div`

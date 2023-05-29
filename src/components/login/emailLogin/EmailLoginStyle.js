@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { palette } from '../../../styles/globalColor.js';
+import { palette } from '../../../styles/theme.js';
 
 import { SharedLoginBtn } from '../../common/Button.jsx';
 import { SharedLoginInput } from '../../common/Input.jsx';

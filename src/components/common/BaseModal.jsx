@@ -4,7 +4,7 @@ import React, { useRef, useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import styled, { keyframes } from 'styled-components';
-import { palette } from '../../styles/globalColor';
+import { palette } from '../../styles/theme';
 import { useSelector } from 'react-redux';
 
 const ModalContainer = styled.div`

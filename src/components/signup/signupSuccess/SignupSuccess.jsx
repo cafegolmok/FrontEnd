@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 import BaseModal from '../../common/BaseModal.jsx';
 import { hideSignupSuccessModal } from '../../../store/modalSlice.js';
-import { palette } from '../../../styles/globalColor.js';
+import { palette } from '../../../styles/theme.js';
 
 const SuccessSignupModalContent = styled.div`
   padding: 20px;
