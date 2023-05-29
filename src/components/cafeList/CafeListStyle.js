@@ -1,25 +1,28 @@
 import styled from 'styled-components';
-import { palette } from '../../styles/globalColor';
-
+import { palette } from '../../styles/theme';
 
 export const Posts = styled.ul`
-    display: grid;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 32px;
+
+  @media screen and (max-width: 1459px) {
     grid-template-columns: repeat(4, 1fr);
-    gap: 28px;
+  }
 
-    @media screen and (max-width: 1127px) {
-      grid-template-columns: repeat(3, 1fr);
-    }
+  @media screen and (max-width: 1127px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
 
-    @media screen and (max-width: 949px) {
-      grid-template-columns: repeat(2, 1fr);
-    }
+  @media screen and (max-width: 949px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
 
-    @media screen and (max-width: 549px) {
-      display: grid;
-      grid-template-columns: repeat(1, 1fr);
-    }
-`
+  @media screen and (max-width: 549px) {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+  }
+`;
 
 export const Post = styled.li`
   min-width: 250px;
