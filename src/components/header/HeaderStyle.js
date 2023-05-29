@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { palette } from '../../styles/globalColor';
+import { palette } from '../../styles/theme';
 
 export const HeaderContainer = styled.header`
   position: sticky;
@@ -20,9 +20,7 @@ export const HeaderTop = styled.div`
 
 export const Logo = styled.img`
   display: block;
-  padding-top: 5px;
-  width: 170px;
-  height: 55px;
+  width: 156px;
   cursor: pointer;
 `;
 
@@ -30,10 +28,9 @@ export const SearchContainer = styled.label`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 0 10px;
   width: 320px;
-  height: 44px;
-  padding: 0 10px;
+  height: 46px;
+  padding: 0 10px 0 15px;
   background-color: ${palette.whiteColor};
   border: 1px solid ${palette.grayColor1};
   border-radius: 40px;
@@ -51,27 +48,36 @@ export const SearchInput = styled.input`
   }
 `;
 
-export const SearchButton = styled.svg`
-  fill: ${palette.whiteColor};
-  cursor: pointer;
+export const SearchBtn = styled.button`
+  width: 30px;
+  height: 30px;
   background-color: ${palette.mainColor};
   border-radius: 50%;
-  padding: 7px;
-  opacity: 0.9;
+  position: relative;
+`;
+
+export const SearchImg = styled.svg`
+  fill: ${palette.whiteColor};
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 `;
 
 export const ProfileContainer = styled.div`
+  width: 77px;
+  height: 43px;
   display: flex;
   position: relative;
   justify-content: space-between;
   align-items: center;
-  padding: 3px 5px;
+  padding: 0 5px;
   border: 1px solid ${palette.grayColor1};
   border-radius: 30px;
   cursor: pointer;
 `;
 
-export const ProfileBar = styled.svg`
+export const ProfileBarImg = styled.svg`
   fill: ${palette.grayColor1};
 `;
 
