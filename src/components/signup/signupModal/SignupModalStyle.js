@@ -1,12 +1,10 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { palette, spacing, typography } from '../../../styles/theme';
 import { SharedLoginBtn } from '../../common/Button.jsx';
 import { SharedLoginInput } from '../../common/Input.jsx';
 
 export const SignupModalContent = styled.form`
   padding: ${spacing.medium};
-  height: 400px;
-  overflow-y: scroll;
 `;
 
 export const SharedLabel = styled.label`
@@ -28,48 +26,27 @@ export const ConfirmPasswordLabel = styled(SharedLabel)``;
 
 export const NicknameLabel = styled(SharedLabel)``;
 
+const InputWithError = props => `
+  border-color: ${props.error ? palette.redColor : palette.brownColor};
+  &:focus {
+    border-color: ${props.error ? palette.redColor : palette.brownColor};
+  }
+`;
+
 export const EmailInput = styled(SharedLoginInput)`
-  ${props =>
-    props.error &&
-    css`
-      border-color: ${palette.redColor};
-      &:focus {
-        border-color ${palette.redColor};
-      }
-    `}
+  ${InputWithError}
 `;
 
 export const PasswordInput = styled(SharedLoginInput)`
-  ${props =>
-    props.error &&
-    css`
-      border-color: ${palette.redColor};
-      &:focus {
-        border-color ${palette.redColor};
-      }
-    `}
+  ${InputWithError}
 `;
 
 export const ConfirmPasswordInput = styled(SharedLoginInput)`
-  ${props =>
-    props.error &&
-    css`
-      border-color: ${palette.redColor};
-      &:focus {
-        border-color ${palette.redColor};
-      }
-    `}
+  ${InputWithError}
 `;
 
 export const NicknameInput = styled(SharedLoginInput)`
-  ${props =>
-    props.error &&
-    css`
-      border-color: ${palette.redColor};
-      &:focus {
-        border-color ${palette.redColor};
-      }
-    `}
+  ${InputWithError}
 `;
 
 export const SignupBtn = styled(SharedLoginBtn)`

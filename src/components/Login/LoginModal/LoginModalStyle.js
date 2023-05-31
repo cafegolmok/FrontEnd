@@ -4,8 +4,6 @@ import { SharedLoginBtn } from '../../common/Button.jsx';
 
 export const LoginModalContent = styled.div`
   padding: ${spacing.medium};
-  height: 400px;
-  overflow-y: scroll;
 `;
 
 export const LoginModalText = styled.p`

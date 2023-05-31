@@ -75,6 +75,11 @@ export const ProfileContainer = styled.div`
   border: 1px solid ${palette.grayColor1};
   border-radius: 30px;
   cursor: pointer;
+  transition: box-shadow 0.3s ease-in-out;
+
+  &:hover {
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  }
 `;
 
 export const ProfileBarImg = styled.svg`
