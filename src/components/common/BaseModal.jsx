@@ -34,7 +34,7 @@ const ModalTitle = styled.h2`
 
 const ModalBtn = styled.button`
   position: absolute;
-  top: 54%;
+  top: 50%;
   left: 15px;
   width: 30px;
   height: 30px;
@@ -47,11 +47,19 @@ const ModalBtn = styled.button`
 `;
 
 const CloseBtnImg = styled.svg`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   box-sizing: content-box;
   fill: ${palette.blackColor};
 `;
 
 const BackBtnImg = styled.svg`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   box-sizing: content-box;
   fill: ${palette.blackColor};
 `;
@@ -139,26 +147,26 @@ const BaseModal = ({ isVisible, onClose, onBack, title, children }) => {
         <ModalBtn>
           {currentModalStep === 'login' ||
           currentModalStep === 'signupSuccess' ? (
-            <CloseBtnImg
-              onClick={onClose}
-              xmlns='http://www.w3.org/2000/svg'
-              width='24'
-              height='24'
-              viewBox='0 0 24 24'
-            >
-              <path d='m16.192 6.344-4.243 4.242-4.242-4.242-1.414 1.414L10.535 12l-4.242 4.242 1.414 1.414 4.242-4.242 4.243 4.242 1.414-1.414L13.364 12l4.242-4.242z'></path>
-            </CloseBtnImg>
-          ) : (
-            <BackBtnImg
-              onClick={onBack}
-              xmlns='http://www.w3.org/2000/svg'
-              width='24'
-              height='24'
-              viewBox='0 0 24 24'
-            >
-              <path d='M13.293 6.293 7.586 12l5.707 5.707 1.414-1.414L10.414 12l4.293-4.293z'></path>
-            </BackBtnImg>
-          )}
+              <CloseBtnImg
+                onClick={onClose}
+                xmlns='http://www.w3.org/2000/svg'
+                width='24'
+                height='24'
+                viewBox='0 0 24 24'
+              >
+                <path d='m16.192 6.344-4.243 4.242-4.242-4.242-1.414 1.414L10.535 12l-4.242 4.242 1.414 1.414 4.242-4.242 4.243 4.242 1.414-1.414L13.364 12l4.242-4.242z'></path>
+              </CloseBtnImg>
+            ) : (
+              <BackBtnImg
+                onClick={onBack}
+                xmlns='http://www.w3.org/2000/svg'
+                width='24'
+                height='24'
+                viewBox='0 0 24 24'
+              >   
+                <path d='M13.293 6.293 7.586 12l5.707 5.707 1.414-1.414L10.414 12l4.293-4.293z'></path>
+              </BackBtnImg>
+            )}
         </ModalBtn>
         <ModalTitle>{title}</ModalTitle>
       </ModalTop>
