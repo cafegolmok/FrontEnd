@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-import CafeList from '../components/CafeList/CafeList.jsx';
+import CafeList from '../components/cafeList/CafeList.jsx';
 
 const Home = () => {
   return (
