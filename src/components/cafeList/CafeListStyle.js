@@ -4,7 +4,7 @@ import { palette, spacing, typography } from '../../styles/theme';
 export const Posts = styled.ul`
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  gap: ${spacing.xlarge};
+  gap: ${spacing.large};
 
   @media screen and (max-width: 1459px) {
     grid-template-columns: repeat(4, 1fr);
@@ -18,7 +18,7 @@ export const Posts = styled.ul`
     grid-template-columns: repeat(2, 1fr);
   }
 
-  @media screen and (max-width: 549px) {
+  @media screen and (max-width: 589px) {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
   }
