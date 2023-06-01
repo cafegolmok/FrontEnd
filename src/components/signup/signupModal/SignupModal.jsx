@@ -11,10 +11,10 @@ import {
 import BaseModal from '../../common/BaseModal.jsx';
 import WarningMsg from '../../warningMsg/WarningMsg.jsx';
 import {
-  validatePasswordConfirm,
-  validateEmail,
-  validateNickname,
-  validatePassword,
+  validateSignupPasswordConfirm,
+  validateSignupEmail,
+  validateSignupNickname,
+  validateSignupPassword,
 } from '../../../utils/validation.js';
 
 import {
@@ -56,78 +56,78 @@ const SignupModal = () => {
   const [passwordConfirm, setPasswordConfirm] = useState('');
   const [nickname, setNickname] = useState('');
 
-  const [emailError, setEmailError] = useState('');
-  const [passwordError, setPasswordError] = useState('');
-  const [passwordConfirmError, setPasswordConfirmError] = useState('');
-  const [nicknameError, setNicknameError] = useState('');
+  const [emailErrors, setEmailErrors] = useState('');
+  const [passwordErrors, setPasswordErrors] = useState('');
+  const [passwordConfirmErrors, setPasswordConfirmErrors] = useState('');
+  const [nicknameErrors, setNicknameErrors] = useState('');
 
   // 이벤트 핸들러
   const handleChangeEmail = event => {
-    const emailValidationError = validateEmail(event.target.value);
+    const emailValidationErrors = validateSignupEmail(event.target.value);
     setEmail(event.target.value);
-    setEmailError(emailValidationError !== true ? emailValidationError : '');
+    setEmailErrors(emailValidationErrors.length > 0 ? emailValidationErrors : []);
   };
 
   const handleChangePassword = event => {
-    const passwordValidationError = validatePassword(event.target.value);
+    const passwordValidationErrors = validateSignupPassword(event.target.value);
     setPassword(event.target.value);
-    setPasswordError(
-      passwordValidationError !== true ? passwordValidationError : ''
+    setPasswordErrors(
+      passwordValidationErrors.length > 0 ? passwordValidationErrors : []
     );
   };
 
   const handleChangePasswordConfirm = event => {
-    const passwordConfirmValidationError = validatePasswordConfirm(
+    const passwordConfirmValidationErrors = validateSignupPasswordConfirm(
       password,
       event.target.value
     );
     setPasswordConfirm(event.target.value);
-    setPasswordConfirmError(
-      passwordConfirmValidationError !== true
-        ? passwordConfirmValidationError
-        : ''
+    setPasswordConfirmErrors(
+      passwordConfirmValidationErrors.length > 0
+        ? passwordConfirmValidationErrors
+        : []
     );
   };
 
   const handleChangeNickname = event => {
-    const nicknameValidationError = validateNickname(event.target.value);
+    const nicknameValidationErrors = validateSignupNickname(event.target.value);
     setNickname(event.target.value);
-    setNicknameError(
-      nicknameValidationError !== true ? nicknameValidationError : ''
+    setNicknameErrors(
+      nicknameValidationErrors.length > 0 ? nicknameValidationErrors : []
     );
   };
 
   const handleSubmit = async event => {
-    event.preventDefault();
-
-    const emailValidationError = validateEmail(email);
-    const passwordValidationError = validatePassword(password);
-    const passwordConfirmValidationError = validatePasswordConfirm(
+    const emailValidationErrors = validateSignupEmail(email);
+    const passwordValidationErrors = validateSignupPassword(password);
+    const passwordConfirmValidationErrors = validateSignupPasswordConfirm(
       password,
       passwordConfirm
     );
-    const nicknameValidationError = validateNickname(nickname);
+    const nicknameValidationErrors = validateSignupNickname(nickname);
 
-    setEmailError(emailValidationError !== true ? emailValidationError : '');
-    setPasswordError(
-      passwordValidationError !== true ? passwordValidationError : ''
+    event.preventDefault();
+
+    setEmailErrors(emailValidationErrors.length > 0 ? emailValidationErrors : []);
+    setPasswordErrors(
+      passwordValidationErrors.length > 0 ? passwordValidationErrors : []
     );
-    setPasswordConfirmError(passwordConfirmValidationError);
-    setNicknameError(
-      nicknameValidationError !== true ? nicknameValidationError : ''
+    setPasswordConfirmErrors(passwordConfirmValidationErrors);
+    setNicknameErrors(
+      nicknameValidationErrors.length > 0 ? nicknameValidationErrors : []
     );
 
-    setPasswordConfirmError(
-      passwordConfirmValidationError !== true
-        ? passwordConfirmValidationError
+    setPasswordConfirmErrors(
+      passwordConfirmValidationErrors.length > 0
+        ? passwordConfirmValidationErrors
         : ''
     );
 
     if (
-      !emailValidationError ||
-      !passwordValidationError ||
-      !passwordConfirmValidationError ||
-      !nicknameValidationError
+      emailValidationErrors.length > 0 ||
+      passwordValidationErrors.length > 0 ||
+      passwordConfirmValidationErrors.length > 0 ||
+      nicknameValidationErrors.length > 0
     ) {
       return;
     }
@@ -142,11 +142,11 @@ const SignupModal = () => {
       const user = response.data.userInfo;
       console.log('회원가입 성공', user);
       handleSignupModalToAddProfileImgModal();
-    } catch (error) {
-      if (error.response) {
-        const errorMessage = error.response.data.error;
-        console.log('error', error);
-        console.log(errorMessage);
+    } catch (errors) {
+      if (errors.response) {
+        const errorsMessages = errors.response.data.errors;
+        console.log('errors', errors);
+        console.log(errorsMessages);
       }
     }
   };
@@ -167,9 +167,12 @@ const SignupModal = () => {
           placeholder='이메일을 입력해주세요.'
           value={email}
           onChange={handleChangeEmail}
-          error={!!emailError}
+          errors={emailErrors}
         />
-        <WarningMsg show={!!emailError} message={emailError}></WarningMsg>
+        <WarningMsg
+          show={emailErrors.length > 0}
+          messages={emailErrors}
+        ></WarningMsg>
         <PasswordLabel htmlFor='user-pw'>비밀번호</PasswordLabel>
         <PasswordInput
           type='password'
@@ -178,9 +181,12 @@ const SignupModal = () => {
           placeholder='특수문자 포함 10 ~ 20자 이내로 입력해 주세요.'
           value={password}
           onChange={handleChangePassword}
-          error={!!passwordError}
+          errors={passwordErrors}
         />
-        <WarningMsg show={!!passwordError} message={passwordError}></WarningMsg>
+        <WarningMsg
+          show={passwordErrors.length > 0}
+          messages={passwordErrors}
+        ></WarningMsg>
         <ConfirmPasswordLabel htmlFor='user-pw-check'>
           비밀번호 재확인
         </ConfirmPasswordLabel>
@@ -191,13 +197,12 @@ const SignupModal = () => {
           placeholder='비밀번호를 한번 더 입력해주세요.'
           value={passwordConfirm}
           onChange={handleChangePasswordConfirm}
-          error={!!passwordConfirmError}
+          errors={passwordConfirmErrors}
         />
         <WarningMsg
-          show={!!passwordConfirmError}
-          message={passwordConfirmError}
+          show={passwordConfirmErrors.length > 0}
+          messages={passwordConfirmErrors}
         ></WarningMsg>
-
         <NicknameLabel htmlFor='user-nickname'>닉네임</NicknameLabel>
         <NicknameInput
           type='text'
@@ -206,20 +211,20 @@ const SignupModal = () => {
           placeholder='2 ~ 20자로 입력해 주세요.'
           value={nickname}
           onChange={handleChangeNickname}
-          error={!!nicknameError}
+          errors={nicknameErrors}
         />
-        <WarningMsg show={!!nicknameError} message={nicknameError}></WarningMsg>
-
+        <WarningMsg
+          show={nicknameErrors.length > 0}
+          messages={nicknameErrors}
+        ></WarningMsg>
         <SignupBtn
           type='submit'
           onClick={handleSubmit}
           disabled={
-            !!(
-              emailError ||
-              passwordError ||
-              passwordConfirmError ||
-              nicknameError
-            )
+            emailErrors.length > 0 ||
+            passwordErrors.length > 0 ||
+            passwordConfirmErrors.length > 0 ||
+            nicknameErrors.length > 0
           }
         >
           가입하기

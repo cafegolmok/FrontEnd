@@ -26,27 +26,31 @@ export const ConfirmPasswordLabel = styled(SharedLabel)``;
 
 export const NicknameLabel = styled(SharedLabel)``;
 
-const InputWithError = props => `
-  border-color: ${props.error ? palette.redColor : palette.brownColor};
+const InputWithErrors = props => `
+  border-color: ${
+  props.errors.length > 0 ? palette.redColor : palette.brownColor
+};
   &:focus {
-    border-color: ${props.error ? palette.redColor : palette.brownColor};
+  border-color: ${
+  props.errors.length > 0 ? palette.redColor : palette.brownColor
+};
   }
 `;
 
 export const EmailInput = styled(SharedLoginInput)`
-  ${InputWithError}
+  ${InputWithErrors}
 `;
 
 export const PasswordInput = styled(SharedLoginInput)`
-  ${InputWithError}
+  ${InputWithErrors}
 `;
 
 export const ConfirmPasswordInput = styled(SharedLoginInput)`
-  ${InputWithError}
+  ${InputWithErrors}
 `;
 
 export const NicknameInput = styled(SharedLoginInput)`
-  ${InputWithError}
+  ${InputWithErrors}
 `;
 
 export const SignupBtn = styled(SharedLoginBtn)`
