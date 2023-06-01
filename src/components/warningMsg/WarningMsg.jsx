@@ -14,13 +14,21 @@ export const WarningMsgContainer = styled.strong`
   display: ${props => (props.show ? 'block' : 'none')};
 `;
 
-const WarningMsg = ({ show, message }) => (
-  <WarningMsgContainer show={show}>{message}</WarningMsgContainer>
+const WarningMsg = ({ show, messages }) => (
+  <>
+    {messages &&
+      messages.length > 0 &&
+      messages.map((message, index) => (
+        <WarningMsgContainer key={index} show={show}>
+          {message}
+        </WarningMsgContainer>
+      ))}
+  </>
 );
 
 WarningMsg.propTypes = {
   show: PropTypes.bool.isRequired,
-  message: PropTypes.string.isRequired,
+  messages: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 export default WarningMsg;
