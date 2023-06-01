@@ -18,7 +18,7 @@ export const PasswordLabel = styled(SharedLabel)``;
 
 export const EmailInput = styled(SharedLoginInput)`
   ${props =>
-    props.error &&
+    props.errors.length > 0 &&
     css`
       border-color: ${palette.redColor};
       &:focus {
@@ -29,7 +29,7 @@ export const EmailInput = styled(SharedLoginInput)`
 
 export const PasswordInput = styled(SharedLoginInput)`
   ${props =>
-    props.error &&
+    props.errors.length > 0 &&
     css`
       border-color: ${palette.redColor};
       &:focus {
