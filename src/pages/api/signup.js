@@ -1,10 +1,10 @@
 // pages/api/signup.js
 
 import {
-  validateEmail,
-  validateNickname,
-  validatePassword,
-  validatePasswordConfirm
+  validateSignupEmail,
+  validateSignupNickname,
+  validateSignupPassword,
+  validateSignupPasswordConfirm,
 } from '../../utils/validation';
 // 알맞은 유효성 검사 함수를 불러옵니다.
 
@@ -18,7 +18,7 @@ const signup = async (req, res) => {
     req.body.userInfo;
 
   // 닉네임 유효성 검사
-  const nicknameValidationResult = validateNickname(nickname);
+  const nicknameValidationResult = validateSignupNickname(nickname);
   if (nicknameValidationResult !== true) {
     res
       .status(400)
@@ -27,7 +27,7 @@ const signup = async (req, res) => {
   }
 
   // 이메일 유효성 검사
-  const emailValidationResult = validateEmail(email);
+  const emailValidationResult = validateSignupEmail(email);
   if (emailValidationResult !== true) {
     res
       .status(400)
@@ -36,7 +36,7 @@ const signup = async (req, res) => {
   }
 
   // 비밀번호 유효성 검사
-  const passwordValidationResult = validatePassword(password);
+  const passwordValidationResult = validateSignupPassword(password);
   if (passwordValidationResult !== true) {
     res
       .status(400)

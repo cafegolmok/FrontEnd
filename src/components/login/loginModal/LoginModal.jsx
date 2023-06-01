@@ -1,4 +1,4 @@
-// src/components/Login/LoginModal/LoginModal.jsx
+// src/components/login/loginModal/LoginModal.jsx
 
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
@@ -18,6 +18,11 @@ import {
 } from './LoginModalStyle';
 import KakaoLoginBtn from '../KakaoLoginBtn.jsx';
 
+import {
+  validateLoginEmail,
+  validateLoginPassword,
+} from '../../../utils/validation';
+
 const LoginModal = () => {
   const isLoginModalVisible = useSelector(
     state => state.modal.isLoginModalVisible
@@ -34,68 +39,45 @@ const LoginModal = () => {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [isEmailEmpty, setIsEmailEmpty] = useState(false);
-  const [isEmailInvalid, setIsEmailInvalid] = useState(false);
-  const [isPasswordEmpty, setIsPasswordEmpty] = useState(false);
-  const [isLoginError, setIsLoginError] = useState(false);
+  const [emailErrors, setEmailErrors] = useState('');
+  const [passwordErrors, setPasswordErrors] = useState('');
 
   const handleChangeEmail = event => {
+    const emailValidationErrors = validateLoginEmail(event.target.value);
     setEmail(event.target.value);
-
-    // 이메일이 비어있지 않고 형식이 잘못된 경우에만 경고 메시지 표시
-    if (event.target.value !== '' && !validateEmail(event.target.value)) {
-      setIsEmailInvalid(true);
-    } else {
-      setIsEmailInvalid(false);
-    }
-
-    // 이메일이 비어있는지 여부 확인
-    setIsEmailEmpty(event.target.value === '');
-  };
-
-  const validateEmail = email => {
-    const regex = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/;
-    return regex.test(email);
+    setEmailErrors(
+      emailValidationErrors.length > 0 ? emailValidationErrors : []
+    );
   };
 
   const handleChangePassword = event => {
+    const passwordValidationErrors = validateLoginPassword(event.target.value);
     setPassword(event.target.value);
-
-    // 패스워드가 비어있는지 확인
-    setIsPasswordEmpty(event.target.value === '');
+    setPasswordErrors(
+      passwordValidationErrors.length > 0 ? passwordValidationErrors : []
+    );
   };
 
   const handleSubmit = async event => {
+    const emailValidationErrors = validateLoginEmail(email);
+    const passwordValidationErrors = validateLoginPassword(password);
     event.preventDefault();
-    if (email === '') {
-      setIsEmailEmpty(true);
-    } else {
-      setIsEmailEmpty(false);
-    }
 
-    if (email !== '' && !validateEmail(email)) {
-      setIsEmailInvalid(true);
-    } else {
-      setIsEmailInvalid(false);
-    }
+    setEmailErrors(
+      emailValidationErrors.length > 0 ? emailValidationErrors : []
+    );
+    setPasswordErrors(
+      passwordValidationErrors.length > 0 ? passwordValidationErrors : []
+    );
 
-    if (password === '') {
-      setIsPasswordEmpty(true);
-    } else {
-      setIsPasswordEmpty(false);
-    }
-
-    // 입력이 올바르지 않은 경우에는 로그인 시도를 중단
-    if (isEmailEmpty || isEmailInvalid || isPasswordEmpty) {
+    if (emailErrors.length > 0 || passwordErrors.length > 0) {
       return;
     }
 
-    // 이메일과 패스워드가 존재하지 않을떄 로직 추가
-
     try {
       console.log(email, password);
-    } catch (error) {
-      setIsLoginError(true);
+    } catch (errors) {
+      console.log(errors);
     }
   };
 
@@ -113,10 +95,8 @@ const LoginModal = () => {
           handleChangeEmail={handleChangeEmail}
           handleChangePassword={handleChangePassword}
           handleSubmit={handleSubmit}
-          isEmailEmpty={isEmailEmpty}
-          isEmailInvalid={isEmailInvalid}
-          isPasswordEmpty={isPasswordEmpty}
-          isLoginError={isLoginError}
+          emailErrors={emailErrors}
+          passwordErrors={passwordErrors}
         />
         <OrText>또는</OrText>
         <KakaoLoginBtn />
