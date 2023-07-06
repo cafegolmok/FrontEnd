@@ -1,8 +1,9 @@
 // src/components/SignupModal/SignupModal.jsx
 
 import React, { useState } from 'react';
-import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
+
+import axiosInstance from '../../../axios.js';
 import {
   hideSignupModal,
   signupModalToLoginModal,
@@ -37,6 +38,7 @@ const SignupModal = () => {
 
   const dispatch = useDispatch();
 
+  // 액션 디스패치하는 핸들러 함수 정의
   const handleHideSignupModal = () => {
     dispatch(hideSignupModal());
   };
@@ -50,24 +52,30 @@ const SignupModal = () => {
     dispatch(signupModalToAddProfileImgModal());
   };
 
-  // 각 입력창의 값과 검증에 대한 상태 정의
+  // 각 입력창의 상태와 에러 메시지를 관리할 상태 정의
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [passwordConfirm, setPasswordConfirm] = useState('');
   const [nickname, setNickname] = useState('');
 
-  const [emailErrors, setEmailErrors] = useState('');
+  const [emailErrors, setEmailErrors] = useState([]);
   const [passwordErrors, setPasswordErrors] = useState('');
   const [passwordConfirmErrors, setPasswordConfirmErrors] = useState('');
-  const [nicknameErrors, setNicknameErrors] = useState('');
+  const [nicknameErrors, setNicknameErrors] = useState([]);
+  const [serverEmailError, setServerEmailError] = useState('');
+  const [serverNicknameError, setServerNicknameError] = useState('');
 
-  // 이벤트 핸들러
+  // 이메일 핸들러
   const handleChangeEmail = event => {
     const emailValidationErrors = validateSignupEmail(event.target.value);
     setEmail(event.target.value);
-    setEmailErrors(emailValidationErrors.length > 0 ? emailValidationErrors : []);
+    setEmailErrors(
+      emailValidationErrors.length > 0 ? emailValidationErrors : []
+    );
+    setServerEmailError('');
   };
 
+  // 비밀번호 핸들러
   const handleChangePassword = event => {
     const passwordValidationErrors = validateSignupPassword(event.target.value);
     setPassword(event.target.value);
@@ -76,6 +84,7 @@ const SignupModal = () => {
     );
   };
 
+  // 비밀번호 확인 핸들러
   const handleChangePasswordConfirm = event => {
     const passwordConfirmValidationErrors = validateSignupPasswordConfirm(
       password,
@@ -89,15 +98,21 @@ const SignupModal = () => {
     );
   };
 
+  // 닉네임 핸들러
   const handleChangeNickname = event => {
     const nicknameValidationErrors = validateSignupNickname(event.target.value);
     setNickname(event.target.value);
     setNicknameErrors(
       nicknameValidationErrors.length > 0 ? nicknameValidationErrors : []
     );
+    setServerNicknameError('');
   };
 
-  const handleSubmit = async event => {
+  // 회원가입 폼 제출 이벤트 핸들러
+  const handleSignupSubmit = async event => {
+    event.preventDefault();
+
+    // 모든 입력 값에 대해 유효성 검사 진행 및 검사 결과 상태에 반영
     const emailValidationErrors = validateSignupEmail(email);
     const passwordValidationErrors = validateSignupPassword(password);
     const passwordConfirmValidationErrors = validateSignupPasswordConfirm(
@@ -106,9 +121,9 @@ const SignupModal = () => {
     );
     const nicknameValidationErrors = validateSignupNickname(nickname);
 
-    event.preventDefault();
-
-    setEmailErrors(emailValidationErrors.length > 0 ? emailValidationErrors : []);
+    setEmailErrors(
+      emailValidationErrors.length > 0 ? emailValidationErrors : []
+    );
     setPasswordErrors(
       passwordValidationErrors.length > 0 ? passwordValidationErrors : []
     );
@@ -123,6 +138,7 @@ const SignupModal = () => {
         : ''
     );
 
+    // 모든 입력 값이 유효하지 않으면 함수를 종료
     if (
       emailValidationErrors.length > 0 ||
       passwordValidationErrors.length > 0 ||
@@ -132,8 +148,9 @@ const SignupModal = () => {
       return;
     }
 
+    // 모든 입력 값이 유효하면 서버에 회원가입 요청
     try {
-      const response = await axios.post('/api/signup', {
+      const response = await axiosInstance.post('/auth/signup', {
         nickname,
         email,
         password,
@@ -141,12 +158,27 @@ const SignupModal = () => {
       });
       const user = response.data.userInfo;
       console.log('회원가입 성공', user);
+
+      // 회원가입에 성공하면 프로필 이미지 설정 모달로 전환
       handleSignupModalToAddProfileImgModal();
     } catch (errors) {
-      if (errors.response) {
-        const errorsMessages = errors.response.data.errors;
-        console.log('errors', errors);
-        console.log(errorsMessages);
+      // 서버에서 에러 메시지를 받으면 해당 메시지를 상태에 반영
+      if (errors.response && errors.response.data) {
+        console.log(errors.response.data);
+
+        const serverErrorMessages = errors.response.data.errors;
+
+        if (errors.response.status === 409) {
+          serverErrorMessages.forEach(errorMessage => {
+            if (errorMessage === '이미 사용 중인 이메일입니다.') {
+              setServerEmailError(errorMessage);
+            }
+            if (errorMessage === '이미 사용 중인 닉네임입니다.') {
+              setServerNicknameError(errorMessage);
+            }
+          });
+          return;
+        }
       }
     }
   };
@@ -167,12 +199,15 @@ const SignupModal = () => {
           placeholder='이메일을 입력해주세요.'
           value={email}
           onChange={handleChangeEmail}
-          errors={emailErrors}
+          errors={emailErrors.length > 0 ? emailErrors : serverEmailError}
         />
         <WarningMsg
           show={emailErrors.length > 0}
           messages={emailErrors}
         ></WarningMsg>
+        {serverEmailError && (
+          <WarningMsg show={true} messages={[serverEmailError]} />
+        )}
         <PasswordLabel htmlFor='user-pw'>비밀번호</PasswordLabel>
         <PasswordInput
           type='password'
@@ -211,15 +246,20 @@ const SignupModal = () => {
           placeholder='2 ~ 20자로 입력해 주세요.'
           value={nickname}
           onChange={handleChangeNickname}
-          errors={nicknameErrors}
+          errors={
+            nicknameErrors.length > 0 ? nicknameErrors : serverNicknameError
+          }
         />
         <WarningMsg
           show={nicknameErrors.length > 0}
           messages={nicknameErrors}
         ></WarningMsg>
+        {serverNicknameError && (
+          <WarningMsg show={true} messages={[serverNicknameError]} />
+        )}
         <SignupBtn
           type='submit'
-          onClick={handleSubmit}
+          onClick={handleSignupSubmit}
           disabled={
             emailErrors.length > 0 ||
             passwordErrors.length > 0 ||
