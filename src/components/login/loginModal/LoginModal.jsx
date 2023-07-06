@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import axiosInstance from '../../../axios.js';
 
 import {
   hideLoginModal,
@@ -24,24 +25,31 @@ import {
 } from '../../../utils/validation';
 
 const LoginModal = () => {
+  // 로그인 모달의 가시성 상태
   const isLoginModalVisible = useSelector(
     state => state.modal.isLoginModalVisible
   );
   const dispatch = useDispatch();
 
+  // 로그인 모달을 숨기기
   const handleHideLoginModal = () => {
     dispatch(hideLoginModal());
   };
 
+  // 로그인 모달에서 회원가입 모달로 전환
   const handleLoginModalToSignupModal = () => {
     dispatch(loginModalToSignupModal());
   };
 
+  // 이메일과 비밀번호 입력값을 위한 상태
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [emailErrors, setEmailErrors] = useState('');
-  const [passwordErrors, setPasswordErrors] = useState('');
 
+  // 검증 에러들을 위한 상태
+  const [emailErrors, setEmailErrors] = useState([]);
+  const [passwordErrors, setPasswordErrors] = useState([]);
+
+  // 이메일 입력값 변경을 처리
   const handleChangeEmail = event => {
     const emailValidationErrors = validateLoginEmail(event.target.value);
     setEmail(event.target.value);
@@ -50,6 +58,7 @@ const LoginModal = () => {
     );
   };
 
+  // 비밀번호 입력값 변경을 처리
   const handleChangePassword = event => {
     const passwordValidationErrors = validateLoginPassword(event.target.value);
     setPassword(event.target.value);
@@ -58,10 +67,12 @@ const LoginModal = () => {
     );
   };
 
-  const handleSubmit = async event => {
+  // 로그인 폼 제출을 처리
+  const handleLoginSubmit = async event => {
+    event.preventDefault();
+
     const emailValidationErrors = validateLoginEmail(email);
     const passwordValidationErrors = validateLoginPassword(password);
-    event.preventDefault();
 
     setEmailErrors(
       emailValidationErrors.length > 0 ? emailValidationErrors : []
@@ -70,14 +81,21 @@ const LoginModal = () => {
       passwordValidationErrors.length > 0 ? passwordValidationErrors : []
     );
 
-    if (emailErrors.length > 0 || passwordErrors.length > 0) {
+    if (
+      emailValidationErrors.length > 0 ||
+      passwordValidationErrors.length > 0
+    ) {
       return;
     }
 
     try {
-      console.log(email, password);
-    } catch (errors) {
-      console.log(errors);
+      const response = await axiosInstance.post('/login', {
+        email,
+        password,
+      });
+      console.log(response.data);
+    } catch (error) {
+      console.error(error);
     }
   };
 
@@ -87,14 +105,14 @@ const LoginModal = () => {
       onClose={handleHideLoginModal}
       title='로그인 또는 회원가입'
     >
-      <LoginModalContent onSubmit={handleSubmit}>
+      <LoginModalContent onSubmit={handleLoginSubmit}>
         <LoginModalText>☕️ 카페골목에 오신 것을 환영합니다.</LoginModalText>
         <EmailLogin
           email={email}
           password={password}
           handleChangeEmail={handleChangeEmail}
           handleChangePassword={handleChangePassword}
-          handleSubmit={handleSubmit}
+          handleLoginSubmit={handleLoginSubmit}
           emailErrors={emailErrors}
           passwordErrors={passwordErrors}
         />

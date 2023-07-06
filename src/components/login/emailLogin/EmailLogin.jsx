@@ -20,7 +20,7 @@ const EmailLogin = ({
   handleChangePassword,
   emailErrors,
   passwordErrors,
-  handleSubmit,
+  handleLoginSubmit,
 }) => {
   return (
     <EmailLoginContainer>
@@ -54,7 +54,7 @@ const EmailLogin = ({
       <LoginBtn
         type='submit'
         disabled={emailErrors.length > 0 || passwordErrors.length > 0}
-        onClick={handleSubmit}
+        onClick={handleLoginSubmit}
       >
         로그인
       </LoginBtn>
@@ -69,7 +69,7 @@ EmailLogin.propTypes = {
   handleChangePassword: PropTypes.func.isRequired,
   emailErrors: PropTypes.string.isRequired,
   passwordErrors: PropTypes.string.isRequired,
-  handleSubmit: PropTypes.func.isRequired,
+  handleLoginSubmit: PropTypes.func.isRequired,
 };
 
 export default EmailLogin;
