@@ -21,6 +21,7 @@ const EmailLogin = ({
   emailErrors,
   passwordErrors,
   handleLoginSubmit,
+  serverLoginErrors,
 }) => {
   return (
     <EmailLoginContainer>
@@ -32,7 +33,7 @@ const EmailLogin = ({
         placeholder='이메일을 입력해주세요.'
         value={email}
         onChange={handleChangeEmail}
-        errors={emailErrors}
+        errors={passwordErrors.length > 0 ? passwordErrors : serverLoginErrors}
       />
       <WarningMsg show={emailErrors.length > 0} messages={emailErrors} />
 
@@ -44,13 +45,16 @@ const EmailLogin = ({
         placeholder='비밀번호를 입력해주세요.'
         value={password}
         onChange={handleChangePassword}
-        errors={passwordErrors}
+        errors={passwordErrors.length > 0 ? passwordErrors : serverLoginErrors}
       />
       <WarningMsg show={passwordErrors.length > 0} messages={passwordErrors} />
-      {/* <WarningMsg
-        show={isLoginErrors}
-        messages='로그인 정보가 올바르지 않습니다. 다시 시도해 주세요.'
-      /> */}
+      {serverLoginErrors && (
+        <WarningMsg
+          show={serverLoginErrors}
+          messages={['로그인 정보가 올바르지 않습니다. 다시 시도해 주세요.']}
+        />
+      )}
+
       <LoginBtn
         type='submit'
         disabled={emailErrors.length > 0 || passwordErrors.length > 0}
@@ -67,9 +71,10 @@ EmailLogin.propTypes = {
   password: PropTypes.string.isRequired,
   handleChangeEmail: PropTypes.func.isRequired,
   handleChangePassword: PropTypes.func.isRequired,
-  emailErrors: PropTypes.string.isRequired,
-  passwordErrors: PropTypes.string.isRequired,
+  emailErrors: PropTypes.arrayOf(PropTypes.string).isRequired,
+  passwordErrors: PropTypes.arrayOf(PropTypes.string).isRequired,
   handleLoginSubmit: PropTypes.func.isRequired,
+  serverLoginErrors: PropTypes.string.isRequired,
 };
 
 export default EmailLogin;
