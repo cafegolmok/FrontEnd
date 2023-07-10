@@ -1,102 +1,84 @@
+// src/components/signup/addProfileImg/AddProfileImg.jsx
+
 import React, { useState, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import styled from 'styled-components';
-import { palette, spacing, typography } from '../../../styles/theme.js';
-
+import axiosInstance from '../../../axios.js';
 import BaseModal from '../../common/BaseModal.jsx';
 import {
   addProfileImgModalToSignupModal,
   addProfileImgModalTosignupSuccessModal,
 } from '../../../store/modalSlice.js';
-import { SharedLoginBtn } from '../../common/Button.jsx';
+
+import {
+  AddProfileImgModalContent,
+  AddProfileModalText,
+  ProfileImgLabel,
+  ProfileImgInput,
+  UploadProfileImgBtn,
+  NoUploadProfileImgBtn,
+  SubmitProfileImgBtn,
+} from './AddProgileImgStyle.js';
 
 import userProfile from '../../../../public/assets/icons/user.svg';
 
-const AddProfileImgModalContent = styled.form`
-  padding: ${spacing.medium};
-`;
-
-const AddProfileModalText = styled.p`
-  margin-bottom: ${spacing.medium};
-  font-weight: ${typography.fontWeight.medium};
-  font-size: ${typography.fontSize.large};
-  line-height: 1.5;
-  color: ${palette.blackColor};
-  text-align: center;
-  white-space: pre-line;
-`;
-
-const ProfileImgLabel = styled.label`
-  width: 170px;
-  display: block;
-  margin: 0 auto 55px;
-  border-radius: 50%;
-  background-color: ${palette.grayColor1};
-  cursor: pointer;
-  aspect-ratio: 1/1;
-  background-image: ${props =>
-    props.background ? `url(${props.background})` : `url(${userProfile})`};
-  background-size: cover;
-  background-position: center;
-`;
-
-const ProfileImgInput = styled.input`
-  display: none;
-`;
-
-const UploadProfileImgBtn = styled(SharedLoginBtn)`
-  margin-bottom: ${spacing.medium};
-  background-color: ${props =>
-    props.isImageUploaded ? palette.whiteColor : palette.mainColor};
-  font-weight: ${typography.fontWeight.medium};
-  color: ${props =>
-    props.isImageUploaded ? palette.blackColor : palette.whiteColor};
-  ${props =>
-    props.isImageUploaded && `border: 1px solid ${palette.grayColor1};`}
-`;
-
-const NoUploadProfileImgBtn = styled(SharedLoginBtn)`
-  font-weight: ${typography.fontWeight.medium};
-  border: 1px solid ${palette.grayColor1};
-  color: ${palette.blackColor};
-`;
-
-const SubmitProfileImgBtn = styled(SharedLoginBtn)`
-  font-weight: ${typography.fontWeight.medium};;
-  background-color: ${palette.mainColor};
-  color: ${palette.whiteColor};
-`;
-
 const AddProfileImg = () => {
+  // 리덕스 스토어로부터 현재 모달의 상태 가져오기
   const isAddProfileImgModalVisible = useSelector(
     state => state.modal.isAddProfileImgModalVisible
   );
   const dispatch = useDispatch();
+
+  // 프로필 이미지 미리보기와 이미지 업로드 여부를 관리하 상태
   const [preview, setPreview] = useState(null);
   const [isImageUploaded, setIsImageUploaded] = useState(false);
+
+  // input 참조를 저장
   const fileInputRef = useRef(null);
 
+  // 모달을 회원가입 모달로 전환
   const handleAddProfileImgModalToSignupModal = () => {
     dispatch(addProfileImgModalToSignupModal());
   };
 
+  // 모달을 회원가입 성공 모달로 전환
   const handleAddProfileImgModalTosignupSuccessModal = () => {
     dispatch(addProfileImgModalTosignupSuccessModal());
   };
 
+  // 프로필 이미지 등록을 처리
   const handleSubmit = async event => {
     event.preventDefault();
 
     try {
-      console.log('프로필 이미지 등록!');
+      if (isImageUploaded) {
+        // FormData 인스턴스 생성
+        const formData = new FormData();
+
+        // 이미지 파일을 formData에 추가
+        const file = fileInputRef.current.files[0];
+        formData.append('profileImage', file);
+
+        // 서버에 파일을 전송
+        const response = await axiosInstance.patch('/auth/profileImage', formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        });
+
+        console.log(response.data);
+      }
+
       handleAddProfileImgModalTosignupSuccessModal();
     } catch (error) {
       console.log(error);
     }
   };
 
+  // 이미지를 선택하면 해당 이미지를 미리보기로 설정
   const handleImageChange = event => {
+    event.stopPropagation();
+
     let reader = new FileReader();
     let file = event.target.files[0];
 
@@ -110,7 +92,9 @@ const AddProfileImg = () => {
     }
   };
 
-  const handleChooseFile = () => {
+  // 파일 선택 대화상자를 열어 사용자가 이미지를 선택
+  const handleChooseFile = event => {
+    event.preventDefault();
     fileInputRef.current.click();
   };
 
@@ -144,7 +128,7 @@ const AddProfileImg = () => {
               완료
             </SubmitProfileImgBtn>
             <UploadProfileImgBtn
-              onClick={handleChooseFile}
+              onClick={event => handleChooseFile(event)}
               isImageUploaded={isImageUploaded}
             >
               사진 변경하기
@@ -153,7 +137,7 @@ const AddProfileImg = () => {
         ) : (
           <>
             <UploadProfileImgBtn
-              onClick={handleChooseFile}
+              onClick={event => handleChooseFile(event)}
               isImageUploaded={isImageUploaded}
             >
               사진 업로드하기
