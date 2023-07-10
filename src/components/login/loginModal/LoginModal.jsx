@@ -8,7 +8,7 @@ import {
   hideLoginModal,
   loginModalToSignupModal,
 } from '../../../store/modalSlice';
-import { loginSuccess, loginFailure } from '../../../store/loginSlice';
+import { login } from '../../../store/authSlice.js';
 import BaseModal from '../../common/BaseModal.jsx';
 import EmailLogin from '../emailLogin/EmailLogin.jsx';
 
@@ -99,14 +99,21 @@ const LoginModal = () => {
       });
       console.log(response.data);
 
-      dispatch(loginSuccess(response.data)); // 로그인 성공 액션을 디스패치
+      dispatch(login()); // 로그인 성공 액션을 디스패치
       handleHideLoginModal(); // 로그인이 성공적으로 완료되면 모달을 숨김
     } catch (error) {
       const serverErrorMessages = error.response.data.message;
       if (error.response && error.response.status === 401) {
+        // 이메일 또는 비밀번호가 일치하지 않음
         setServerLoginErrors(serverErrorMessages);
-        dispatch(loginFailure(serverErrorMessages)); // 로그인 실패 액션을 디스패치
+        console.log(error.response.data);
         console.log(serverErrorMessages);
+      }
+
+      if (error.response.status === 429) {
+        // 로그인 요청이 너무 많이 감지됨
+        setServerLoginErrors(serverErrorMessages);
+        console.log(error.response.data.message);
       }
       console.error(error);
     }

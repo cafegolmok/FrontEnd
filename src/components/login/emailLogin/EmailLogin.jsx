@@ -51,7 +51,7 @@ const EmailLogin = ({
       {serverLoginErrors && (
         <WarningMsg
           show={serverLoginErrors}
-          messages={['로그인 정보가 올바르지 않습니다. 다시 시도해 주세요.']}
+          messages={[serverLoginErrors]}
         />
       )}
 
