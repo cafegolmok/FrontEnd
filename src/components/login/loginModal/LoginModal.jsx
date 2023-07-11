@@ -97,6 +97,7 @@ const LoginModal = () => {
         email,
         password,
       });
+      console.log(response);
       console.log(response.data);
 
       dispatch(login()); // 로그인 성공 액션을 디스패치

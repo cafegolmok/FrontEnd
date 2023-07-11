@@ -33,7 +33,7 @@ const EmailLogin = ({
         placeholder='이메일을 입력해주세요.'
         value={email}
         onChange={handleChangeEmail}
-        errors={passwordErrors.length > 0 ? passwordErrors : serverLoginErrors}
+        errors={emailErrors.length > 0 ? emailErrors : serverLoginErrors}
       />
       <WarningMsg show={emailErrors.length > 0} messages={emailErrors} />
 
@@ -49,12 +49,8 @@ const EmailLogin = ({
       />
       <WarningMsg show={passwordErrors.length > 0} messages={passwordErrors} />
       {serverLoginErrors && (
-        <WarningMsg
-          show={serverLoginErrors}
-          messages={[serverLoginErrors]}
-        />
+        <WarningMsg show={serverLoginErrors} messages={[serverLoginErrors]} />
       )}
-
       <LoginBtn
         type='submit'
         disabled={emailErrors.length > 0 || passwordErrors.length > 0}

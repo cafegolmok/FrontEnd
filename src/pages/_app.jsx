@@ -1,7 +1,8 @@
 // src/pages/_app.jsx
 
-import React from 'react';
-import { useSelector, Provider } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useSelector, Provider, useDispatch } from 'react-redux';
+
 import { createWrapper } from 'next-redux-wrapper';
 import Head from 'next/head';
 import PropTypes from 'prop-types';
@@ -19,8 +20,34 @@ import LoginModal from '../components/login/loginModal/LoginModal.jsx';
 import AddProfileImg from '../components/signup/addProfileImg/AddProfileImg.jsx';
 import SignupSuccess from '../components/signup/signupSuccess/SignupSuccess.jsx';
 
+import axiosInstance from '../axios.js';
+import { login, logout } from '../store/authSlice.js';
+
 const App = ({ Component, pageProps }) => {
+  const dispatch = useDispatch();
   const currentModalStep = useSelector(state => state.modal.currentModalStep);
+
+  // 로그인 상태를 확인하는 함수
+  const checkLoginStatus = async () => {
+    try {
+      const response = await axiosInstance.get('/auth/check-login-status');
+
+      // 응답이 성공적인 경우, 프론트엔드 상태 업데이트
+      if (response.status === 200) {
+        dispatch(login()); // 사용자가 로그인한 경우
+      } else {
+        dispatch(logout()); // 사용자가 로그아웃한 경우
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  // 컴포넌트 마운트 시 로그인 상태 확인
+  useEffect(() => {
+    checkLoginStatus();
+  }, []);
+
   return (
     <>
       <Provider store={store}>
