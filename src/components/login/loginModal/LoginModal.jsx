@@ -100,7 +100,9 @@ const LoginModal = () => {
       console.log(response);
       console.log(response.data);
 
-      dispatch(login()); // 로그인 성공 액션을 디스패치
+      const user = response.data.user;
+
+      dispatch(login(user)); // 로그인 성공 액션을 디스패치, user 정보를 payload로 전달
       handleHideLoginModal(); // 로그인이 성공적으로 완료되면 모달을 숨김
     } catch (error) {
       const serverErrorMessages = error.response.data.message;

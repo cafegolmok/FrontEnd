@@ -86,8 +86,15 @@ export const ProfileBarImg = styled.svg`
   fill: ${palette.grayColor1};
 `;
 
-export const ProfileImg = styled.svg`
+export const DefaultProfileImg = styled.svg`
   fill: ${palette.grayColor1};
+`;
+
+export const ProfileImg = styled.img`
+  width: 29px;
+  height: 29px;
+  border-radius: 50%;
+  aspect-ratio: 1/1;
 `;
 
 export const ProfileMoreInfo = styled.ul`

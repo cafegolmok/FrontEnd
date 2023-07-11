@@ -157,7 +157,7 @@ const SignupModal = () => {
         password,
         passwordConfirm,
       });
-      const user = response.data.userInfo;
+      const user = response.data.user
       console.log('회원가입 성공', user);
 
       // 회원가입에 성공하면 바로 로그인 상태로 전환

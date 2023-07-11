@@ -10,6 +10,7 @@ import {
   Logo,
   ProfileContainer,
   ProfileBarImg,
+  DefaultProfileImg,
   ProfileImg,
   SearchImg,
   SearchContainer,
@@ -27,8 +28,8 @@ import { logout } from '../../store/authSlice';
 const Header = () => {
   const dispatch = useDispatch();
   const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
-  const userProfileImage = useSelector(state => state.auth.userProfile?.image); // 사용자 프로필 이미지 상태 가져오기
-
+  const userProfileImage = useSelector(state => state.auth.user?.profileImage);
+  console.log(userProfileImage);
   const handleshowLoginModal = () => {
     dispatch(showLoginModal());
     setShowProfileMoreInfo(false);
@@ -112,16 +113,20 @@ const Header = () => {
             <path d='M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z'></path>
           </ProfileBarImg>
           {isLoggedIn && userProfileImage ? (
-            <ProfileImg src={userProfileImage} width='35' height='35' /> // 로그인한 경우에는 userProfileImage 사용
-          ) : (
             <ProfileImg
+              src={`http://localhost:8000/${userProfileImage}`}
+              width='35'
+              height='35'
+            />
+          ) : (
+            <DefaultProfileImg
               xmlns='http://www.w3.org/2000/svg'
               width='35'
               height='35'
               viewBox='0 0 24 24'
             >
               <path d='M12 2C6.579 2 2 6.579 2 12s4.579 10 10 10 10-4.579 10-10S17.421 2 12 2zm0 5c1.727 0 3 1.272 3 3s-1.273 3-3 3c-1.726 0-3-1.272-3-3s1.274-3 3-3zm-5.106 9.772c.897-1.32 2.393-2.2 4.106-2.2h2c1.714 0 3.209.88 4.106 2.2C15.828 18.14 14.015 19 12 19s-3.828-.86-5.106-2.228z'></path>
-            </ProfileImg>
+            </DefaultProfileImg>
           )}
 
           {showProfileMoreInfo && !isLoggedIn && (
