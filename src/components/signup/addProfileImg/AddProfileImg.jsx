@@ -72,9 +72,9 @@ const AddProfileImg = () => {
         );
 
         console.log(response.data);
-        
+
         // 서버로부터 받은 사용자 정보로 프로필 이미지 상태 업데이트
-        dispatch(updateProfileImage(response.data.user.profileImage));
+        dispatch(updateProfileImage(response.data.profileImage));
       }
 
       handleAddProfileImgModalTosignupSuccessModal();
