@@ -65,15 +65,15 @@ export const SearchImg = styled.svg`
 `;
 
 export const ProfileContainer = styled.div`
-  width: 77px;
-  height: 43px;
+  width: 75px;
+  height: 40px;
   display: flex;
   position: relative;
   justify-content: space-between;
   align-items: center;
   padding: 0 5px;
   border: 1px solid ${palette.grayColor1};
-  border-radius: 30px;
+  border-radius: 20px;
   cursor: pointer;
   transition: box-shadow 0.3s ease-in-out;
 
@@ -91,8 +91,8 @@ export const DefaultProfileImg = styled.svg`
 `;
 
 export const ProfileImg = styled.img`
-  width: 29px;
-  height: 29px;
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
   aspect-ratio: 1/1;
 `;

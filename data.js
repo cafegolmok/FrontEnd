@@ -4,7 +4,7 @@ const cafeDataList = [
     cafeName: '오쎄',
     starRating: 4.61,
     location: '사당역 11번 출구에서264m',
-    tags: ['커피', '디저트', '브런치'],
+    tags: ['커피', '디저트', '브런치',  '브런치',  '브런치',  '브런치',  '브런치',  '브런치'],
     imgToUrl:
       'https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMTA2MjlfODUg%2FMDAxNjI0OTIzOTcyNzA1.GVjt2m62_xl3U54uzu2ckUDZMmyZd6TcIc1ziTOgcUgg.vEvhXJS_zRbdTVdydtKj8WK6G98n0l_fLiJjwJI8MzMg.JPEG.thddldlsrks%2FIMG_3209.jpg',
     phoneNumber: '02-523-0077',

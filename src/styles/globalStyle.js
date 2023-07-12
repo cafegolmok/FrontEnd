@@ -155,7 +155,16 @@ button {
 
 
 
+  /* Chrome, Safari, Edge */
+ dl::-webkit-scrollbar {
+    display: none;
+  }
 
+  /* Firefox */
+  dl {
+    scrollbar-width: none;
+    -ms-overflow-style: none;  /* IE 10+ */
+  }
 
 `;
 
