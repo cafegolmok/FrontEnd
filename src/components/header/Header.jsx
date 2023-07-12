@@ -46,6 +46,8 @@ const Header = () => {
       }
       console.log(response.data);
     } catch (error) {
+      // 로그아웃 요청이 실패했을 경우에도 프론트엔드 상태 업데이트
+      dispatch(logout());
       console.error(error);
     }
   };
@@ -130,14 +132,14 @@ const Header = () => {
           )}
 
           {showProfileMoreInfo && !isLoggedIn && (
-            <ProfileMoreInfo onClick={e => e.stopPropagation()}>
+            <ProfileMoreInfo onClick={event => event.stopPropagation()}>
               <SharedTab onClick={handleshowLoginModal}>로그인</SharedTab>
               <SharedTab onClick={handleshowLoginModal}>회원가입</SharedTab>
             </ProfileMoreInfo>
           )}
 
           {showProfileMoreInfo && isLoggedIn && (
-            <ProfileMoreInfo onClick={e => e.stopPropagation()}>
+            <ProfileMoreInfo onClick={event => event.stopPropagation()}>
               <SharedTab>프로필 관리</SharedTab>
               <SharedTab>즐겨찾기</SharedTab>
               <SharedTab onClick={handleLogout}>로그아웃</SharedTab>
