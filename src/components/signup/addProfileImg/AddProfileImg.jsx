@@ -9,6 +9,7 @@ import {
   addProfileImgModalToSignupModal,
   addProfileImgModalTosignupSuccessModal,
 } from '../../../store/modalSlice.js';
+import { updateProfileImage } from '../../../store/authSlice.js';
 
 import {
   AddProfileImgModalContent,
@@ -47,7 +48,7 @@ const AddProfileImg = () => {
   };
 
   // 프로필 이미지 등록을 처리
-  const handleSubmit = async event => {
+  const handleAddProfileImgSubmit = async event => {
     event.preventDefault();
 
     try {
@@ -60,13 +61,20 @@ const AddProfileImg = () => {
         formData.append('profileImage', file);
 
         // 서버에 파일을 전송
-        const response = await axiosInstance.patch('/auth/profileImage', formData, {
-          headers: {
-            'Content-Type': 'multipart/form-data',
-          },
-        });
+        const response = await axiosInstance.patch(
+          '/auth/profileImage',
+          formData,
+          {
+            headers: {
+              'Content-Type': 'multipart/form-data',
+            },
+          }
+        );
 
         console.log(response.data);
+        
+        // 서버로부터 받은 사용자 정보로 프로필 이미지 상태 업데이트
+        dispatch(updateProfileImage(response.data.user.profileImage));
       }
 
       handleAddProfileImgModalTosignupSuccessModal();
@@ -104,7 +112,7 @@ const AddProfileImg = () => {
       onBack={handleAddProfileImgModalToSignupModal}
       title='프로필 생성하기'
     >
-      <AddProfileImgModalContent onSubmit={handleSubmit}>
+      <AddProfileImgModalContent onSubmit={handleAddProfileImgSubmit}>
         <AddProfileModalText>
           {isImageUploaded
             ? '좋아요!'
@@ -124,7 +132,7 @@ const AddProfileImg = () => {
 
         {isImageUploaded ? (
           <>
-            <SubmitProfileImgBtn onClick={handleSubmit}>
+            <SubmitProfileImgBtn onClick={handleAddProfileImgSubmit}>
               완료
             </SubmitProfileImgBtn>
             <UploadProfileImgBtn
@@ -142,7 +150,7 @@ const AddProfileImg = () => {
             >
               사진 업로드하기
             </UploadProfileImgBtn>
-            <NoUploadProfileImgBtn onClick={handleSubmit}>
+            <NoUploadProfileImgBtn onClick={handleAddProfileImgSubmit}>
               나중에 할게요
             </NoUploadProfileImgBtn>
           </>

@@ -34,7 +34,7 @@ const App = ({ Component, pageProps }) => {
 
       // 응답이 성공적인 경우, 프론트엔드 상태 업데이트
       if (response.status === 200) {
-        dispatch(login()); // 사용자가 로그인한 경우
+        dispatch(login(response.data.user)); // 사용자가 로그인한 경우
       } else {
         dispatch(logout()); // 사용자가 로그아웃한 경우
       }
