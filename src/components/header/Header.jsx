@@ -1,13 +1,16 @@
 // src/components/Header/Header.jsx
 
 import React, { useState, useEffect, useRef } from 'react';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import axiosInstance from '../../axios';
+
 import {
   HeaderContainer,
   HeaderTop,
   Logo,
   ProfileContainer,
   ProfileBarImg,
+  DefaultProfileImg,
   ProfileImg,
   SearchImg,
   SearchContainer,
@@ -20,13 +23,33 @@ import { ScreenOut } from '../../styles/commonStyle';
 
 import Category from '../category/Category.jsx';
 import { showLoginModal } from '../../store/modalSlice';
+import { logout } from '../../store/authSlice';
 
 const Header = () => {
   const dispatch = useDispatch();
-
+  const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
+  const userProfileImage = useSelector(state => state.auth.user?.profileImage);
+  console.log(userProfileImage);
   const handleshowLoginModal = () => {
     dispatch(showLoginModal());
     setShowProfileMoreInfo(false);
+  };
+
+  // 로그아웃 처리 함수
+  const handleLogout = async () => {
+    try {
+      const response = await axiosInstance.get('/auth/logout');
+
+      // 응답이 성공적인 경우, 프론트엔드 상태 업데이트
+      if (response.status === 200) {
+        dispatch(logout());
+      }
+      console.log(response.data);
+    } catch (error) {
+      // 로그아웃 요청이 실패했을 경우에도 프론트엔드 상태 업데이트
+      dispatch(logout());
+      console.error(error);
+    }
   };
 
   const [showProfileMoreInfo, setShowProfileMoreInfo] = useState(false);
@@ -91,18 +114,35 @@ const Header = () => {
           >
             <path d='M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z'></path>
           </ProfileBarImg>
-          <ProfileImg
-            xmlns='http://www.w3.org/2000/svg'
-            width='35'
-            height='35'
-            viewBox='0 0 24 24'
-          >
-            <path d='M12 2C6.579 2 2 6.579 2 12s4.579 10 10 10 10-4.579 10-10S17.421 2 12 2zm0 5c1.727 0 3 1.272 3 3s-1.273 3-3 3c-1.726 0-3-1.272-3-3s1.274-3 3-3zm-5.106 9.772c.897-1.32 2.393-2.2 4.106-2.2h2c1.714 0 3.209.88 4.106 2.2C15.828 18.14 14.015 19 12 19s-3.828-.86-5.106-2.228z'></path>
-          </ProfileImg>
-          {showProfileMoreInfo && (
-            <ProfileMoreInfo onClick={e => e.stopPropagation()}>
+          {isLoggedIn && userProfileImage ? (
+            <ProfileImg
+              src={`http://localhost:8000/${userProfileImage}`}
+              width='35'
+              height='35'
+            />
+          ) : (
+            <DefaultProfileImg
+              xmlns='http://www.w3.org/2000/svg'
+              width='35'
+              height='35'
+              viewBox='0 0 24 24'
+            >
+              <path d='M12 2C6.579 2 2 6.579 2 12s4.579 10 10 10 10-4.579 10-10S17.421 2 12 2zm0 5c1.727 0 3 1.272 3 3s-1.273 3-3 3c-1.726 0-3-1.272-3-3s1.274-3 3-3zm-5.106 9.772c.897-1.32 2.393-2.2 4.106-2.2h2c1.714 0 3.209.88 4.106 2.2C15.828 18.14 14.015 19 12 19s-3.828-.86-5.106-2.228z'></path>
+            </DefaultProfileImg>
+          )}
+
+          {showProfileMoreInfo && !isLoggedIn && (
+            <ProfileMoreInfo onClick={event => event.stopPropagation()}>
               <SharedTab onClick={handleshowLoginModal}>로그인</SharedTab>
               <SharedTab onClick={handleshowLoginModal}>회원가입</SharedTab>
+            </ProfileMoreInfo>
+          )}
+
+          {showProfileMoreInfo && isLoggedIn && (
+            <ProfileMoreInfo onClick={event => event.stopPropagation()}>
+              <SharedTab>프로필 관리</SharedTab>
+              <SharedTab>즐겨찾기</SharedTab>
+              <SharedTab onClick={handleLogout}>로그아웃</SharedTab>
             </ProfileMoreInfo>
           )}
         </ProfileContainer>

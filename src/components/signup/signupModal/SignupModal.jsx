@@ -9,6 +9,7 @@ import {
   signupModalToLoginModal,
   signupModalToAddProfileImgModal,
 } from '../../../store/modalSlice.js';
+import { login } from '../../../store/authSlice.js';
 import BaseModal from '../../common/BaseModal.jsx';
 import WarningMsg from '../../warningMsg/WarningMsg.jsx';
 import {
@@ -156,8 +157,11 @@ const SignupModal = () => {
         password,
         passwordConfirm,
       });
-      const user = response.data.userInfo;
+      const user = response.data.user
       console.log('회원가입 성공', user);
+
+      // 회원가입에 성공하면 바로 로그인 상태로 전환
+      dispatch(login(user));
 
       // 회원가입에 성공하면 프로필 이미지 설정 모달로 전환
       handleSignupModalToAddProfileImgModal();

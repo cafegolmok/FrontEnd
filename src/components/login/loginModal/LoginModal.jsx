@@ -8,6 +8,7 @@ import {
   hideLoginModal,
   loginModalToSignupModal,
 } from '../../../store/modalSlice';
+import { login } from '../../../store/authSlice.js';
 import BaseModal from '../../common/BaseModal.jsx';
 import EmailLogin from '../emailLogin/EmailLogin.jsx';
 
@@ -48,6 +49,7 @@ const LoginModal = () => {
   // 검증 에러들을 위한 상태
   const [emailErrors, setEmailErrors] = useState([]);
   const [passwordErrors, setPasswordErrors] = useState([]);
+  const [serverLoginErrors, setServerLoginErrors] = useState('');
 
   // 이메일 입력값 변경을 처리
   const handleChangeEmail = event => {
@@ -56,6 +58,7 @@ const LoginModal = () => {
     setEmailErrors(
       emailValidationErrors.length > 0 ? emailValidationErrors : []
     );
+    setServerLoginErrors('');
   };
 
   // 비밀번호 입력값 변경을 처리
@@ -65,6 +68,7 @@ const LoginModal = () => {
     setPasswordErrors(
       passwordValidationErrors.length > 0 ? passwordValidationErrors : []
     );
+    setServerLoginErrors('');
   };
 
   // 로그인 폼 제출을 처리
@@ -89,12 +93,31 @@ const LoginModal = () => {
     }
 
     try {
-      const response = await axiosInstance.post('/login', {
+      const response = await axiosInstance.post('auth/login', {
         email,
         password,
       });
+      console.log(response);
       console.log(response.data);
+
+      const user = response.data.user;
+
+      dispatch(login(user)); // 로그인 성공 액션을 디스패치, user 정보를 payload로 전달
+      handleHideLoginModal(); // 로그인이 성공적으로 완료되면 모달을 숨김
     } catch (error) {
+      const serverErrorMessages = error.response.data.message;
+      if (error.response && error.response.status === 401) {
+        // 이메일 또는 비밀번호가 일치하지 않음
+        setServerLoginErrors(serverErrorMessages);
+        console.log(error.response.data);
+        console.log(serverErrorMessages);
+      }
+
+      if (error.response.status === 429) {
+        // 로그인 요청이 너무 많이 감지됨
+        setServerLoginErrors(serverErrorMessages);
+        console.log(error.response.data.message);
+      }
       console.error(error);
     }
   };
@@ -115,6 +138,7 @@ const LoginModal = () => {
           handleLoginSubmit={handleLoginSubmit}
           emailErrors={emailErrors}
           passwordErrors={passwordErrors}
+          serverLoginErrors={serverLoginErrors}
         />
         <OrText>또는</OrText>
         <KakaoLoginBtn />

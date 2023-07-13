@@ -56,6 +56,8 @@ export const Tags = styled.dl`
   display: flex;
   gap: 8px;
   margin-bottom: ${spacing.small};
+  overflow-x: auto;
+  white-space: nowrap;
 `;
 
 export const Tag = styled.dd`
