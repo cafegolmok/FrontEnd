@@ -69,14 +69,19 @@ const Overlay = () => {
       document.body.style.overflow = 'auto';
       document.body.style.paddingRight = '0px';
     };
-  }, [isLoginModalVisible, isSignupModalVisible, isAddProfileImgModalVisible]);
+  }, [
+    isLoginModalVisible,
+    isSignupModalVisible,
+    isAddProfileImgModalVisible,
+    isSignupSuccessModalVisible,
+  ]);
 
   if (
     !isClient ||
     (!isLoginModalVisible &&
       !isSignupModalVisible &&
       !isAddProfileImgModalVisible &&
-      !isSignupSuccessModalVisible ) ||
+      !isSignupSuccessModalVisible) ||
     !modalRoot
   ) {
     return null;
