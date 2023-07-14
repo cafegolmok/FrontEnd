@@ -2,7 +2,6 @@
 
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import axiosInstance from '../../../axios.js';
 
 import {
   hideLoginModal,
@@ -24,6 +23,7 @@ import {
   validateLoginEmail,
   validateLoginPassword,
 } from '../../../utils/validation';
+import { loginUser } from '../../../api/auth.js';
 
 const LoginModal = () => {
   // 로그인 모달의 가시성 상태
@@ -93,14 +93,8 @@ const LoginModal = () => {
     }
 
     try {
-      const response = await axiosInstance.post('auth/login', {
-        email,
-        password,
-      });
-      console.log(response);
-      console.log(response.data);
-
-      const user = response.data.user;
+      const data = await loginUser(email, password);
+      const user = data.user;
 
       dispatch(login(user)); // 로그인 성공 액션을 디스패치, user 정보를 payload로 전달
       handleHideLoginModal(); // 로그인이 성공적으로 완료되면 모달을 숨김
