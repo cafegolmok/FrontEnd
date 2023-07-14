@@ -8,7 +8,7 @@ export const loginUser = async (email, password) => {
       email,
       password,
     });
-    return response
+    return response;
   } catch (error) {
     console.error(error);
     throw error;
@@ -21,5 +21,22 @@ export const logoutUser = async () => {
     return response;
   } catch (error) {
     console.error(error);
+    throw error;
+  }
+};
+
+
+export const signupUser = async (nickname, email, password, passwordConfirm) => {
+  try {
+    const response = await axiosInstance.post('/auth/signup', {
+      nickname,
+      email,
+      password,
+      passwordConfirm,
+    });
+    return response;
+  } catch (error) {
+    console.error(error);
+    throw error;
   }
 };
