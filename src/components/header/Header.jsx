@@ -38,7 +38,7 @@ const Header = () => {
   // 로그아웃 처리 함수
   const handleLogout = async () => {
     try {
-      const response = await axiosInstance.get('/auth/logout');
+      const response = await axiosInstance.delete('/auth/logout');
 
       // 응답이 성공적인 경우, 프론트엔드 상태 업데이트
       if (response.status === 200) {
