@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import axiosInstance from '../../axios';
+import { logoutUser } from '../../api/auth';
 
 import {
   HeaderContainer,
@@ -36,9 +36,10 @@ const Header = () => {
   };
 
   // 로그아웃 처리 함수
-  const handleLogout = async () => {
+  const handleLogout = async event => {
+    event.stopPropagation();
     try {
-      const response = await axiosInstance.delete('/auth/logout');
+      const response = await logoutUser();
 
       // 응답이 성공적인 경우, 프론트엔드 상태 업데이트
       if (response.status === 200) {
@@ -142,7 +143,9 @@ const Header = () => {
             <ProfileMoreInfo onClick={event => event.stopPropagation()}>
               <SharedTab>프로필 관리</SharedTab>
               <SharedTab>즐겨찾기</SharedTab>
-              <SharedTab onClick={handleLogout}>로그아웃</SharedTab>
+              <SharedTab onClick={event => handleLogout(event)}>
+                로그아웃
+              </SharedTab>
             </ProfileMoreInfo>
           )}
         </ProfileContainer>

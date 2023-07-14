@@ -8,9 +8,18 @@ export const loginUser = async (email, password) => {
       email,
       password,
     });
-    return response.data;
+    return response
   } catch (error) {
     console.error(error);
-    throw error; 
+    throw error;
+  }
+};
+
+export const logoutUser = async () => {
+  try {
+    const response = await axiosInstance.delete('/auth/logout');
+    return response;
+  } catch (error) {
+    console.error(error);
   }
 };
