@@ -20,8 +20,8 @@ import LoginModal from '../components/login/loginModal/LoginModal.jsx';
 import AddProfileImg from '../components/signup/addProfileImg/AddProfileImg.jsx';
 import SignupSuccess from '../components/signup/signupSuccess/SignupSuccess.jsx';
 
-import axiosInstance from '../axios.js';
 import { login, logout } from '../store/authSlice.js';
+import { checkUserLoginStatus } from '../api/auth.js';
 
 const App = ({ Component, pageProps }) => {
   const dispatch = useDispatch();
@@ -30,8 +30,7 @@ const App = ({ Component, pageProps }) => {
   // 로그인 상태를 확인하는 함수
   const checkLoginStatus = async () => {
     try {
-      const response = await axiosInstance.get('/auth/check-login-status');
-
+      const response = await checkUserLoginStatus();
       // 응답이 성공적인 경우, 프론트엔드 상태 업데이트
       if (response.status === 200) {
         dispatch(login(response.data.user)); // 사용자가 로그인한 경우

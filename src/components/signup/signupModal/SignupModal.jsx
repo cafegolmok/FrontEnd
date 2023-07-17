@@ -3,7 +3,6 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import axiosInstance from '../../../axios.js';
 import {
   hideSignupModal,
   signupModalToLoginModal,
@@ -18,6 +17,7 @@ import {
   validateSignupNickname,
   validateSignupPassword,
 } from '../../../utils/validation.js';
+import { signupUser } from '../../../api/auth.js';
 
 import {
   SignupModalContent,
@@ -151,13 +151,13 @@ const SignupModal = () => {
 
     // 모든 입력 값이 유효하면 서버에 회원가입 요청
     try {
-      const response = await axiosInstance.post('/auth/signup', {
+      const response = await signupUser(
         nickname,
         email,
         password,
-        passwordConfirm,
-      });
-      const user = response.data.user
+        passwordConfirm
+      );
+      const user = response.data.user;
       console.log('회원가입 성공', user);
 
       // 회원가입에 성공하면 바로 로그인 상태로 전환
