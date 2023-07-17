@@ -3,13 +3,14 @@
 import React, { useState, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import axiosInstance from '../../../axios.js';
 import BaseModal from '../../common/BaseModal.jsx';
 import {
   addProfileImgModalToSignupModal,
   addProfileImgModalTosignupSuccessModal,
 } from '../../../store/modalSlice.js';
 import { updateProfileImage } from '../../../store/authSlice.js';
+
+import { updateUserProfileImage } from '../../../api/auth.js';
 
 import {
   AddProfileImgModalContent,
@@ -53,23 +54,11 @@ const AddProfileImg = () => {
 
     try {
       if (isImageUploaded) {
-        // FormData 인스턴스 생성
-        const formData = new FormData();
-
         // 이미지 파일을 formData에 추가
         const file = fileInputRef.current.files[0];
-        formData.append('profileImage', file);
 
         // 서버에 파일을 전송
-        const response = await axiosInstance.patch(
-          '/auth/profileImage',
-          formData,
-          {
-            headers: {
-              'Content-Type': 'multipart/form-data',
-            },
-          }
-        );
+        const response = await updateUserProfileImage(file)
 
         console.log(response.data);
 

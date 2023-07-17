@@ -71,9 +71,9 @@ export const ProfileContainer = styled.div`
   position: relative;
   justify-content: space-between;
   align-items: center;
-  padding: 0 5px;
+  padding: 0 6px 0 8px;
   border: 1px solid ${palette.grayColor1};
-  border-radius: 20px;
+  border-radius: 21px;
   cursor: pointer;
   transition: box-shadow 0.3s ease-in-out;
 
