@@ -1,6 +1,7 @@
 // src/components/Header/Header.jsx
 
 import React, { useState, useEffect, useRef } from 'react';
+import { useRouter } from 'next/router';
 import { useSelector, useDispatch } from 'react-redux';
 import { logoutUser } from '../../api/auth';
 
@@ -27,6 +28,7 @@ import { logout } from '../../store/authSlice';
 
 const Header = () => {
   const dispatch = useDispatch();
+  const router = useRouter();
   const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
   const userProfileImage = useSelector(state => state.auth.user?.profileImage);
   console.log(userProfileImage);
@@ -44,6 +46,7 @@ const Header = () => {
       // 응답이 성공적인 경우, 프론트엔드 상태 업데이트
       if (response.status === 200) {
         dispatch(logout());
+        router.push('/');
       }
       console.log(response.data);
     } catch (error) {
@@ -85,24 +88,26 @@ const Header = () => {
       <HeaderTop>
         <ScreenOut as='h1'>카페골목 홈화면입니다.</ScreenOut>
         <Logo src='/assets/images/logo-cutout.png' alt='카페골목 로고' />
-        <SearchContainer htmlFor='search-bar'>
-          <SearchInput
-            type='text'
-            placeholder='카페를 검색해 보세요'
-            id='search-bar'
-            maxLength={20}
-          />
-          <SearchBtn>
-            <SearchImg
-              xmlns='http://www.w3.org/2000/svg'
-              width='15'
-              height='15'
-              viewBox='0 0 24 24'
-            >
-              <path d='M10 18a7.952 7.952 0 0 0 4.897-1.688l4.396 4.396 1.414-1.414-4.396-4.396A7.952 7.952 0 0 0 18 10c0-4.411-3.589-8-8-8s-8 3.589-8 8 3.589 8 8 8zm0-14c3.309 0 6 2.691 6 6s-2.691 6-6 6-6-2.691-6-6 2.691-6 6-6z'></path>
-            </SearchImg>
-          </SearchBtn>
-        </SearchContainer>
+        {!router.pathname.includes('/profile') && (
+          <SearchContainer htmlFor='search-bar'>
+            <SearchInput
+              type='text'
+              placeholder='카페를 검색해 보세요'
+              id='search-bar'
+              maxLength={20}
+            />
+            <SearchBtn>
+              <SearchImg
+                xmlns='http://www.w3.org/2000/svg'
+                width='15'
+                height='15'
+                viewBox='0 0 24 24'
+              >
+                <path d='M10 18a7.952 7.952 0 0 0 4.897-1.688l4.396 4.396 1.414-1.414-4.396-4.396A7.952 7.952 0 0 0 18 10c0-4.411-3.589-8-8-8s-8 3.589-8 8 3.589 8 8 8zm0-14c3.309 0 6 2.691 6 6s-2.691 6-6 6-6-2.691-6-6 2.691-6 6-6z'></path>
+              </SearchImg>
+            </SearchBtn>
+          </SearchContainer>
+        )}
         <ProfileContainer
           ref={profileContainerRef}
           onClick={() => setShowProfileMoreInfo(!showProfileMoreInfo)}
@@ -150,7 +155,7 @@ const Header = () => {
           )}
         </ProfileContainer>
       </HeaderTop>
-      <Category />
+      {router.pathname === '/' && <Category />}{' '}
     </HeaderContainer>
   );
 };
