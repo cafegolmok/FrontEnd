@@ -1,12 +1,11 @@
 import styled from 'styled-components';
-import { palette, spacing } from '../../styles/theme';
+import { palette } from '../../styles/theme';
 
 export const FooterContainer = styled.footer`
-  position: fixed;
   width: 100vw;
   bottom: 0;
   background: ${palette.lightGrayColor};
-  z-index: 10;
+  position: fixed;
 `;
 
 export const Company = styled.section`
@@ -19,14 +18,4 @@ export const Company = styled.section`
 
 export const CompanyTitle = styled.strong`
   font-size: 18px;
-`;
-
-export const SnsList = styled.ul`
-  display: flex;
-  gap: ${spacing.medium};
-`;
-
-export const SnsImg = styled.img`
-  width: 30px;
-  height: 30px;
 `;
