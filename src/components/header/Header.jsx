@@ -30,11 +30,23 @@ const Header = () => {
   const dispatch = useDispatch();
   const router = useRouter();
   const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
+  const userId = useSelector(state => state.auth.user?.id);
   const userProfileImage = useSelector(state => state.auth.user?.profileImage);
   console.log(userProfileImage);
   const handleshowLoginModal = () => {
     dispatch(showLoginModal());
     setShowProfileMoreInfo(false);
+  };
+
+  // 프로필 관리 페이지로 이동
+  const handleProfile = () => {
+    router.push(`/users/${userId}`);
+    setShowProfileMoreInfo(false);
+  };
+
+  // 메인 페이지로 이동
+  const goToMain = () => {
+    router.push('/');
   };
 
   // 로그아웃 처리 함수
@@ -47,6 +59,7 @@ const Header = () => {
       if (response.status === 200) {
         dispatch(logout());
         router.push('/');
+        setShowProfileMoreInfo(false);
       }
       console.log(response.data);
     } catch (error) {
@@ -87,8 +100,12 @@ const Header = () => {
     <HeaderContainer>
       <HeaderTop>
         <ScreenOut as='h1'>카페골목 홈화면입니다.</ScreenOut>
-        <Logo src='/assets/images/logo-cutout.png' alt='카페골목 로고' />
-        {!router.pathname.includes('/profile') && (
+        <Logo
+          src='/assets/images/logo-cutout.png'
+          alt='카페골목 로고'
+          onClick={goToMain}
+        />
+        {!router.pathname.includes('/users') && (
           <SearchContainer htmlFor='search-bar'>
             <SearchInput
               type='text'
@@ -146,7 +163,7 @@ const Header = () => {
 
           {showProfileMoreInfo && isLoggedIn && (
             <ProfileMoreInfo onClick={event => event.stopPropagation()}>
-              <SharedTab>프로필 관리</SharedTab>
+              <SharedTab onClick={handleProfile}>프로필 관리</SharedTab>{' '}
               <SharedTab>즐겨찾기</SharedTab>
               <SharedTab onClick={event => handleLogout(event)}>
                 로그아웃
