@@ -1,7 +1,3 @@
 node_modules/
 .next/
-
-/home.html
-/home.css
-/login.html
-/login.css
+/.env.local

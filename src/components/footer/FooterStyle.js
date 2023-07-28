@@ -6,6 +6,7 @@ export const FooterContainer = styled.footer`
   bottom: 0;
   background: ${palette.lightGrayColor};
   position: fixed;
+  z-index: 10;
 `;
 
 export const Company = styled.section`

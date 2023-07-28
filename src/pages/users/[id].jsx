@@ -57,24 +57,22 @@ export default function UserProfile() {
   const fileInputRef = useRef(null);
 
   useEffect(() => {
-    // 페이지가 로드되면 사용자 정보를 불러옵니다.
     const fetchUserProfile = async () => {
-      try {
-        const respones = await getUserProfile(userId);
-
-        const userData = respones.data;
-
-        setEmail(userData.email);
-        setNickname(userData.nickname);
-        setProfileImage(userData.profileImage);
-
-        console.log('사용자 정보가져오기 성공', userData);
-      } catch (error) {
-        console.error(error);
+      if (user) {
+        try {
+          const respones = await getUserProfile(userId);
+          const userData = respones.data;
+          setEmail(userData.email);
+          setNickname(userData.nickname);
+          setProfileImage(userData.profileImage);
+          console.log('사용자 정보 가져오기 성공', userData);
+        } catch (error) {
+          console.error(error);
+        }
       }
     };
     fetchUserProfile();
-  }, [userId]);
+  }, [user]);
 
   // 이메일 핸들러
   const handleChangeEmail = event => {
@@ -189,6 +187,7 @@ export default function UserProfile() {
     setProfileImage(user?.profileImage || '');
   }, [user]);
 
+  console.log('서버주소', process.env.NEXT_PUBLIC_SERVER_URL);
   return (
     <>
       <MainContainer>
@@ -202,7 +201,7 @@ export default function UserProfile() {
                   background={
                     preview ||
                     (user?.profileImage
-                      ? `http://localhost:8000/${profileImage}`
+                      ? `${process.env.NEXT_PUBLIC_SERVER_URL}/${profileImage}`
                       : userProfile.src)
                   }
                 >

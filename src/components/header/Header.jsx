@@ -139,7 +139,7 @@ const Header = () => {
           </ProfileBarImg>
           {isLoggedIn && userProfileImage ? (
             <ProfileImg
-              src={`http://localhost:8000/${userProfileImage}`}
+              src={`${process.env.NEXT_PUBLIC_SERVER_URL}/${userProfileImage}`}
               width='35'
               height='35'
             />
