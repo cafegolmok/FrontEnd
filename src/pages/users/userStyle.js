@@ -11,6 +11,7 @@ export const ProfileContainer = styled.div`
   width: 1200px;
   margin: 0 auto;
   padding-bottom: 100px;
+
 `;
 
 export const ProfileImgSection = styled.section`

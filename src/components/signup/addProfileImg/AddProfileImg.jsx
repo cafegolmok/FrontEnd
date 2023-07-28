@@ -58,7 +58,7 @@ const AddProfileImg = () => {
         const file = fileInputRef.current.files[0];
 
         // 서버에 파일을 전송
-        const response = await updateUserProfileImage(file)
+        const response = await updateUserProfileImage(file);
 
         console.log(response.data);
 
@@ -117,6 +117,7 @@ const AddProfileImg = () => {
           name='user-img'
           onChange={handleImageChange}
           ref={fileInputRef}
+          accept='image/*'
         ></ProfileImgInput>
 
         {isImageUploaded ? (

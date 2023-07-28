@@ -22,6 +22,7 @@ import {
   UploadProfileImgBtn,
 } from './userStyle';
 import WarningMsg from '../../components/warningMsg/WarningMsg.jsx';
+import ToastMessage from '../../components/common/ToastMessage.jsx';
 
 import {
   validateSignupEmail as validateEditProfileEmail,
@@ -55,6 +56,24 @@ export default function UserProfile() {
 
   // input 참조를 저장
   const fileInputRef = useRef(null);
+
+  // 토스트 상태 정의
+  const [toasts, setToasts] = useState([]);
+
+  // showToast 함수 정의
+  const showToast = message => {
+    // 현재 떠있는 모든 토스트 메시지 삭제
+    setToasts([]);
+
+    // 새로운 토스트 메시지 객체 생성
+    const newToast = {
+      id: Math.random(),
+      message: message,
+    };
+
+    // 기존의 토스트 메시지 목록에 새로운 메시지 추가
+    setToasts(prevToasts => [...prevToasts, newToast]);
+  };
 
   useEffect(() => {
     const fetchUserProfile = async () => {
@@ -157,7 +176,7 @@ export default function UserProfile() {
       const updatedUser = updateProfileResponse.data.user;
 
       dispatch(updateUserProfileData(updatedUser));
-
+      showToast('프로필 업데이트 완료');
       console.log('프로필 수정 성공', updatedUser);
     } catch (errors) {
       // 서버에서 에러 메시지를 받으면 해당 메시지를 상태에 반영
@@ -218,6 +237,7 @@ export default function UserProfile() {
                   name='user-img'
                   onChange={handleImageChange}
                   ref={fileInputRef}
+                  accept='image/*'
                 ></ProfileImgInput>
               </AddProfileImgModalContent>
             </ProfileImgSection>
@@ -270,6 +290,16 @@ export default function UserProfile() {
             </ProfileForm>
           </ProfileSection>
         </ProfileContainer>
+        {toasts.map(toast => (
+          <ToastMessage
+            key={toast.id}
+            id={toast.id}
+            message={toast.message}
+            removeToast={id => {
+              setToasts(toasts.filter(toast => toast.id !== id));
+            }}
+          />
+        ))}
       </MainContainer>
     </>
   );
