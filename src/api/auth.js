@@ -76,3 +76,13 @@ export const checkUserLoginStatus = async () => {
     throw error;
   }
 };
+
+export const kakaoLogin = async (userId) => {  
+  try {
+    const response = await axiosInstance.post('/auth/kakao', { userId });
+    return response;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};

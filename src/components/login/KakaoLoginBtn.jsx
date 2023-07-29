@@ -3,6 +3,11 @@ import styled from 'styled-components';
 import { SharedLoginBtn } from '../common/Button.jsx';
 import { palette } from '../../styles/theme.js';
 
+import { useDispatch } from 'react-redux';
+import { login } from '../../store/authSlice.js';
+
+import { kakaoLogin } from '../../api/auth.js';
+
 const KakaoBtn = styled(SharedLoginBtn)`
   background-color: ${palette.yellowColor};
   font-weight: 500;
@@ -10,26 +15,34 @@ const KakaoBtn = styled(SharedLoginBtn)`
   color: ${palette.blackColor};
 `;
 const KakaoLoginBtn = () => {
-  const handleKakaoLogin = () => {
-    // window 객체가 있을 경우에만 카카오 로그인을 시도
+  const dispatch = useDispatch();
+  const handleKakaoLogin = async () => {
     if (typeof window !== 'undefined' && window.Kakao) {
       window.Kakao.Auth.login({
         success: authObj => {
-          console.log('Kakao login success:', authObj);
-
-          // 사용자 정보 가져오기
           window.Kakao.API.request({
             url: '/v2/user/me',
-            success: res => {
-              console.log('User info:', res);
+            success: async res => {
+              try {
+                const response = await kakaoLogin(res.id);
+
+                if (response.data.success) {
+                  console.log('카카오 로그인 성공:', res);
+                  dispatch(login(res));
+                } else {
+                  console.error('로그인 실패:', response.data.message);
+                }
+              } catch (error) {
+                console.error('로그인 실패:', error);
+              }
             },
             fail: error => {
-              console.error('Failed to get user info:', error);
+              console.error('사용자 정보 가져오기 실패:', error);
             },
           });
         },
         fail: error => {
-          console.error('Kakao login failed:', error);
+          console.error('카카오 로그인 실패:', error);
         },
       });
     }
