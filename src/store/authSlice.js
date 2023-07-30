@@ -22,8 +22,15 @@ const authSlice = createSlice({
         state.user.profileImage = action.payload; // profileImage 정보를 payload로 받아서 저장
       }
     },
+    updateUserProfileData(state, action) {
+      if (state.user) {
+        state.user.email = action.payload.email;
+        state.user.nickname = action.payload.nickname;
+        state.user.profileImage = action.payload.profileImage;
+      }
+    },
   },
 });
 
-export const { login, logout, updateProfileImage } = authSlice.actions;
+export const { login, logout, updateProfileImage, updateUserProfileData } = authSlice.actions;
 export default authSlice.reducer;

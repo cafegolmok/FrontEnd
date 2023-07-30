@@ -11,6 +11,7 @@ export const palette = {
   blackColor: '#000000',
   redColor: '#f4492e',
   yellowColor: '#f2c94c',
+  greenColor: '#038A04',
 };
 
 export const typography = {

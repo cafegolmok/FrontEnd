@@ -1,9 +1,11 @@
+// src/components/signup/signupForm/signupFormStyle.js
+
 import styled from 'styled-components';
 import { palette, spacing, typography } from '../../../styles/theme';
 import { SharedLoginBtn } from '../../common/Button.jsx';
 import { SharedLoginInput } from '../../common/Input.jsx';
 
-export const SignupModalContent = styled.form`
+export const SignupFormContent = styled.form`
   padding: ${spacing.medium};
 `;
 
@@ -34,7 +36,7 @@ const InputWithErrors = props => `
   border-color: ${
   props.errors.length > 0 ? palette.redColor : palette.brownColor
 };
-  }
+}
 `;
 
 export const EmailInput = styled(SharedLoginInput)`

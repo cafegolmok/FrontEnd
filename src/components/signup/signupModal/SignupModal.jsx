@@ -10,7 +10,8 @@ import {
 } from '../../../store/modalSlice.js';
 import { login } from '../../../store/authSlice.js';
 import BaseModal from '../../common/BaseModal.jsx';
-import WarningMsg from '../../warningMsg/WarningMsg.jsx';
+import SignupForm from '../signupForm/SignupForm.jsx';
+
 import {
   validateSignupPasswordConfirm,
   validateSignupEmail,
@@ -18,19 +19,6 @@ import {
   validateSignupPassword,
 } from '../../../utils/validation.js';
 import { signupUser } from '../../../api/auth.js';
-
-import {
-  SignupModalContent,
-  EmailInput,
-  PasswordInput,
-  SignupBtn,
-  ConfirmPasswordInput,
-  EmailLabel,
-  PasswordLabel,
-  ConfirmPasswordLabel,
-  NicknameLabel,
-  NicknameInput,
-} from './SignupModalStyle';
 
 const SignupModal = () => {
   const isSignupModalVisible = useSelector(
@@ -194,86 +182,23 @@ const SignupModal = () => {
       onBack={handleSignupModalToLoginModal}
       title='회원가입 완료하기'
     >
-      <SignupModalContent>
-        <EmailLabel htmlFor='user-email'>이메일</EmailLabel>
-        <EmailInput
-          type='text'
-          id='user-email'
-          name='user-email'
-          placeholder='이메일을 입력해주세요.'
-          value={email}
-          onChange={handleChangeEmail}
-          errors={emailErrors.length > 0 ? emailErrors : serverEmailError}
-        />
-        <WarningMsg
-          show={emailErrors.length > 0}
-          messages={emailErrors}
-        ></WarningMsg>
-        {serverEmailError && (
-          <WarningMsg show={true} messages={[serverEmailError]} />
-        )}
-        <PasswordLabel htmlFor='user-pw'>비밀번호</PasswordLabel>
-        <PasswordInput
-          type='password'
-          id='user-pw'
-          name='user-pw'
-          placeholder='특수문자 포함 10 ~ 20자 이내로 입력해 주세요.'
-          value={password}
-          onChange={handleChangePassword}
-          errors={passwordErrors}
-        />
-        <WarningMsg
-          show={passwordErrors.length > 0}
-          messages={passwordErrors}
-        ></WarningMsg>
-        <ConfirmPasswordLabel htmlFor='user-pw-check'>
-          비밀번호 재확인
-        </ConfirmPasswordLabel>
-        <ConfirmPasswordInput
-          type='password'
-          id='user-pw-check'
-          name='user-pw-check'
-          placeholder='비밀번호를 한번 더 입력해주세요.'
-          value={passwordConfirm}
-          onChange={handleChangePasswordConfirm}
-          errors={passwordConfirmErrors}
-        />
-        <WarningMsg
-          show={passwordConfirmErrors.length > 0}
-          messages={passwordConfirmErrors}
-        ></WarningMsg>
-        <NicknameLabel htmlFor='user-nickname'>닉네임</NicknameLabel>
-        <NicknameInput
-          type='text'
-          id='user-nickname'
-          name='user-nickname'
-          placeholder='2 ~ 20자로 입력해 주세요.'
-          value={nickname}
-          onChange={handleChangeNickname}
-          errors={
-            nicknameErrors.length > 0 ? nicknameErrors : serverNicknameError
-          }
-        />
-        <WarningMsg
-          show={nicknameErrors.length > 0}
-          messages={nicknameErrors}
-        ></WarningMsg>
-        {serverNicknameError && (
-          <WarningMsg show={true} messages={[serverNicknameError]} />
-        )}
-        <SignupBtn
-          type='submit'
-          onClick={handleSignupSubmit}
-          disabled={
-            emailErrors.length > 0 ||
-            passwordErrors.length > 0 ||
-            passwordConfirmErrors.length > 0 ||
-            nicknameErrors.length > 0
-          }
-        >
-          가입하기
-        </SignupBtn>
-      </SignupModalContent>
+      <SignupForm
+        email={email}
+        password={password}
+        passwordConfirm={passwordConfirm}
+        nickname={nickname}
+        emailErrors={emailErrors}
+        passwordErrors={passwordErrors}
+        passwordConfirmErrors={passwordConfirmErrors}
+        nicknameErrors={nicknameErrors}
+        serverEmailError={serverEmailError}
+        serverNicknameError={serverNicknameError}
+        handleChangeEmail={handleChangeEmail}
+        handleChangePassword={handleChangePassword}
+        handleChangePasswordConfirm={handleChangePasswordConfirm}
+        handleChangeNickname={handleChangeNickname}
+        handleSignupSubmit={handleSignupSubmit}
+      />
     </BaseModal>
   );
 };
