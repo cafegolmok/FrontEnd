@@ -61,7 +61,7 @@ export default function UserProfile() {
   const [toasts, setToasts] = useState([]);
 
   // showToast 함수 정의
-  const showToast = message => {
+  const showToast = (message, type = 'success') => {
     // 현재 떠있는 모든 토스트 메시지 삭제
     setToasts([]);
 
@@ -69,6 +69,7 @@ export default function UserProfile() {
     const newToast = {
       id: Math.random(),
       message: message,
+      type: type,
     };
 
     // 기존의 토스트 메시지 목록에 새로운 메시지 추가
@@ -182,6 +183,7 @@ export default function UserProfile() {
       // 서버에서 에러 메시지를 받으면 해당 메시지를 상태에 반영
       if (errors.response && errors.response.data) {
         console.log(errors.response.data);
+        console.log(errors.response.data.error);
 
         const serverErrorMessages = errors.response.data.errors;
 
@@ -195,6 +197,11 @@ export default function UserProfile() {
             }
           });
           return;
+        }
+        if (errors.response.data.error.status === 500) {
+          // console.log(errors.response.data.error.message);
+          // console.log(showToast(errors.response.data.error.message, 'error'));
+          showToast(errors.response.data.error.message, 'error');
         }
       }
     }
@@ -298,6 +305,7 @@ export default function UserProfile() {
             removeToast={id => {
               setToasts(toasts.filter(toast => toast.id !== id));
             }}
+            type={toast.type} 
           />
         ))}
       </MainContainer>
