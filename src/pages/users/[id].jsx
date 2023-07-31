@@ -17,6 +17,7 @@ import {
 
 import { updateUserProfile, getUserProfile } from '../../api/user.js';
 import { updateUserProfileData } from '../../store/authSlice';
+import { addToast, removeToast } from '../../store/toastSlice';
 
 export default function UserProfile() {
   const user = useSelector(state => state.auth.user);
@@ -42,13 +43,10 @@ export default function UserProfile() {
   const fileInputRef = useRef(null);
 
   // 토스트 상태 정의
-  const [toasts, setToasts] = useState([]);
+  const toasts = useSelector(state => state.toast);
 
   // showToast 함수 정의
   const showToast = (message, type = 'success') => {
-    // 현재 떠있는 모든 토스트 메시지 삭제
-    setToasts([]);
-
     // 새로운 토스트 메시지 객체 생성
     const newToast = {
       id: Math.random(),
@@ -56,8 +54,7 @@ export default function UserProfile() {
       type: type,
     };
 
-    // 기존의 토스트 메시지 목록에 새로운 메시지 추가
-    setToasts(prevToasts => [...prevToasts, newToast]);
+    dispatch(addToast(newToast));
   };
 
   useEffect(() => {
@@ -114,9 +111,10 @@ export default function UserProfile() {
         imageFile
       );
       const updatedUser = updateProfileResponse.data.user;
+      const updateUserMessage = updateProfileResponse.data.message;
 
       dispatch(updateUserProfileData(updatedUser));
-      showToast('프로필 업데이트 완료');
+      showToast(updateUserMessage);
       console.log('프로필 수정 성공', updatedUser);
     } catch (errors) {
       // 서버에서 에러 메시지를 받으면 해당 메시지를 상태에 반영
@@ -189,7 +187,7 @@ export default function UserProfile() {
             id={toast.id}
             message={toast.message}
             removeToast={id => {
-              setToasts(toasts.filter(toast => toast.id !== id));
+              dispatch(removeToast({ id }));
             }}
             type={toast.type}
           />

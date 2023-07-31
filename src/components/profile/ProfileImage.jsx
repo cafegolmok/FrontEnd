@@ -80,7 +80,6 @@ const ProfileImage = ({
 
 ProfileImage.propTypes = {
   profileImage: PropTypes.string,
-  setProfileImage: PropTypes.func.isRequired,
   preview: PropTypes.string,
   setPreview: PropTypes.func.isRequired,
   fileInputRef: PropTypes.object.isRequired,
