@@ -4,26 +4,16 @@ import React, { useState, useRef, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { MainContainer } from '../../styles/commonStyle';
-import {
-  ProfileContainer,
-  ProfileImgSection,
-  ProfileSection,
-  ProfileTitle,
-  AddProfileImgModalContent,
-  ProfileImgLabel,
-  ProfileImgInput,
-  UploadProfileImgBtn,
-} from './userStyle';
+import { ProfileContainer, ProfileSection, ProfileTitle } from './userStyle';
 
 import ProfileForm from '../../components/profile/ProfileForm.jsx';
+import ProfileImage from '../../components/profile/ProfileImage.jsx';
 import ToastMessage from '../../components/common/ToastMessage.jsx';
 
 import {
   validateSignupEmail as validateEditProfileEmail,
   validateSignupNickname as validateEditProfileNickname,
 } from '../../utils/validation';
-
-import userProfile from '../../../public/assets/icons/user.svg';
 
 import { updateUserProfile, getUserProfile } from '../../api/user.js';
 import { updateUserProfileData } from '../../store/authSlice';
@@ -87,29 +77,6 @@ export default function UserProfile() {
     };
     fetchUserProfile();
   }, [user]);
-
-  // 이미지를 선택하면 해당 이미지를 미리보기로 설정
-  const handleImageChange = event => {
-    event.stopPropagation();
-
-    let reader = new FileReader();
-    let file = event.target.files[0];
-
-    reader.onloadend = () => {
-      setPreview(reader.result);
-      setIsImageUploaded(true);
-    };
-
-    if (file) {
-      reader.readAsDataURL(file);
-    }
-  };
-
-  // 파일 선택 대화상자를 열어 사용자가 이미지를 선택
-  const handleChooseFile = event => {
-    event.preventDefault();
-    fileInputRef.current.click();
-  };
 
   // 프로필 이미지와 사용자 프로필 폼 수정 이벤트 핸들러
   const handleEditProfileSubmit = async event => {
@@ -190,34 +157,15 @@ export default function UserProfile() {
         <ProfileContainer>
           <ProfileSection>
             <ProfileTitle>프로필</ProfileTitle>
-            <ProfileImgSection>
-              <AddProfileImgModalContent>
-                <ProfileImgLabel
-                  htmlFor='user-img'
-                  background={
-                    preview ||
-                    (user?.profileImage
-                      ? `${process.env.NEXT_PUBLIC_SERVER_URL}/${profileImage}`
-                      : userProfile.src)
-                  }
-                >
-                  <UploadProfileImgBtn
-                    onClick={event => handleChooseFile(event)}
-                    isImageUploaded={isImageUploaded}
-                  >
-                    수정
-                  </UploadProfileImgBtn>
-                </ProfileImgLabel>
-                <ProfileImgInput
-                  type='file'
-                  id='user-img'
-                  name='user-img'
-                  onChange={handleImageChange}
-                  ref={fileInputRef}
-                  accept='image/*'
-                ></ProfileImgInput>
-              </AddProfileImgModalContent>
-            </ProfileImgSection>
+            <ProfileImage
+              profileImage={profileImage}
+              setProfileImage={setProfileImage}
+              preview={preview}
+              setPreview={setPreview}
+              fileInputRef={fileInputRef}
+              isImageUploaded={isImageUploaded}
+              setIsImageUploaded={setIsImageUploaded}
+            />
             <ProfileForm
               email={email}
               setEmail={setEmail}

@@ -93,8 +93,6 @@ const ProfileForm = ({
   );
 };
 
-export default ProfileForm;
-
 ProfileForm.propTypes = {
   email: PropTypes.string.isRequired,
   setEmail: PropTypes.func.isRequired,
@@ -110,3 +108,5 @@ ProfileForm.propTypes = {
   setServerNicknameError: PropTypes.func.isRequired,
   handleEditProfileSubmit: PropTypes.func.isRequired,
 };
+
+export default ProfileForm;

@@ -29,7 +29,7 @@ const InputWithErrors = props => `
   &:focus {
   border-color: ${
   props.errors.length > 0 ? palette.redColor : palette.brownColor
-};
+  };
 }
 `;
 
