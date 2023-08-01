@@ -5,12 +5,9 @@ import PropTypes from 'prop-types';
 
 import {
   ProfileFormContainer,
-  // NicknameLabel,
-  // NicknameInput,
   EditProfileBtnContainer,
   EditProfileBtn,
 } from './ProfileFormStyle';
-// import WarningMsg from '../../components/warningMsg/WarningMsg.jsx';
 import EmailInputComponent from '../common/input/emailInput/EmailInput.jsx';
 import NicknameInputComponent from '../common/input/nicknameInput/NicknameInput.jsx';
 
