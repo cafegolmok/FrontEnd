@@ -4,24 +4,10 @@ import React, { useState, useRef, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { MainContainer } from '../../styles/commonStyle';
-import {
-  ProfileContainer,
-  ProfileImgSection,
-  ProfileSection,
-  ProfileForm,
-  ProfileTitle,
-  EmailLabel,
-  NicknameLabel,
-  EmailInput,
-  NicknameInput,
-  EditProfileBtnContainer,
-  EditProfileBtn,
-  AddProfileImgModalContent,
-  ProfileImgLabel,
-  ProfileImgInput,
-  UploadProfileImgBtn,
-} from './userStyle';
-import WarningMsg from '../../components/warningMsg/WarningMsg.jsx';
+import { ProfileContainer, ProfileSection, ProfileTitle } from './userStyle';
+
+import ProfileForm from '../../components/profile/ProfileForm.jsx';
+import ProfileImage from '../../components/profile/ProfileImage.jsx';
 import ToastMessage from '../../components/common/ToastMessage.jsx';
 
 import {
@@ -29,10 +15,9 @@ import {
   validateSignupNickname as validateEditProfileNickname,
 } from '../../utils/validation';
 
-import userProfile from '../../../public/assets/icons/user.svg';
-
 import { updateUserProfile, getUserProfile } from '../../api/user.js';
 import { updateUserProfileData } from '../../store/authSlice';
+import { addToast, removeToast } from '../../store/toastSlice';
 
 export default function UserProfile() {
   const user = useSelector(state => state.auth.user);
@@ -58,21 +43,18 @@ export default function UserProfile() {
   const fileInputRef = useRef(null);
 
   // 토스트 상태 정의
-  const [toasts, setToasts] = useState([]);
+  const toasts = useSelector(state => state.toast);
 
   // showToast 함수 정의
-  const showToast = message => {
-    // 현재 떠있는 모든 토스트 메시지 삭제
-    setToasts([]);
-
+  const showToast = (message, type = 'success') => {
     // 새로운 토스트 메시지 객체 생성
     const newToast = {
       id: Math.random(),
       message: message,
+      type: type,
     };
 
-    // 기존의 토스트 메시지 목록에 새로운 메시지 추가
-    setToasts(prevToasts => [...prevToasts, newToast]);
+    dispatch(addToast(newToast));
   };
 
   useEffect(() => {
@@ -92,51 +74,6 @@ export default function UserProfile() {
     };
     fetchUserProfile();
   }, [user]);
-
-  // 이메일 핸들러
-  const handleChangeEmail = event => {
-    const emailValidationErrors = validateEditProfileEmail(event.target.value);
-    setEmail(event.target.value);
-    setEmailErrors(
-      emailValidationErrors.length > 0 ? emailValidationErrors : []
-    );
-    setServerEmailError('');
-  };
-
-  // 닉네임 핸들러
-  const handleChangeNickname = event => {
-    const nicknameValidationErrors = validateEditProfileNickname(
-      event.target.value
-    );
-    setNickname(event.target.value);
-    setNicknameErrors(
-      nicknameValidationErrors.length > 0 ? nicknameValidationErrors : []
-    );
-    setServerNicknameError('');
-  };
-
-  // 이미지를 선택하면 해당 이미지를 미리보기로 설정
-  const handleImageChange = event => {
-    event.stopPropagation();
-
-    let reader = new FileReader();
-    let file = event.target.files[0];
-
-    reader.onloadend = () => {
-      setPreview(reader.result);
-      setIsImageUploaded(true);
-    };
-
-    if (file) {
-      reader.readAsDataURL(file);
-    }
-  };
-
-  // 파일 선택 대화상자를 열어 사용자가 이미지를 선택
-  const handleChooseFile = event => {
-    event.preventDefault();
-    fileInputRef.current.click();
-  };
 
   // 프로필 이미지와 사용자 프로필 폼 수정 이벤트 핸들러
   const handleEditProfileSubmit = async event => {
@@ -174,14 +111,16 @@ export default function UserProfile() {
         imageFile
       );
       const updatedUser = updateProfileResponse.data.user;
+      const updateUserMessage = updateProfileResponse.data.message;
 
       dispatch(updateUserProfileData(updatedUser));
-      showToast('프로필 업데이트 완료');
+      showToast(updateUserMessage);
       console.log('프로필 수정 성공', updatedUser);
     } catch (errors) {
       // 서버에서 에러 메시지를 받으면 해당 메시지를 상태에 반영
       if (errors.response && errors.response.data) {
         console.log(errors.response.data);
+        console.log(errors.response.data.error);
 
         const serverErrorMessages = errors.response.data.errors;
 
@@ -195,6 +134,9 @@ export default function UserProfile() {
             }
           });
           return;
+        }
+        if (errors.response.data.error.status === 500) {
+          showToast(errors.response.data.error.message, 'error');
         }
       }
     }
@@ -213,81 +155,30 @@ export default function UserProfile() {
         <ProfileContainer>
           <ProfileSection>
             <ProfileTitle>프로필</ProfileTitle>
-            <ProfileImgSection>
-              <AddProfileImgModalContent>
-                <ProfileImgLabel
-                  htmlFor='user-img'
-                  background={
-                    preview ||
-                    (user?.profileImage
-                      ? `${process.env.NEXT_PUBLIC_SERVER_URL}/${profileImage}`
-                      : userProfile.src)
-                  }
-                >
-                  <UploadProfileImgBtn
-                    onClick={event => handleChooseFile(event)}
-                    isImageUploaded={isImageUploaded}
-                  >
-                    수정
-                  </UploadProfileImgBtn>
-                </ProfileImgLabel>
-                <ProfileImgInput
-                  type='file'
-                  id='user-img'
-                  name='user-img'
-                  onChange={handleImageChange}
-                  ref={fileInputRef}
-                  accept='image/*'
-                ></ProfileImgInput>
-              </AddProfileImgModalContent>
-            </ProfileImgSection>
-            <ProfileForm>
-              <EmailLabel htmlFor='user-email'>이메일</EmailLabel>
-              <EmailInput
-                type='text'
-                id='user-email'
-                name='user-email'
-                value={email}
-                onChange={handleChangeEmail}
-                errors={emailErrors.length > 0 ? emailErrors : serverEmailError}
-              />
-              <WarningMsg
-                show={emailErrors.length > 0}
-                messages={emailErrors}
-              ></WarningMsg>
-              {serverEmailError && (
-                <WarningMsg show={true} messages={[serverEmailError]} />
-              )}
-              <NicknameLabel htmlFor='user-nickname'>닉네임</NicknameLabel>
-              <NicknameInput
-                type='text'
-                id='user-nickname'
-                name='user-nickname'
-                value={nickname}
-                onChange={handleChangeNickname}
-                errors={
-                  nicknameErrors.length > 0
-                    ? nicknameErrors
-                    : serverNicknameError
-                }
-              />
-              <WarningMsg
-                show={nicknameErrors.length > 0}
-                messages={nicknameErrors}
-              ></WarningMsg>
-              {serverNicknameError && (
-                <WarningMsg show={true} messages={[serverNicknameError]} />
-              )}
-              <EditProfileBtnContainer>
-                <EditProfileBtn
-                  type='submit'
-                  onClick={handleEditProfileSubmit}
-                  disabled={emailErrors.length > 0 || nicknameErrors.length > 0}
-                >
-                  완료
-                </EditProfileBtn>
-              </EditProfileBtnContainer>
-            </ProfileForm>
+            <ProfileImage
+              profileImage={profileImage}
+              setProfileImage={setProfileImage}
+              preview={preview}
+              setPreview={setPreview}
+              fileInputRef={fileInputRef}
+              isImageUploaded={isImageUploaded}
+              setIsImageUploaded={setIsImageUploaded}
+            />
+            <ProfileForm
+              email={email}
+              setEmail={setEmail}
+              nickname={nickname}
+              setNickname={setNickname}
+              emailErrors={emailErrors}
+              setEmailErrors={setEmailErrors}
+              nicknameErrors={nicknameErrors}
+              setNicknameErrors={setNicknameErrors}
+              serverEmailError={serverEmailError}
+              setServerEmailError={setServerEmailError}
+              serverNicknameError={serverNicknameError}
+              setServerNicknameError={setServerNicknameError}
+              handleEditProfileSubmit={handleEditProfileSubmit}
+            />
           </ProfileSection>
         </ProfileContainer>
         {toasts.map(toast => (
@@ -296,8 +187,9 @@ export default function UserProfile() {
             id={toast.id}
             message={toast.message}
             removeToast={id => {
-              setToasts(toasts.filter(toast => toast.id !== id));
+              dispatch(removeToast({ id }));
             }}
+            type={toast.type}
           />
         ))}
       </MainContainer>

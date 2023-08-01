@@ -1,41 +1,29 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { palette, typography } from '../../../styles/theme.js';
 
 import { SharedLoginBtn } from '../../common/Button.jsx';
-import { SharedLoginInput } from '../../common/Input.jsx';
+import {
+  SharedLoginInput,
+  SharedLabel,
+  InputWithErrors,
+} from '../../common/input/Input.jsx';
 
 export const EmailLoginContainer = styled.form``;
 
-export const SharedLabel = styled.label`
-  display: block;
-  font-size: 14px;
+export const EmailLabel = styled(SharedLabel)`
   margin: 14px 0 7px 5px;
 `;
 
-export const EmailLabel = styled(SharedLabel)``;
-
-export const PasswordLabel = styled(SharedLabel)``;
+export const PasswordLabel = styled(SharedLabel)`
+  margin: 14px 0 7px 5px;
+`;
 
 export const EmailInput = styled(SharedLoginInput)`
-  ${props =>
-    props.errors.length > 0 &&
-    css`
-      border-color: ${palette.redColor};
-      &:focus {
-        border-color ${palette.redColor};
-      }
-    `}
+  ${InputWithErrors}
 `;
 
 export const PasswordInput = styled(SharedLoginInput)`
-  ${props =>
-    props.errors.length > 0 &&
-    css`
-      border-color: ${palette.redColor};
-      &:focus {
-        border-color ${palette.redColor};
-      }
-    `}
+  ${InputWithErrors}
 `;
 
 export const LoginBtn = styled(SharedLoginBtn)`
