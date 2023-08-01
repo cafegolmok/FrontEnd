@@ -1,7 +1,7 @@
 // src/components/common/input/EmailInputStyle.js
 
 import styled from 'styled-components';
-import { palette, spacing, typography } from '../../../styles/theme';
+import { palette, spacing, typography } from '../../../../styles/theme';
 import { SharedLoginInput } from '../Input.jsx';
 
 export const SharedLabel = styled.label`
@@ -19,12 +19,12 @@ export const EmailLabel = styled(SharedLabel)``;
 
 const InputWithErrors = props => `
   border-color: ${
-  props.errors.length > 0 ? palette.redColor : palette.brownColor
-};
+    props.errors.length > 0 ? palette.redColor : palette.brownColor
+  };
   &:focus {
   border-color: ${
-  props.errors.length > 0 ? palette.redColor : palette.brownColor
-};
+    props.errors.length > 0 ? palette.redColor : palette.brownColor
+  };
 }
 `;
 

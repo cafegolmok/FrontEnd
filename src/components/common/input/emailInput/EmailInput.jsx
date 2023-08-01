@@ -3,7 +3,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { EmailLabel, EmailInput } from './EmailInputStyle';
-import WarningMsg from '../../warningMsg/WarningMsg';
+import WarningMsg from '../../../warningMsg/WarningMsg';
 
 const EmailInputComponent = ({
   value,

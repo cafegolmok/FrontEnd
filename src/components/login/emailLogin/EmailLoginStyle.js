@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 import { palette, typography } from '../../../styles/theme.js';
 
 import { SharedLoginBtn } from '../../common/Button.jsx';
-import { SharedLoginInput } from '../../common/Input.jsx';
+import { SharedLoginInput } from '../../common/input/Input.jsx';
 
 export const EmailLoginContainer = styled.form``;
 

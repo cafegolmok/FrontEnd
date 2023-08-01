@@ -3,7 +3,7 @@
 import styled from 'styled-components';
 import { palette, spacing, typography } from '../../../styles/theme';
 import { SharedLoginBtn } from '../../common/Button.jsx';
-import { SharedLoginInput } from '../../common/Input.jsx';
+import { SharedLoginInput } from '../../common/input/Input.jsx';
 
 export const SignupFormContent = styled.form`
   padding: ${spacing.medium};
@@ -30,12 +30,12 @@ export const NicknameLabel = styled(SharedLabel)``;
 
 const InputWithErrors = props => `
   border-color: ${
-  props.errors.length > 0 ? palette.redColor : palette.brownColor
-};
+    props.errors.length > 0 ? palette.redColor : palette.brownColor
+  };
   &:focus {
   border-color: ${
-  props.errors.length > 0 ? palette.redColor : palette.brownColor
-};
+    props.errors.length > 0 ? palette.redColor : palette.brownColor
+  };
 }
 `;
 

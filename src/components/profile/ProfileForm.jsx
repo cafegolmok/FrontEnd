@@ -5,13 +5,14 @@ import PropTypes from 'prop-types';
 
 import {
   ProfileFormContainer,
-  NicknameLabel,
-  NicknameInput,
+  // NicknameLabel,
+  // NicknameInput,
   EditProfileBtnContainer,
   EditProfileBtn,
 } from './ProfileFormStyle';
-import WarningMsg from '../../components/warningMsg/WarningMsg.jsx';
-import EmailInputComponent from '../common/input/EmailInput.jsx';
+// import WarningMsg from '../../components/warningMsg/WarningMsg.jsx';
+import EmailInputComponent from '../common/input/emailInput/EmailInput.jsx';
+import NicknameInputComponent from '../common/input/nicknameInput/NicknameInput.jsx';
 
 import {
   validateSignupEmail as validateEditProfileEmail,
@@ -33,18 +34,6 @@ const ProfileForm = ({
   setServerNicknameError,
   handleEditProfileSubmit,
 }) => {
-  // 닉네임 핸들러
-  const handleChangeNickname = event => {
-    const nicknameValidationErrors = validateEditProfileNickname(
-      event.target.value
-    );
-    setNickname(event.target.value);
-    setNicknameErrors(
-      nicknameValidationErrors.length > 0 ? nicknameValidationErrors : []
-    );
-    setServerNicknameError('');
-  };
-
   return (
     <ProfileFormContainer>
       <EmailInputComponent
@@ -56,22 +45,15 @@ const ProfileForm = ({
         setServerEmailError={setServerEmailError}
         validateEditProfileEmail={validateEditProfileEmail}
       />
-
-      <NicknameLabel htmlFor='user-nickname'>닉네임</NicknameLabel>
-      <NicknameInput
-        type='text'
-        id='user-nickname'
-        name='user-nickname'
+      <NicknameInputComponent
         value={nickname}
-        onChange={handleChangeNickname}
-        errors={
-          nicknameErrors.length > 0 ? nicknameErrors : serverNicknameError
-        }
+        setNickname={setNickname}
+        nicknameErrors={nicknameErrors}
+        setNicknameErrors={setNicknameErrors}
+        serverNicknameError={serverNicknameError}
+        setServerNicknameError={setServerNicknameError}
+        validateEditProfileNickname={validateEditProfileNickname}
       />
-      <WarningMsg show={nicknameErrors.length > 0} messages={nicknameErrors} />
-      {serverNicknameError && (
-        <WarningMsg show={true} messages={[serverNicknameError]} />
-      )}
       <EditProfileBtnContainer>
         <EditProfileBtn onClick={handleEditProfileSubmit}>완료</EditProfileBtn>
       </EditProfileBtnContainer>
