@@ -5,14 +5,13 @@ import PropTypes from 'prop-types';
 
 import {
   ProfileFormContainer,
-  EmailLabel,
   NicknameLabel,
-  EmailInput,
   NicknameInput,
   EditProfileBtnContainer,
   EditProfileBtn,
 } from './ProfileFormStyle';
 import WarningMsg from '../../components/warningMsg/WarningMsg.jsx';
+import EmailInputComponent from '../common/input/EmailInput.jsx';
 
 import {
   validateSignupEmail as validateEditProfileEmail,
@@ -34,16 +33,6 @@ const ProfileForm = ({
   setServerNicknameError,
   handleEditProfileSubmit,
 }) => {
-  // 이메일 핸들러
-  const handleChangeEmail = event => {
-    const emailValidationErrors = validateEditProfileEmail(event.target.value);
-    setEmail(event.target.value);
-    setEmailErrors(
-      emailValidationErrors.length > 0 ? emailValidationErrors : []
-    );
-    setServerEmailError('');
-  };
-
   // 닉네임 핸들러
   const handleChangeNickname = event => {
     const nicknameValidationErrors = validateEditProfileNickname(
@@ -58,19 +47,16 @@ const ProfileForm = ({
 
   return (
     <ProfileFormContainer>
-      <EmailLabel htmlFor='user-email'>이메일</EmailLabel>
-      <EmailInput
-        type='text'
-        id='user-email'
-        name='user-email'
+      <EmailInputComponent
         value={email}
-        onChange={handleChangeEmail}
-        errors={emailErrors.length > 0 ? emailErrors : serverEmailError}
+        setEmail={setEmail}
+        emailErrors={emailErrors}
+        setEmailErrors={setEmailErrors}
+        serverEmailError={serverEmailError}
+        setServerEmailError={setServerEmailError}
+        validateEditProfileEmail={validateEditProfileEmail}
       />
-      <WarningMsg show={emailErrors.length > 0} messages={emailErrors} />
-      {serverEmailError && (
-        <WarningMsg show={true} messages={[serverEmailError]} />
-      )}
+
       <NicknameLabel htmlFor='user-nickname'>닉네임</NicknameLabel>
       <NicknameInput
         type='text'
